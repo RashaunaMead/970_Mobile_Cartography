@@ -60,6 +60,7 @@
     // Adds updated markers onto the map
     function updateMarkers(e){
 
+      //Accuracy radius used to draw the location circle
       var radiusA = e.accuracy / 2;
 
       if(markerNotOnMap){
@@ -76,7 +77,7 @@
 
       //updates the current location marker
        locationMarker = L.marker(e.latlng).addTo(map)
-      .bindPopup("You are within " + radius + " meters from this point").openPopup();
+      .bindPopup("You are within " + radiusA + " meters from this point").openPopup();
       circle = L.circle(e.latlng, radiusA).addTo(map);
 
     //adds circle that acts as the geofence that is centered around moveable marker
