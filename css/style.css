@@ -1,29 +1,33 @@
+/* Small-range 0, 640px */
+/* Medium-range 641px, 1024px */
+/* Large-range 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
 html, body, #map {
-    height: 100%;
-}
-body {
-    margin: 0;
-    padding: 0;
-}
+  height: 100%; }
 
-map{
-	z-index: 2;
-}
+body {
+  margin: 0;
+  padding: 0;
+  font: 100% Helvetica, sans-serif; }
+
+map {
+  z-index: 2; }
 
 .top-bar {
-	z-index: 1;
-	position: fixed;
-	background: none repeat scroll 0 0 #6D6D6D;
-/*	this will change with screen size*/
-	bottom: 0px;
-	width: 100%;
-	margin-bottom: 0px;
-}
+  z-index: 1;
+  position: fixed;
+  background: none repeat scroll 0 0 #6d6d6d;
+  /*	this will change with screen size*/
+  width: 100%; }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
-    background: none repeat scroll 0 0  #6D6D6D;
-}
+  background: none repeat scroll 0 0 #6d6d6d; }
 
-.top-bar-section li:not(.has-form)  a:hover:not(.button){
-    background: none repeat scroll 0 0  #BEBEBE;
-}
+.top-bar-section li:not(.has-form) a:hover:not(.button) {
+  background: #BEBEBE; }
+
+@media only screen and (min-width: 0em) and (max-width: 40em) {
+  .top-bar {
+    bottom: 0px;
+    margin-bottom: 0px; } }
