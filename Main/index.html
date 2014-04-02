@@ -22,7 +22,7 @@
  <body>
  
     
- <div id="map">   
+ <div id="map"> 
     <nav class="top-bar" data-topbar>
   <ul class="title-area">
     <li class="name">
@@ -31,7 +31,18 @@
     <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
   </ul>
 
-  <section class="top-bar-section">
+    <!--audio section-->    
+    <section class="top-bar-section">
+    <ul class="left">
+    <li>
+        <audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
+        </audio>
+    </li>
+    </ul>
+        
+    </section>
+  
+    <section class="top-bar-section">
     <!-- Right Nav Section -->
    <!--  <ul class="right">
       <li class="active"><a href="#">Right Button Active</a></li>
@@ -42,7 +53,7 @@
         </ul>
       </li>
     </ul> -->
-
+    
     <!-- Left Nav Section -->
     <ul class="left">
       <li><a href="#">  
@@ -54,6 +65,10 @@
          <li><a href="#">
          <img src="images/img/icon_2824/icon_2824.png" width="34" height="34" alt="Infomation"/>
           Information</a></li>
+        <!--audio section-->
+        <li><a href="#"><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
+         Text for Audio</a>
+        </li>
   
     </ul>
   </section>

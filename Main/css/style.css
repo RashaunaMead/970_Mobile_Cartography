@@ -27,3 +27,7 @@ map{
 .top-bar-section li:not(.has-form)  a:hover:not(.button){
     background: none repeat scroll 0 0  #BEBEBE;
 }
+
+audio{
+    width: 100%;
+}
