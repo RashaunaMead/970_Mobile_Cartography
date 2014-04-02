@@ -14,6 +14,7 @@ var map;
     }).addTo(map);
     // initial zoom & set map coords, these will change 
     map.setView([43.07790859834721, -89.37177476473153], 14);
+    map.attributionControl.setPosition('topright');
     
 }
 
