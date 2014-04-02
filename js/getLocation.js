@@ -15,10 +15,12 @@ var GetLocation = function(map){
       		map.removeLayer(locationMarker);
       	}
 
+      	if(e.accuracy<120){
       	//adds location and accuracy information to the map
- 		circle = L.circle(e.latlng, radius).addTo(map);
- 		locationMarker = L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point");;
-
+	 		circle = L.circle(e.latlng, radius).addTo(map);
+	 		locationMarker = L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point");
+	 		firstTime = false;
+ 		}
  		//if accuracy is less than 60m then stop calling locate function
  		if(e.accuracy<60){
  			var count = 0;
@@ -27,7 +29,7 @@ var GetLocation = function(map){
  		 	
  		 	count++;
  		}
- 		firstTime = false;
+ 		
 
  	}
 

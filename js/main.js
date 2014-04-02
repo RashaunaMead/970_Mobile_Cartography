@@ -12,14 +12,13 @@ var map;
       maxZoom: 18,
       minzoom: 5,
     }).addTo(map);
-
     // initial zoom & set map coords, these will change 
-    map.setView([43.07790859834721, -89.37177476473153], 16);
-    // calls the find me function 
+    map.setView([43.07790859834721, -89.37177476473153], 14);
     
 }
 
+// calls the find me function 
 $("li.findMe").click(function(){
-    	console.log("find me clicked");
     	GetLocation(map);
     })
+
