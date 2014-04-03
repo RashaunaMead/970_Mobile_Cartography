@@ -1,19 +1,26 @@
+//breaks in css
+/* Small-range 0, 640px */
+/* Medium-range 641px, 1024px */
+/* Large-range 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+
 // responsive js elements
 var map;
 // is set from main.js
-var midBreakPoint =600;
+var midBreakPoint =640;
+var largeBreakPoint = 1024;
+
 function setMap(mapSent){
 	map = mapSent;
-	console.log("got map");
 }
 
 $(window).load(function() {
-      if (screen.width < midBreakPoint) {
-      console.log("more than 600 start");
-    }
-     if (screen.width < midBreakPoint) {
-      console.log("less than 600 start");
-    }
+  var winHeight = $(window).height();
+  var winWidth = $(window).width();
+
+  switchElements(winWidth);
+
 });
  
 $(window).on("resize", methodToFixLayout);
@@ -22,11 +29,18 @@ function methodToFixLayout( e ) {
     var winHeight = $(window).height();
     var winWidth = $(window).width();
     //console.log(winWidth);
+    switchElements(winWidth);
     
-    if(winWidth> midBreakPoint){
-	 map.attributionControl.setPosition('bottomright');
+}
+//the function that will handle the swiching
+var switchElements = function (width,height,screen,pos){
+  // if it is larger than mid breakpoint
+  if(width> midBreakPoint){
+   map.attributionControl.setPosition('bottomright');
+   map.addControl({zoomControl:false});
     }
     else{
-	 map.attributionControl.setPosition('topright');
+   map.attributionControl.setPosition('topright');
     }
+
 }
