@@ -20,6 +20,11 @@ $(window).load(function() {
   var winWidth = $(window).width();
 
   switchElements(winWidth);
+  $("#map").hide();
+  $("#splash a").click(function(){
+    $("#map").show();
+    $("#splash").hide();
+  })
 
 });
  
@@ -37,7 +42,6 @@ var switchElements = function (width,height,screen,pos){
   // if it is larger than mid breakpoint
   if(width> midBreakPoint){
    map.attributionControl.setPosition('bottomright');
-   map.addControl({zoomControl:false});
     }
     else{
    map.attributionControl.setPosition('topright');
