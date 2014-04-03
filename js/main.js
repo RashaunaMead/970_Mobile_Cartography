@@ -16,10 +16,17 @@ var map;
     map.setView([43.07790859834721, -89.37177476473153], 14);
     map.attributionControl.setPosition('topright');
     
+
+
+   
+
+
 }
 
+ 
 // calls the find me function 
 $("li.findMe").click(function(){
     	GetLocation(map);
-    })
-
+});
+// sends to responsive.js thes allows map elements to be responsive
+setMap(map);
