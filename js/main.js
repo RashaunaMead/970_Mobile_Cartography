@@ -5,7 +5,7 @@ var map;
 
  function loadmap(){
  
-  map = L.map('map', { zoomControl:true });
+  map = L.map('map', { zoomControl:false });
     // tiles can change once we know our basemap 
     L.tileLayer('https://{s}.tiles.mapbox.com/v3/rashauna.hlkken8n/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
