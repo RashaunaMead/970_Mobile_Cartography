@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link type="text/css" rel="stylesheet" href="css/foundation.css" />
+		<link type="text/css" rel="stylesheet" href="css/twentytwenty.css" />
+		<link type="text/css" rel="stylesheet" href="css/normalize.css" />
+		
+		<link type="text/css" rel="stylesheet" href="css/main.css" />
+		
+		<title>Slideshow Demo</title>
+	</head>
+	
+	<body>
+	
+        <!--
+    <a href="#" class="orbit-next" visible = false></a>
+    <a href="#" class="orbit-prev"></a>
+-->
+        
+	<div id="myModal" class="reveal-modal" data-reveal>
+	
+		<div id="slideshow_images">
+			<ul class="orbit-slideshow" data-orbit>
+			  <li id="image1">
+				<div class="twentytwenty-container">
+					<img src="img/image1.jpg"/>
+					<img src="img/image2.jpg"/>
+					<div class="twentytwenty-overlay"></div>
+				</div>				
+			  </li>
+			  <li id="image2">
+				<div class="twentytwenty-container">
+					<img src="img/image1.jpg"/>
+					<img src="img/image2.jpg"/>
+					<div class="twentytwenty-overlay"></div>
+				</div>
+			  </li>
+			  <li id="image3">
+				<div class="twentytwenty-container">
+					<img src="img/image1.jpg"/>
+					<img src="img/image2.jpg"/>
+					<div class="twentytwenty-overlay"></div>
+				</div>
+			  </li>
+			</ul>
+		</div>
+        
+		<div id="slideshow_texts"></div>
+		
+		<a class="close-reveal-modal"></a>
+		
+	</div>
+	
+	<!--Entry point for popup slideshow-->
+	<a class="big-link" href="#" data-reveal-id="myModal" data-animation="fade">Click for a SLIDESHOW</a>
+	
+	<!--JS needed for popup slideshow-->
+	<script src="js/vendor/jquery.js"></script> 
+	<script src="js/vendor/fastclick.js"></script>
+	<script src="js/foundation/foundation.js"></script> 
+	<script src="js/foundation/foundation.reveal.js"></script> 
+	<script src="js/foundation/foundation.orbit.js"></script> 
+	
+	<!--main.js-->
+	<script src="js/main.js"></script>
+	<script src="js/jquery.event.move.js"></script>
+	<script src="js/jquery.twentytwenty.js"></script>
+		
+	</body>
+</html>
