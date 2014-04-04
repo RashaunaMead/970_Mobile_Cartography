@@ -21,46 +21,50 @@
  </head>
  <body>
  
- <div id="splash">
+<!--  <div id="splash">
   <h1>Splash Page</h1>
   <h3><a href="#"> Go To The Map </a></h3>
- </div>
+ </div> -->
+
+<div class="row ontop" >
+<!--  <div class="small-12 large-12 columns"> -->
+<!--   <audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio> -->
+      <!--     </div> -->
+  </div>
  <div id="map"> 
     <nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name">
-      <!-- <h1><a href="#">My Site</a></h1> -->
-    </li>
-    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-  </ul>
+      <ul class="title-area">
+        <li class="name">
+
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+      </ul>
 
     <!--audio section-->      
-    <section class="top-bar-section">
-    <ul class="left">
+   <section class="top-bar-section">
+    <ul class="right">
     <li>
         <audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
         </audio>
     </li>
     </ul>
         
-    </section>
-  
+    </section>   
     <section class="top-bar-section">
-    <!-- Right Nav Section -->
-   <!--  <ul class="right">
-      <li class="active"><a href="#">Right Button Active</a></li>
-      <li class="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-        </ul>
-      </li>
-    </ul> -->
+
     
     <!-- Left Nav Section -->
     <ul class="left">
-      <li><a href="#">  
-       <img src="images/img/icon_13378/icon_13378.png" width="38" height="38" alt="Locations"/> Locations</a></li>
+      <li class="has-dropdown"><a href="#" data-options="align:left">  
+       <img src="images/img/icon_13378/icon_13378.png" width="38" height="38" alt="Locations"/> Locations</a>
+        <ul class="dropdown">
+          <li><a href="#">Shoe Factory <img src="images/img/icon_3840/icon_3840.png" width="38" height="38" alt="Locations"/></a></li>
+          <li><a href="#">Railroad Station <img src="images/img/icon_68/icon_68.png" width="38" height="38" alt="Locations"/></a></li>
+          <li><a href="#">Community Center <img src="images/img/icon_6396/icon_6396.png" width="38" height="38" alt="Locations"/></a></li>
+          <li><a href="#">Coffee Shop <img src="images/img/icon_4111/icon_4111.png" width="38" height="38" alt="Locations"/></a></li>
+        </ul>
+     </li>
 
     
       <li class="findMe"><a href="#"><img src="images/img/icon_12638/icon_12638.png" width="34" height="34" alt="find Me"/> Find Me</a></li>
@@ -74,13 +78,22 @@
         <!--audio section-->
         <li><a href="#"><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
          Text for Audio</a>
-        </li>
+         </li>
+
+
+
+
+       <!--   <li><audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
+            </audio>
+          </li> -->
   
     </ul>
   </section>
 </nav>
 
  </div> 
+
+
  
 
     <script src="libraries/foundation/js/vendor/jquery.js"></script>

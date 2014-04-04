@@ -20,11 +20,13 @@ $(window).load(function() {
   var winWidth = $(window).width();
 
   switchElements(winWidth);
-  $("#map").hide();
-  $("#splash a").click(function(){
-    $("#map").show();
-    $("#splash").hide();
-  })
+  // $("#map").hide();
+  // $(".ontop").hide()
+  // $("#splash a").click(function(){
+  //   $("#map").show();
+  //   $("#splash").hide();
+  //    $(".ontop").show();
+  //})
 
 });
  
