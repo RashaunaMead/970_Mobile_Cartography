@@ -17,6 +17,8 @@ map {
 audio {
   width: 100%; }
   
+/*------------------ Styles for tileToggle ----------------- */
+  
  #tileToggle{
 	position: fixed;
 	z-index: 1;
@@ -35,6 +37,8 @@ audio {
 	cursor: pointer;
  }
 
+ /*---------------- end Styles for tileToggle ----------------- */
+ 
 .ontop {
   z-index: 5;
   position: fixed;
