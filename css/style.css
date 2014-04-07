@@ -16,6 +16,24 @@ map {
 
 audio {
   width: 100%; }
+  
+ #tileToggle{
+	position: fixed;
+	z-index: 1;
+	bottom: 10px;
+	left: 10px;
+	color: white; /*text color*/
+	background-color: #6D6D6D; /*dark grey*/
+	border-radius: 5px;
+ }
+  #tileToggle b {
+	padding: 5px
+  }
+  
+  #tileToggle:hover {
+	background-color: #BEBEBE; /*light grey*/
+	cursor: pointer;
+ }
 
 .ontop {
   z-index: 5;
