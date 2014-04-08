@@ -44,6 +44,7 @@ audio {
   position: fixed;
   width: 100%; }
 
+ style.css
 .top-bar {
   z-index: 1;
   position: fixed;
@@ -61,3 +62,7 @@ audio {
   .top-bar {
     bottom: 0px;
     margin-bottom: 0px; } }
+
+
+
+
