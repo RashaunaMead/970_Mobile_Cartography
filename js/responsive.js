@@ -20,13 +20,13 @@ $(window).load(function() {
   var winWidth = $(window).width();
 
   switchElements(winWidth);
-   //  $("#container").hide();
-   // $(".ontop").hide()
-   // $("#splash a").click(function(){
-   //   $("#container").show();
-   //   $("#splash").hide();
-   //  $(".ontop").show();
- // })
+    $("#container").hide();
+   $(".ontop").hide()
+   $("#splash a").click(function(){
+     $("#container").show();
+     $("#splash").hide();
+    $(".ontop").show();
+ })
 
 });
  

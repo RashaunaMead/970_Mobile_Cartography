@@ -21,27 +21,25 @@
  </head>
  <body>
 
-  <!-- <div id="splash">
+  <div id="splash">
     <h1>Splash Page</h1>
     <h3><a href="#"> Go To The Map </a></h3>
- </div> -->
+ </div> 
  <div id="container">
     <nav class="top-bar" data-topbar>
-      <ul class="title-area">
-          <li class="name"></li><!--audo can go here for mobile version-->
+      <audio id="player" controls autoplay class="left" > 
+        <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
+      </audio>
+      <ul class="title-area">  
+
+          <li class="name"></li>
+    
+        
+          <!--audo can go here for mobile version-->
           <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
       </ul>
 
-        <!--audio section-->      
-       <!-- <section class="top-bar-section">
-        <ul class="right">
-        <li>
-            <audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
-            </audio>
-        </li>
-        </ul>
-            
-        </section>    -->
+        
         <section class="top-bar-section">
 
         
@@ -71,20 +69,14 @@
             <li><a href="#"><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
              Text for Audio</a>
              </li>
-
-
-           <!--   <li><audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
-                </audio>
-              </li> -->
       
         </ul>
-      </section>
-    </nav>
-   <!-- <div id = "audoTag">
-   <audio id="player" controls autoplay class="left" > <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
-    </audio>
-  </div> -->
 
+      </section>
+
+</nav>
+     
+ 
 
     <div id="map"> 
       <div id="tileToggle"><b>Switch Tiles</b></div>
@@ -105,16 +97,13 @@
       $(document).foundation();
     </script>
 
-	
-	<script type="text/javascript" src="data/route1.js"></script>
-	<script type="text/javascript" src="data/PointsofInterest.js"></script>
-	 
    <script type="text/javascript" src="js/getLocation.js"></script>
    <script type="text/javascript" src="js/responsive.js"></script>
+   <script type="text/javascript" src="js/main.js"></script>	
    <script type="text/javascript" src="js/markers.js"></script>
+   <script type="text/javascript" src="data/PointsofInterest.geojson"></script>
+   <script type="text/javascript" src="data/route1.js"></script>
 
  
-	<script type="text/javascript" src="js/main.js"></script>	
-
 </body>
 </html>
