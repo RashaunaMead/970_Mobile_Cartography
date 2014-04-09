@@ -23,6 +23,7 @@ var modernTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/rashauna.hlkke
 
 
  function loadmap(){
+
  
   map = L.map('map', { zoomControl:false});
     // tiles can change once we know our basemap 
@@ -71,15 +72,34 @@ function toggleTiles(){
 
 // var map = new L.Map('map', { zoomControl:false });
 // calls the find me function 
-$("li.findMe").click(function(){
-    	GetLocation(map);
-});
-
-$("li.shoe ").click(function(){
-    	alert("m");
-});
 
 // sends to responsive.js this allows map elements to be responsive
 setMap(map);
 
 addMarkers(map); //function defined in markers.js file
+
+
+/* NAV BAR Locations change map zoom and center */
+//this might need to be moved to a new js file for responsive zoom levels
+
+$("li.findMe").click(function(){
+    	GetLocation(map);
+});
+
+
+$("li.candy ").click(function(){
+	map.setView(POI.features.Candy_Factory.geometry.coordinates,18)
+});
+
+$("li.Shoe_Factory ").click(function(){
+	map.setView(POI.features.Shoe_Factory.geometry.coordinates,18)
+});
+
+$("li.Wil_Mar").click(function(){
+	map.setView(POI.features.Wil_Mar.geometry.coordinates,18)
+});
+
+$("li.Power_Plant").click(function(){
+	map.setView(POI.features.Power_Plant.geometry.coordinates,18)
+});
+
