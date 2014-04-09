@@ -75,7 +75,7 @@ $("li.findMe").click(function(){
     	GetLocation(map);
 });
 
-$("li.locations").click(function(){
+$("li.shoe ").click(function(){
     	alert("m");
 });
 
