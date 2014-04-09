@@ -77,4 +77,4 @@ $("li.findMe").click(function(){
 // sends to responsive.js this allows map elements to be responsive
 setMap(map);
 
-addMarkers(map); //function in markers.js file
+addMarkers(map); //function defined in markers.js file
