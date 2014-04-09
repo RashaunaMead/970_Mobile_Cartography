@@ -3,7 +3,7 @@
 /* Large-range 1025px, 1440px */
 /* 1441px, 1920px */
 /* 1921px */
-html, body, #map {
+html, body, #container{
   height: 100%; }
 
 body {
@@ -11,12 +11,14 @@ body {
   padding: 0;
   font: 100% Helvetica, sans-serif; }
 
-map {
-  z-index: 2; }
+/*audio {
+  width: 100%; }*/
 
-audio {
-  width: 100%; }
-  
+#map{
+  height: 100%;
+  width: 100%;
+}
+
 /*------------------ Styles for tileToggle ----------------- */
   
  #tileToggle{
@@ -61,3 +63,17 @@ audio {
   .top-bar {
     bottom: 0px;
     margin-bottom: 0px; } }
+
+/*--------------- Audio ----------------*/
+audio{
+  width: 100%;
+}
+audio{
+ overflow: hidden;
+  height: 45px;
+  line-height: 45px;
+  position: relative;
+  background: #333333;
+  margin-bottom: 0; z-index: 0;
+  margin-bottom: 0px;
+}
