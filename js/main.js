@@ -74,6 +74,11 @@ function toggleTiles(){
 $("li.findMe").click(function(){
     	GetLocation(map);
 });
+
+$("li.shoe ").click(function(){
+    	alert("m");
+});
+
 // sends to responsive.js this allows map elements to be responsive
 setMap(map);
 
