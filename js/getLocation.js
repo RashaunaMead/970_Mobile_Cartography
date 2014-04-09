@@ -1,4 +1,4 @@
-//Get Location Function
+//Get Location Function test
 var firstTime = true;
 
 var GetLocation = function(map){
