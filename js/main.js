@@ -34,7 +34,7 @@ var modernTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/rashauna.hlkke
       minzoom: 5,
     }).addTo(map);
     // initial zoom & set map coords, these will change 
-    map.setView([43.076364, -89.384336], 14);
+    
     
  
   addTileToggle();
