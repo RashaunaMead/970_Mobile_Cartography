@@ -72,25 +72,27 @@ body {
 
 /*Small-range*/
 @media only screen and (min-width: 0em) and (max-width: 40em) {
-  .top-bar {
+  .top-bar, .top-bar-section {
     bottom: 0px;
     margin-bottom: 0px;
     height: 45px; }
-    audio {
+  audio {
       top: 8px;
       left: 8px;
       position: relative;
-      width: 75%;
-      /*top: 0px;
-      margin-top: 0px;
-      background: #6d6d6d;*/ 
+      width: 65%;
+    } 
+  #tileToggle{
+    top: 10px;
+    height: 20px;
+ }}
 
-  } 
+/* sccs$joyride-tip-position-offset: 22px; */
 
 #tileToggle{
   top: 10px;
   height: 20px;  
- }}
+ }
 
  
  #infoScreen{
@@ -107,4 +109,5 @@ body {
 	padding: 5px;
   }
   
+
 
