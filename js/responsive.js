@@ -32,12 +32,20 @@ $(window).load(function() {
     $(".ontop").show();
 // This will need to change to device to be a clear fix
     if(winWidth<=midBreakPoint){
+    map.setView([43.076364, -89.384336], 13);
+
       $(document).foundation('joyride', 'start');
+    }
+    else{
+      map.setView([43.076364, -89.384336], 14);
     }
 
  })
 
 });
+
+
+
 
 var zoomLevel = function (width){
      if(width>midBreakPoint){
@@ -92,4 +100,8 @@ $("li.Wil_Mar").click(function(){
 
 $("li.Power_Plant").click(function(){
   map.setView(POI.features.Power_Plant.geometry.coordinates,zoomPOI)
+});
+
+$("li.allLocations").click(function(){
+  map.setView([ 43.078307,-89.377041],zoomPOI-3)
 });
