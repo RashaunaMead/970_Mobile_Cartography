@@ -1,4 +1,5 @@
 //main.js initiates the map and runs the functionality of the map 
+
 var map;
  window.onload = loadmap();
  
@@ -34,10 +35,7 @@ var modernTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/rashauna.hlkke
     }).addTo(map);
     // initial zoom & set map coords, these will change 
     map.setView([43.07790859834721, -89.37177476473153], 14);
- //   map.attributionControl.setPosition('topright');
-  
-  console.log(map);
-  
+    
  
   addTileToggle();
 }
@@ -50,7 +48,7 @@ function addTileToggle() { //called at the end of loadmap function
 	document.getElementById("tileToggle").addEventListener("click", toggleTiles);
 	
 }
-
+/* Toggles Tiles */
 function toggleTiles(){
 	if (currentTile == 'modern'){
 		console.log("switch to historic basemap"); 
@@ -68,38 +66,8 @@ function toggleTiles(){
 	}
 }
 
-// map.addControl({ zoomControl:true });
-
-// var map = new L.Map('map', { zoomControl:false });
-// calls the find me function 
-
-// sends to responsive.js this allows map elements to be responsive
-setMap(map);
-
+/* Loads Markers Into Map*/
 addMarkers(map); //function defined in markers.js file
 
 
-/* NAV BAR Locations change map zoom and center */
-//this might need to be moved to a new js file for responsive zoom levels
-
-$("li.findMe").click(function(){
-    	GetLocation(map);
-});
-
-
-$("li.candy ").click(function(){
-	map.setView(POI.features.Candy_Factory.geometry.coordinates,18)
-});
-
-$("li.Shoe_Factory ").click(function(){
-	map.setView(POI.features.Shoe_Factory.geometry.coordinates,18)
-});
-
-$("li.Wil_Mar").click(function(){
-	map.setView(POI.features.Wil_Mar.geometry.coordinates,18)
-});
-
-$("li.Power_Plant").click(function(){
-	map.setView(POI.features.Power_Plant.geometry.coordinates,18)
-});
 
