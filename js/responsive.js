@@ -25,11 +25,16 @@ $(window).load(function() {
 //this will need to change to add the .ontop class or map div until splash has loded or closed
   switchElements(winWidth);
     $("#container").hide();
-   $(".ontop").hide()
+    $(".ontop").hide()
+    $("audio").prop('muted', true);
    $("#splash a").click(function(){
      $("#container").show();
      $("#splash").hide();
-    $(".ontop").show();
+     $(".ontop").show();
+     $("audio").load();
+     $("audio").prop('muted', false);
+
+       
 // This will need to change to device to be a clear fix
     if(winWidth<=midBreakPoint){
     map.setView([43.076364, -89.384336], 13);
