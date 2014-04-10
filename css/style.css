@@ -26,10 +26,11 @@ body {
   }
   /*--------------- reveal for help, info and text overlays ----------------*/
 
-/* .reveal-modal {
+ .reveal-modal {
     z-index: 1000;
-  }*/
+  }
  
+
    #infoScreen{
   background-color: grey;
   opacity: 0.7;
