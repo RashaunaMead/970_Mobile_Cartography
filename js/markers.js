@@ -9,7 +9,8 @@ $(document).foundation({
         timer: false,
 		swipe: false,
         next_class: 'orbit-next',
-        prev_class: 'orbit-prev'
+        prev_class: 'orbit-prev',
+		timer_show_progress_bar: false
     }
 });	
 
