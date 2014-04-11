@@ -24,6 +24,8 @@ $('.reveal-modal').on('opened', function () {
 //hide PREV BUTTON initially
 $('.orbit-prev').hide();
 
+$('.orbit-timer').hide();
+
 //this function adds custom icons to the map, drawing the path to the image from the geojson 
 function addMarkers (map) {
 
