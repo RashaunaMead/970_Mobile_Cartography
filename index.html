@@ -16,8 +16,14 @@
     <link rel="stylesheet" href="libraries/foundation/css/foundation.css" />
     <script src="libraries/foundation/js/vendor/modernizr.js"></script>
 
-       <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+    <!--For slideshow Guiming-->
+    <link type="text/css" rel="stylesheet" href="libraries/twentytwenty.css" />
+    <link type="text/css" rel="stylesheet" href="libraries/foundation/css/normalize.css" />
+	<link type="text/css" rel="stylesheet" href="css/slideshow.css" />
+    <!--END Guiming-->
+    
  </head>
  <body>
 
@@ -93,8 +99,35 @@
   
   <!-- slideshow for marker divs -->
   <div id="slideshowModal" class="reveal-modal" data-reveal>
-    <h2 id="show_title"></h2>
-    <a class="close-reveal-modal">&#215;</a>
+    <p id="show_title"></p>
+    
+     <div id="slideshow_images">
+        <ul class="orbit-slideshow" data-orbit>
+          <li id="image1">
+            <div class="twentytwenty-container">
+                <img data-interchange="[images/historical-small.jpg, (small)], [images/historical-large.jpg, (large)]">
+                <img data-interchange="[images/current-small.jpg, (small)], [images/current-large.jpg, (large)]">
+                <div class="twentytwenty-overlay"></div>
+            </div>				
+          </li>
+          <li id="image2">
+            <div class="twentytwenty-container">
+                <img data-interchange="[images/historical-small.jpg, (small)], [images/historical-large.jpg, (large)]">
+                <img data-interchange="[images/current-small.jpg, (small)], [images/current-large.jpg, (large)]">
+                <div class="twentytwenty-overlay"></div>
+            </div>				
+          </li>
+          <li id="image3">
+            <div class="twentytwenty-container">
+                <img data-interchange="[images/historical-small.jpg, (small)], [images/historical-large.jpg, (large)]">
+                <img data-interchange="[images/current-small.jpg, (small)], [images/current-large.jpg, (large)]">
+                <div class="twentytwenty-overlay"></div>
+            </div>				
+          </li>
+        </ul>
+    </div>
+    
+    <a class="close-reveal-modal"></a>
   </div><!-- ends slideshow for marker divs -->
 
   </div><!--ends container -->
@@ -144,6 +177,17 @@
     <script src="libraries/foundation/js/foundation.min.js"></script>
     <script src="libraries/foundation/js/foundation/foundation.joyride.js"></script>
     <script src="libraries/foundation/js/vendor/jquery.cookie.js"></script> <!-- Optional -->
+  
+    <!--Guiming-->
+  	<script src="libraries/foundation/js/vendor/fastclick.js"></script>
+	<script src="libraries/foundation/js/foundation/foundation.reveal.js"></script> 
+	<script src="libraries/foundation/js/foundation/foundation.orbit.js"></script> 
+	<script src="libraries/foundation/js/foundation/foundation.interchange.js"></script>
+  
+  	<script src="libraries/jquery.event.move.js"></script>
+	<script src="libraries/jquery.twentytwenty.js"></script>
+    <!--End Guiming-->
+  
     <script>
       $(document).foundation();
     </script>
