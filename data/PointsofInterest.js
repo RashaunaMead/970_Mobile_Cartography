@@ -18,8 +18,34 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 	
 			},
-		 "Descriptio": "“Think about how the current businesses in this building produce value, and contrast these post-Fordist forms of production to the Fordist mode of production that used to inhabit it.", 
-		 "PhotoLink": null, "Address": "744 Williamson St.", "iconLink24": null, "iconLink36": null 
+		 "Descriptio": "ï¿½Think about how the current businesses in this building produce value, and contrast these post-Fordist forms of production to the Fordist mode of production that used to inhabit it.", 
+		 "PhotoLink": null, "Address": "744 Williamson St.", "iconLink24": null, "iconLink36": null,
+        // for image set in slide show
+		 "imageSet": [
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....A"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....B"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....C"
+			}
+		 ]
+		 // end for image set in slide show
+        
 	} //end properties		
 }, //end feature
 
@@ -38,7 +64,34 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
 			},
-		"Descriptio": ". Built as a church and now a community center, the building provides a good opportunity to reflect on how the neighborhood has changed.", "PhotoLink": null, "Address": "953 Jenifer St.", "iconLink24": null, "iconLink36": null 
+		"Descriptio": ". Built as a church and now a community center, the building provides a good opportunity to reflect on how the neighborhood has changed.", "PhotoLink": null, "Address": "953 Jenifer St.", "iconLink24": null, "iconLink36": null,
+        
+        // for image set in slide show
+		 "imageSet": [
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....A"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....B"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....C"
+			}
+		 ]
+		 // end for image set in slide show
+        
 	}  //end properties
 },
 
@@ -58,7 +111,34 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 		
 			},
-		"Descriptio": "Think through questions about energy flows through homes and business, inequalities related to the electric grid, and alternative forms of power.", "PhotoLink": "images\/powerPlant.jpg", "Address": "722 E Main St.", "iconLink24": null, "iconLink36": null
+		"Descriptio": "Think through questions about energy flows through homes and business, inequalities related to the electric grid, and alternative forms of power.", "PhotoLink": "images\/powerPlant.jpg", "Address": "722 E Main St.", "iconLink24": null, "iconLink36": null,
+        
+        // for image set in slide show
+		 "imageSet": [
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....A"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....B"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....C"
+			}
+		 ]
+		 // end for image set in slide show
+        
 	} //end properties  
 }, //end feature
 
@@ -78,7 +158,34 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
 			},
-		"Descriptio": "Former railroad station...", "PhotoLink": "images\/railroadStation.jpg", "Address": "133 S Blair St.", "iconLink24": null, "iconLink36": null 
+		"Descriptio": "Former railroad station...", "PhotoLink": "images\/railroadStation.jpg", "Address": "133 S Blair St.", "iconLink24": null, "iconLink36": null,
+        
+        // for image set in slide show
+		 "imageSet": [
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....A"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....B"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....C"
+			}
+		 ]
+		 // end for image set in slide show
+        
 	} //end properties  
 }, //end feature
 
@@ -98,7 +205,34 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
 			},
-		"Descriptio": "(From Wikipedia) The building was constructed in 1910 after the company had originally expanded its production to Madison in 1900.  designated a landmark by the Madison Landmarks Commission in 1989.", "PhotoLink": "images\/BadgerStateShoeFactory1.jpg", "Address": "123 N Blount", "iconLink24": null, "iconLink36": null 
+		"Descriptio": "(From Wikipedia) The building was constructed in 1910 after the company had originally expanded its production to Madison in 1900.  designated a landmark by the Madison Landmarks Commission in 1989.", "PhotoLink": "images\/BadgerStateShoeFactory1.jpg", "Address": "123 N Blount", "iconLink24": null, "iconLink36": null,
+        
+        // for image set in slide show
+		 "imageSet": [
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....A"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....B"
+			},
+			{
+				"historic_small": "images/historic_small.jpg",
+				"historic_large": "images/historic_large.jpg",
+				"current_small": "images/current_small.jpg",
+				"current_large": "images/current_large.jpg",
+				"image_texts": "texts come along with images go here ....C"
+			}
+		 ]
+		 // end for image set in slide show
+        
 	} //end properties 
 } //end feature
 ] //end features list
