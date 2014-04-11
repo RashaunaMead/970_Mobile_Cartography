@@ -26,13 +26,16 @@ function addMarkers (map) {
 function openInfoScreen (feature){
 	console.log("open info screen for ", feature.properties.title);
 	
-	var infoScreen = document.getElementById("infoScreen");
-	infoScreen.style.visibility = "visible";
+	var infoScreen = document.getElementById("slideshowModal");
+	//infoScreen.style.visibility = "visible";
+	document.getElementById("show_title").textContent = feature.properties.title;
+	
+	$("#slideshowModal").foundation("reveal", "open");
 	
 	//for now, the div will disappear when you click on it. 
-	infoScreen.addEventListener("click", function(){
-		infoScreen.style.visibility = "hidden";
-	});
+	//infoScreen.addEventListener("click", function(){
+	//	infoScreen.style.visibility = "hidden";
+	//);
 	
 
 }
