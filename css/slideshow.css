@@ -6,13 +6,16 @@
 
 #slideshow_texts {
 	width: 100%;
-	height: 200px;
+	height: auto;
 	overflow-y:scroll;
 }
 
-#slideshow_images{
-	width: 100%;
-	height: auto;
+#slideshow_images, #imagesList, .twentytwenty-container, .twentytwenty-before, .twentytwenty-after{
+
+}
+
+.twentytwenty-before, .twentytwenty-after{
+	
 }
 
 .twentytwenty-overlay{
