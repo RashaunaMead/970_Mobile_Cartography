@@ -20,11 +20,16 @@ $('.reveal-modal').on('opened', function () {
 	$(".twentytwenty-container").twentytwenty();
 	$(window).trigger('resize');  
 });
-	
-//hide PREV BUTTON initially
-$('.orbit-prev').hide();
 
-$('.orbit-timer').hide();
+//===============some elements in the images slideshow window=============//
+// this is the modal window holding images slideshow
+var slideshowModal = document.getElementById("slideshowModal");
+// title for this set of images slideshow
+var showTitle = document.getElementById("show_title"); 
+// description texts for the images
+var showText = document.getElementById("slideshow_texts");
+// this is the <ul> imagesList holding images
+var showImagesList = document.getElementById("imagesList");
 
 //this function adds custom icons to the map, drawing the path to the image from the geojson 
 function addMarkers (map) {
@@ -53,47 +58,71 @@ function addMarkers (map) {
 function openInfoScreen (feature){
 	console.log("open info screen for ", feature.properties.title);
 	
-	var infoScreen = document.getElementById("slideshowModal");
-	//infoScreen.style.visibility = "visible";
-	document.getElementById("show_title").textContent = feature.properties.title;
+	// set show title
+	showTitle.innerHTML = feature.properties.title;
 	
-	// set image text for the first slide
-	if($("#slideshow_texts").innerHTML==null){
-		$("#slideshow_texts").html(feature.properties.imageSet[0].image_texts);
+	// imageSet from PointsofIntest.js
+	var imageSet = feature.properties.imageSet;
+	
+	// set description texts for the first slide
+	if(showText.innerHTML==''){
+		showText.innerHTML = imageSet[0].image_texts;
 	}
+	
+	// clear existing contents
+	showImagesList.innerHTML = '';
+	
+	// dynamically add images to imagesList
+	for(var i = 0; i < imageSet.length; i++){
+		
+		// this is the <li> to hold a pair of historic/current images
+		var li = document.createElement('li');
+		
+		// this is the <div> in <li>
+		var div = document.createElement('div');
+		div.setAttribute('class', 'twentytwenty-container');
+		
+		// this is the <img> to hold historic image
+		var imgHistorical = document.createElement('img');
+		
+		var data_interchangeHist = '[' + imageSet[i].historic_small + ', (small)], ' + '[' + imageSet[i].historic_large + ', (large)]';
+		//data_interchangeHist = '[images/historic_small.jpg, (small)], [images/historic_large.jpg, (large)]';
+		//imgHistorical.setAttribute('data-interchange', data_interchangeHist);
+		imgHistorical.setAttribute('src', imageSet[i].historic_large);
+		div.appendChild(imgHistorical);
+		
+		// this is the <img> to hold curent image
+		var imgCurrent = document.createElement('img');
+		var data_interchangeCurr = '[' + imageSet[i].current_small + ', (small)], ' + '[' + imageSet[i].current_large + ', (large)]';
+		//data_interchangeCurr = '[images/current_small.jpg, (small)], [images/current_large.jpg, (large)]';
+		//imgCurrent.setAttribute('data-interchange', data_interchangeCurr);
+		imgCurrent.setAttribute('src', imageSet[i].current_large);
+		div.appendChild(imgCurrent);
+		
+		// this is the <div> to cotrol twenty-twenty overlay
+		var divTwen = document.createElement('div');
+		divTwen.setAttribute('class', 'twentytwenty-overlay');
+		div.appendChild(divTwen);
+		
+		// add 'div' to 'li'
+		li.appendChild(div);	
+		
+		// add 'li' to 'imagesList'
+		showImagesList.appendChild(li);
+	}
+    	
+	//hide the timer
+	$('.orbit-timer').hide();
+	//show the close button
+	$(".close-reveal-modal").html("&#215;");
+	
+	$("#slideshowModal").foundation("reveal", "open");
 
+	
 	//-------- make changes after each slide transition --------------
 	$("#slideshow_images").on("after-slide-change.fndtn.orbit", function(event, orbit) {  
 
-		// image text changes with slide
-		$("#slideshow_texts").html(feature.properties.imageSet[orbit.slide_number].image_texts);
-
-		// CLOSE BUTTON shows only on the last slide
-		if(orbit.slide_number == orbit.total_slides - 1){
-			$(".close-reveal-modal").html("&#215;");
-		}
-		else{
-			$(".close-reveal-modal").html("");
-		}
-
-		// hide/show PREV/NEXT BUTTON
-		$('.orbit-next').show();
-		$('.orbit-prev').show();
-
-		if(orbit.slide_number == 0){
-			$('.orbit-prev').hide();
-		}
-		if(orbit.slide_number == orbit.total_slides - 1){
-			$('.orbit-next').hide();
-		}
+		// description texts change as slide goes
+		showText.innerHTML = imageSet[orbit.slide_number].image_texts;		
 	});
-	
-	$("#slideshowModal").foundation("reveal", "open");
-	
-	//for now, the div will disappear when you click on it. 
-	//infoScreen.addEventListener("click", function(){
-	//	infoScreen.style.visibility = "hidden";
-	//);
-	
-
 }
