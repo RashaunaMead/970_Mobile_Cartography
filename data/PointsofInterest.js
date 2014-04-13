@@ -18,7 +18,7 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 	
 			},
-		 "Descriptio": "�Think about how the current businesses in this building produce value, and contrast these post-Fordist forms of production to the Fordist mode of production that used to inhabit it.", 
+		 "Descriptio": "Think about how the current businesses in this building produce value, and contrast these post-Fordist forms of production to the Fordist mode of production that used to inhabit it.", 
 		 "PhotoLink": null, "Address": "744 Williamson St.", "iconLink24": null, "iconLink36": null,
         // for image set in slide show
 		 "imageSet": [
@@ -27,21 +27,21 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....A"
+				"image_texts": "texts come along with images go here ....A...Madison Candy Factory"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....B"
+				"image_texts": "texts come along with images go here ....B...Madison Candy Factory"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....C"
+				"image_texts": "texts come along with images go here ....C...Madison Candy Factory"
 			}
 		 ]
 		 // end for image set in slide show
@@ -73,21 +73,21 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....A"
+				"image_texts": "texts come along with images go here ....A...Wil-Mar Neighborhood Center"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....B"
+				"image_texts": "texts come along with images go here ....B...Wil-Mar Neighborhood Center"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....C"
+				"image_texts": "texts come along with images go here ....C...Wil-Mar Neighborhood Center"
 			}
 		 ]
 		 // end for image set in slide show
@@ -120,21 +120,21 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....A"
+				"image_texts": "texts come along with images go here ....A...Power Plant"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....B"
+				"image_texts": "texts come along with images go here ....BA...Power Plant"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....C"
+				"image_texts": "texts come along with images go here ....CA...Power Plant"
 			}
 		 ]
 		 // end for image set in slide show
@@ -167,21 +167,21 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....A"
+				"image_texts": "texts come along with images go here ....A...Railroad Station (now MG&E)"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....B"
+				"image_texts": "texts come along with images go here ....B...Railroad Station (now MG&E)"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....C"
+				"image_texts": "texts come along with images go here ....C...Railroad Station (now MG&E)"
 			}
 		 ]
 		 // end for image set in slide show
@@ -214,21 +214,21 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....A"
+				"image_texts": "texts come along with images go here ....A...Badger State Shoe Factory"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....B"
+				"image_texts": "texts come along with images go here ....B...Badger State Shoe Factory"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....C"
+				"image_texts": "texts come along with images go here ....C...Badger State Shoe Factory"
 			}
 		 ]
 		 // end for image set in slide show
