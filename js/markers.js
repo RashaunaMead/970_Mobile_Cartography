@@ -18,7 +18,10 @@ $(document).foundation({
 $('.reveal-modal').on('opened', function () {
 
 	$(".twentytwenty-container").twentytwenty();
-	$(window).trigger('resize');  
+	$(window).trigger('resize');
+
+	$('.orbit-next').click();	
+	setTimeout("$('.orbit-prev').click()",700);	
 });
 
 //===============some elements in the images slideshow window=============//
