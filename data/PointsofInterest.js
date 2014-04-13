@@ -127,14 +127,14 @@ var PointsofInterest = [{
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....BA...Power Plant"
+				"image_texts": "texts come along with images go here ....B...Power Plant"
 			},
 			{
 				"historic_small": "images/historic_small.jpg",
 				"historic_large": "images/historic_large.jpg",
 				"current_small": "images/current_small.jpg",
 				"current_large": "images/current_large.jpg",
-				"image_texts": "texts come along with images go here ....CA...Power Plant"
+				"image_texts": "texts come along with images go here ....C...Power Plant"
 			}
 		 ]
 		 // end for image set in slide show
