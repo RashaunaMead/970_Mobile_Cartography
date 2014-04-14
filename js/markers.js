@@ -95,7 +95,7 @@ function openInfoScreen (feature){
 	//show the close button
 	$(".close-reveal-modal").html("&#215;");
 	
-	$("#slideshowModal").foundation("reveal", "open");
+	//$("#slideshowModal").foundation("reveal", "open");
 
 	
 	//-------- make changes after each slide transition --------------
@@ -104,6 +104,8 @@ function openInfoScreen (feature){
 		// description texts change as slide goes
 		showText.innerHTML = imageSet[orbit.slide_number].image_texts;		
 	});
+	
+	$("#slideshowModal").foundation("reveal", "open");
 }
 
 
