@@ -23,7 +23,7 @@ function addMarkers (map) {
 
 			//listener for click event 
 			layer.on("click", function() {
-				openInfoScreen (feature)
+				openInfoScreen (feature);
 			});
 			
 		} //end onEachFeature
@@ -94,6 +94,8 @@ function openInfoScreen (feature){
 	$('.orbit-timer').hide();
 	//show the close button
 	$(".close-reveal-modal").html("&#215;");
+	$('.orbit-next').show();
+    $('.orbit-prev').show();
 	
 	//$("#slideshowModal").foundation("reveal", "open");
 
