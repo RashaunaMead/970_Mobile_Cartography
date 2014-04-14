@@ -1,29 +1,5 @@
 //this file created by Caroline. 
 
-//orbit settings
-$(document).foundation({
-    orbit: {
-        animation: 'slide',
-        navigation_arrows: true,
-        circular: false,
-        timer: false,
-		swipe: false,
-        next_class: 'orbit-next',
-        prev_class: 'orbit-prev',
-		timer_show_progress_bar: false
-    }
-});	
-
-//resize the pop-up modal window
-$('.reveal-modal').on('opened', function () {
-
-	$(".twentytwenty-container").twentytwenty();
-	$(window).trigger('resize');
-
-	$('.orbit-next').click();	
-	setTimeout("$('.orbit-prev').click()",700);	
-});
-
 //===============some elements in the images slideshow window=============//
 // this is the modal window holding images slideshow
 var slideshowModal = document.getElementById("slideshowModal");
@@ -129,3 +105,16 @@ function openInfoScreen (feature){
 		showText.innerHTML = imageSet[orbit.slide_number].image_texts;		
 	});
 }
+
+
+
+//resize the pop-up modal window
+$('.reveal-modal').on('opened', function () {
+
+	$(".twentytwenty-container").twentytwenty();
+	$(window).trigger('resize');
+
+	$('.orbit-next').click();	
+	setTimeout("$('.orbit-prev').click()",700);	
+});
+
