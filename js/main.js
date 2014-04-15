@@ -13,6 +13,7 @@ var modernTileset = L.tileLayer ('http://maps.stamen.com/toner/embed#12/37.8238/
 >>>>>>> Stashed changes
 
 
+
 //var studentRoute = L.geoJson(route1);
  
 //these objects will hold pairs of keys (name of the tile layer) and values (variable holding the path to the tile layer) 
