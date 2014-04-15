@@ -74,5 +74,31 @@ setMap(map);
 /* Loads Markers Into Map*/
 addMarkers(map); //function defined in markers.js file
 
+/*Load Route Into Map*/ 
+/*
+route segments do not align well with site locations.
+Also, please keep the site id and segment id consistent
+*/
+// the style of the highlighted route segment
+var highlightStyle = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.8
+};
+
+// all segments of the route
+var routeLayer = L.geoJson(routes[0]);
+routeLayer.addTo(map);
+// hilighted segment
+var highlightLayer;
+
+$('.reveal-modal').on('closed', function () {
+    if(highlightLayer){
+        map.removeLayer(highlightLayer);
+    }
+    // "siteID" is a variable declared in markers.js to keep track of which site are they working on
+    highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
+    highlightLayer.addTo(map)
+});
 
 

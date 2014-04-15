@@ -1,5 +1,9 @@
 //this file created by Caroline. 
 
+
+// keep track of which site are they working on
+var siteID;
+
 //===============some elements in the images slideshow window=============//
 // this is the modal window holding images slideshow
 var slideshowModal = document.getElementById("slideshowModal");
@@ -9,6 +13,15 @@ var showTitle = document.getElementById("show_title");
 var showText = document.getElementById("slideshow_texts");
 // this is the <ul> imagesList holding images
 var showImagesList = document.getElementById("imagesList");
+
+// current window width, height
+var cwinWidth = $(window).width();
+var cwinHeight = $(window).height();
+
+$(window).on("resize", function(){
+	cwinWidth = $(window).width();
+	cwinHeight = $(window).height();
+});
 
 //this function adds custom icons to the map, drawing the path to the image from the geojson 
 function addMarkers (map) {
@@ -24,6 +37,7 @@ function addMarkers (map) {
 			//listener for click event 
 			layer.on("click", function() {
 				openInfoScreen (feature);
+				siteID = feature.properties.id;
 			});
 			
 		} //end onEachFeature
@@ -63,19 +77,22 @@ function openInfoScreen (feature){
 		
 		// this is the <img> to hold historic image
 		var imgHistorical = document.createElement('img');
-		
-		var data_interchangeHist = '[' + imageSet[i].historic_small + ', (small)], ' + '[' + imageSet[i].historic_large + ', (large)]';
-		//data_interchangeHist = '[images/historic_small.jpg, (small)], [images/historic_large.jpg, (large)]';
-		//imgHistorical.setAttribute('data-interchange', data_interchangeHist);
-		imgHistorical.setAttribute('src', imageSet[i].historic_large);
+		if(cwinWidth > midBreakPoint){
+			imgHistorical.setAttribute('src', imageSet[i].historic_large);
+		}else
+		{
+			imgHistorical.setAttribute('src', imageSet[i].historic_small);
+		}
 		div.appendChild(imgHistorical);
 		
 		// this is the <img> to hold curent image
 		var imgCurrent = document.createElement('img');
-		var data_interchangeCurr = '[' + imageSet[i].current_small + ', (small)], ' + '[' + imageSet[i].current_large + ', (large)]';
-		//data_interchangeCurr = '[images/current_small.jpg, (small)], [images/current_large.jpg, (large)]';
-		//imgCurrent.setAttribute('data-interchange', data_interchangeCurr);
-		imgCurrent.setAttribute('src', imageSet[i].current_large);
+		if(cwinWidth > midBreakPoint){
+			imgCurrent.setAttribute('src', imageSet[i].current_large);
+		}else
+		{
+			imgCurrent.setAttribute('src', imageSet[i].current_small);
+		}
 		div.appendChild(imgCurrent);
 		
 		// this is the <div> to cotrol twenty-twenty overlay
