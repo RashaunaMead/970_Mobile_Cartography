@@ -6,11 +6,8 @@ var map;
 var currentTile = 'modern';
 //define variables hold the path to each tile layer
 var historicTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.hnhm383b/{z}/{x}/{y}.png');
-<<<<<<< Updated upstream
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
-=======
-var modernTileset = L.tileLayer ('http://maps.stamen.com/toner/embed#12/37.8238/-122.1516');
->>>>>>> Stashed changes
+
 
 //var studentRoute = L.geoJson(route1);
  
