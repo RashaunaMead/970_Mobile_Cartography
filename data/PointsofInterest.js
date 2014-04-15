@@ -100,7 +100,7 @@ var PointsofInterest = [{
 { "type": "Feature", 
 	"geometry": { 
 		"type": "Point", 
-		"coordinates": [ -89.375201651182024, 43.079766795017484 ] 
+		"coordinates": [ -89.3755195746634, 43.079486335352208 ] 
 	},
 	"properties": { 
 		"id": 2, "title": "Power Plant Transformers", 
@@ -146,7 +146,7 @@ var PointsofInterest = [{
 { "type": "Feature", 
 	"geometry": { 
 		"type": "Point", 
-		"coordinates": [ -89.377256640357785, 43.077604078273943 ]
+		"coordinates": [ -89.376029686082973, 43.076639533539343 ]
 	},
 
 	"properties": { 
