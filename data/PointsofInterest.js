@@ -3,14 +3,14 @@ var PointsofInterest = [{
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
                                                                               
 "features": [
-//Fifth POI: Candy Factory/Coffee Shop 
+//Fifth POI: Candy Company/Coffee Shop 
 { "type": "Feature", 
 	"geometry": { 
 		"type": "Point", 
 		"coordinates": [ -89.371953550849724, 43.07805483986813 ] 
 	}, 
 	"properties": { 
-		"id": 4, "title": "Madison Candy Factory",	
+		"id": 4, "title": "Madison Candy Company",	
 		"icon": {
 			"iconUrl": "images/production24design2.png",
 			"iconSize": [24, 24], // size of the icon
@@ -56,7 +56,7 @@ var PointsofInterest = [{
 		"coordinates": [ -89.366976240603208, 43.079849673461318 ] 
 	}, 
 	"properties": { 
-		"id": 3, "title": "Wil-Mar Neighborhood Center", 
+		"id": 3, "title": "Wil-Mar Community Center", 
 		"icon": {
 			"iconUrl": "images/housing24design2.png",
 			"iconSize": [24, 24], // size of the icon
@@ -103,7 +103,7 @@ var PointsofInterest = [{
 		"coordinates": [ -89.375201651182024, 43.079766795017484 ] 
 	},
 	"properties": { 
-		"id": 2, "title": "Power Plant", 
+		"id": 2, "title": "Power Plant Transformers", 
 		"icon": {
 			"iconUrl": "images/energy24design2.png",
 			"iconSize": [24, 24], // size of the icon
@@ -150,7 +150,7 @@ var PointsofInterest = [{
 	},
 
 	"properties": { 
-		"id": 1, "title": "Railroad Station (now MG&E)", 
+		"id": 1, "title": "Chicago and NorthWestern Railroad Station", 
 		"icon": {
 			"iconUrl": "images/transportation24design1.png",
 			"iconSize": [24, 24], // size of the icon
