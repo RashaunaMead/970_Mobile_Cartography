@@ -1,4 +1,4 @@
-var route1 = [{
+var routes = [{
 "type": "FeatureCollection",
                                                                                 
 "features": [
