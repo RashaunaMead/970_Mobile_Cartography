@@ -9,6 +9,7 @@ var historicTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 
 
+
 //var studentRoute = L.geoJson(route1);
  
 //these objects will hold pairs of keys (name of the tile layer) and values (variable holding the path to the tile layer) 
@@ -101,5 +102,3 @@ $('.reveal-modal').on('closed', function () {
     highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
     highlightLayer.addTo(map)
 });
-
-
