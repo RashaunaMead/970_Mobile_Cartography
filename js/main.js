@@ -99,6 +99,8 @@ $('.reveal-modal').on('closed', function () {
         map.removeLayer(highlightLayer);
     }
     // "siteID" is a variable declared in markers.js to keep track of which site are they working on
-    highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
-    highlightLayer.addTo(map)
+	if(siteID < 4){
+		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
+		highlightLayer.addTo(map);
+	}
 });
