@@ -24,7 +24,24 @@ body {
       background: #6d6d6d;
 
   }
-  /*--------------- reveal for help, info and text overlays ----------------*/
+/*--------------- Splash Page ----------------*/
+
+#splash{   
+    margin:25px 7.5% 25px 7.5%;
+}
+h1{
+ font-size: 3em;
+ text-align: center;
+}
+h2{
+ font-size: 1em;    
+}
+h3{
+    font-size: 1em;
+    text-align: center;
+}
+
+/*--------------- reveal for help, info and text overlays ----------------*/
 
  .reveal-modal {
     z-index: 1000;
