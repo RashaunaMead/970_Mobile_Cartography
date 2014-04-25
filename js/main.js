@@ -93,13 +93,31 @@ routeLayer.addTo(map);
 // hilighted segment
 var highlightLayer;
 
+// audio
+var audio = document.getElementById("player");
+
 $('.reveal-modal').on('closed', function () {
+	
+    highlightRoute();
+    
+    // start to play audio after 1 sec closing sliede show
+	setTimeout(playAudio, 1000);
+});
+
+function highlightRoute()
+{
     if(highlightLayer){
         map.removeLayer(highlightLayer);
     }
-    // "siteID" is a variable declared in markers.js to keep track of which site are they working on
+    // "siteID" is a variable declared in markers.js to keep track of which site they are working on
 	if(siteID < 4){
 		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
 		highlightLayer.addTo(map);
 	}
-});
+}
+
+function playAudio()
+{		
+    audio.setAttribute('src', PointsofInterest[0].features[siteID].properties.audio);
+    audio.play();
+}
