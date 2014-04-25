@@ -96,7 +96,7 @@ var highlightLayer;
 // audio
 var audio = document.getElementById("player");
 
-$('.reveal-modal').on('closed', function () {
+$('#slideshowModal').on('closed', function () {
 	
     highlightRoute();
     

@@ -109,7 +109,7 @@ function openInfoScreen (feature){
 	//hide the timer
 	$('.orbit-timer').hide();
 	//show the close button
-	$(".close-reveal-modal").html("&#215;");
+	$('#closeSlideshow').html("&#215;");
 	$('.orbit-next').show();
     $('.orbit-prev').show();
 	
@@ -129,7 +129,7 @@ function openInfoScreen (feature){
 
 
 //resize the pop-up modal window
-$('.reveal-modal').on('opened', function () {
+$('#slideshowModal').on('opened', function () {
 
 	$(".twentytwenty-container").twentytwenty();
 	$(window).trigger('resize');
