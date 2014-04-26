@@ -40,6 +40,7 @@ $(window).load(function() {
     map.setView([43.076364, -89.384336], 13);
 
       $(document).foundation('joyride', 'start');
+        $("#audioText").remove();
     }
     else{
       map.setView([43.076364, -89.384336], 14);
