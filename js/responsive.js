@@ -11,6 +11,7 @@ var map;
 var midBreakPoint =640;
 var largeBreakPoint = 1024;
 var zoomPOI = 18;
+var smallWindow = true;
 
 function setMap(mapSent){
 	map = mapSent;
@@ -27,28 +28,29 @@ $(window).load(function() {
     $("#container").hide();
     $(".ontop").hide()
     $("audio").prop('muted', true);
-   $("#splash a").click(function(){
+    //after splash pabe link clicked
+     $("#splash a").click(function(){
      $("#container").show();
      $("#splash").hide();
      $(".ontop").show();
-     $("audio").load();
-     $("audio").prop('muted', false);
+     //Moved to responsive function
+     // $("audio").load();
+     // $("audio").prop('muted', false);
 
-       
-// This will need to change to device to be a clear fix
-    if(winWidth<=midBreakPoint){
-    map.setView([43.076364, -89.384336], 13);
-
-      $(document).foundation('joyride', 'start');
-        $("#audioText").remove();
-    }
-    else{
-      map.setView([43.076364, -89.384336], 14);
-    }
+     if(winWidth<=midBreakPoint){
+     map.setView([43.076364, -89.384336], 14);
+     }
+     else{
+       map.setView([43.076364, -89.384336], 13);
+     }
 
  })
 
 });
+
+function responsiveDivs(){
+
+}
 
 
 
@@ -76,10 +78,25 @@ function methodToFixLayout( e ) {
 var switchElements = function (width,height,screen,pos){
   // if it is larger than mid breakpoint
   if(width> midBreakPoint){
-   map.attributionControl.setPosition('bottomright');
+     map.attributionControl.setPosition('bottomright');
+    //map.setView([43.076364, -89.384336], 14);
+      $("audio").prop('muted', true);
+      $(".audioForText").remove();
+      $(".smallPlayer").hide();
+       $("#audioText").show();
+
+
     }
     else{
-   map.attributionControl.setPosition('topright');
+     map.attributionControl.setPosition('topright');
+     //map.setView([43.076364, -89.384336], 13);
+
+     // $(document).foundation('joyride', 'start');
+      $("#audioText").hide();
+      $(".audioForText").show();
+      $(".smallPlayer").show();
+      $("audio").load();
+      $("audio").prop('muted', false);
     }
 
 }

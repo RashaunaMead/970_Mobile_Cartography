@@ -40,12 +40,12 @@
   </div> 
  <div id="container">
   
-
     <nav class="top-bar" data-topbar>
-      <audio id="player" controls autoplay class="left"> 
+
+
+      <audio id="player" controls autoplay class="smallPlayer left "> 
         <source src="audio/test.m4a" type="audio/mpeg"> Your browser does not support the audio element.
       </audio>
-      <div id="audioText"><p>This is a test text div for audio</p></div>
       <ul class="title-area">  
 
           <li class="name"></li>
@@ -82,9 +82,10 @@
              <img src="images/img/icon_2824/icon_2824.png" width="34" height="34" alt="Infomation"/>
               Information</a></li>
             <!--audio section-->
-            <li><a href="#"  data-reveal-id="textModal" data-reveal><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
+            <li class="audioForText"><a href="#"  data-reveal-id="textModal" data-reveal><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
              Text for Audio</a>
              </li>
+
       
         </ul>
 
@@ -97,6 +98,8 @@
 
       </section>
 </nav>
+   <div id="audioText"><p>This is a test text div for audio</p></div>
+
      
  
     <div id="map"> 
@@ -145,15 +148,15 @@
 </div>
 
 <!-- Joyride on start for mobile  -->
-<ol class="joyride-list" data-joyride>
+<!-- <ol class="joyride-list" data-joyride>
   <li data-id="player"  data-options="tip_location: top">
     <p>To start the podcast press play.</p>
   </li>
-  <!-- <li data-class="dropdown"  data-options="tip_location: top">
+  <li data-class="dropdown"  data-options="tip_location: top">
     <p>To find your location on the map, view the locations, or for any other help you may
       need check out the menu selection</p>
-  </li> -->
-</ol>
+  </li>
+</ol> -->
     
 <!-- end try -->
    
