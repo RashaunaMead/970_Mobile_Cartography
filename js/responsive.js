@@ -21,6 +21,8 @@ $(window).load(function() {
 
   var winHeight = $(window).height();
   var winWidth = $(window).width();
+  //.leaflet-control-zoom.
+  
 
   zoomLevel(winWidth);
 //this will need to change to add the .ontop class or map div until splash has loded or closed
@@ -86,6 +88,7 @@ var switchElements = function (width,height,screen,pos){
       $(".audioForText").remove();
       $(".smallPlayer").hide();
        $("#audioText").show();
+       $('.leaflet-control-zoom').show();
 
 
 
@@ -100,6 +103,7 @@ var switchElements = function (width,height,screen,pos){
       $(".smallPlayer").show();
       $("audio").load();
       $("audio").prop('muted', false);
+      $('.leaflet-control-zoom').hide();
     }
 
 }

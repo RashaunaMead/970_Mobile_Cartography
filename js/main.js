@@ -27,7 +27,7 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
  function loadmap(){
 
  
-  map = L.map('map', { zoomControl:false});
+  map = L.map('map', { zoomControl:true});
     // tiles can change once we know our basemap 
     L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
       attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
@@ -40,6 +40,8 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
  
   addTileToggle();
 }
+
+
 
 function addTileToggle() { //called at the end of loadmap function
 
