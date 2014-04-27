@@ -100,9 +100,19 @@ var switchElements = function (width,height,screen,pos){
      // $(document).foundation('joyride', 'start');
       $("#audioText").hide();
       $(".audioForText").show();
+        
+      // do not allow player for desktop to work
+      $("#playerDesktop").prop('muted', true);
+      $("#playerDesktop").hide();
+    
+      $(".smallPlayer").prop('muted', false);
       $(".smallPlayer").show();
-      $("audio").load();
-      $("audio").prop('muted', false);
+      //$("audio").load();
+      //$(".smallPlayer").load();
+      //$("audio").prop('muted', false);
+
+
+        
       $('.leaflet-control-zoom').hide();
     }
 

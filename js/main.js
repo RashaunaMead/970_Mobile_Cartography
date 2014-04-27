@@ -99,7 +99,8 @@ routeLayer.addTo(map);
 var highlightLayer;
 
 // audio
-var audio = document.getElementById("playerDesktop");
+var audioDesktop = document.getElementById("playerDesktop");
+var audioMobile = document.getElementById("playerMobile");
 
 $('#slideshowModal').on('closed', function () {
 	
@@ -154,7 +155,15 @@ function addScript(){
 }
 
 function playAudio()
-{		
-    audio.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
-    audio.play();
+{	
+    var winHeight = $(window).height();
+    var winWidth = $(window).width();
+    if(winWidth > midBreakPoint){
+        audioDesktop.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
+        audioDesktop.play();
+    }
+    else{
+        audioMobile.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
+        audioMobile.play(); 
+    }
 }
