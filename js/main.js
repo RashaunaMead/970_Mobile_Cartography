@@ -77,6 +77,9 @@ setMap(map);
 /* Loads Markers Into Map*/
 addMarkers(map); //function defined in markers.js file
 
+/* initial script */
+$('.script').html(PointsofInterest[0].features[0].properties.Scripts);
+
 /*Load Route Into Map*/ 
 /*
 route segments do not align well with site locations.
@@ -123,7 +126,7 @@ function highlightRoute()
 
 function addScript(){
 
-	console.log("siteID",siteID);
+	//console.log("siteID",siteID);
 	for(var prop in PointsofInterest[0]){
 		//console.log(PointsofInterest[0][prop]);
 		for(var key in PointsofInterest[0][prop]){
@@ -131,10 +134,10 @@ function addScript(){
 			for(var one in PointsofInterest[0][prop][key]){
 			
 				//console.log(PointsofInterest[0][prop][key][one].id);
-				if(siteID === PointsofInterest[0][prop][key][one].id){
-					//console.log("X",PointsofInterest[0][prop][key-1][one].Scripts);
+				if(siteID === PointsofInterest[0][prop][key][one].id - 1){
+					//console.log("X",PointsofInterest[0][prop][key][one].Scripts);
 					if(siteID<4){
-						$('.script').html(PointsofInterest[0][prop][key+1][one].Scripts)
+						$('.script').html(PointsofInterest[0][prop][key][one].Scripts)
 					}
 				}
 
@@ -152,6 +155,6 @@ function addScript(){
 
 function playAudio()
 {		
-    audio.setAttribute('src', PointsofInterest[0].features[siteID].properties.audio);
+    audio.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
     audio.play();
 }
