@@ -99,7 +99,7 @@ routeLayer.addTo(map);
 var highlightLayer;
 
 // audio
-var audio = document.getElementById("player");
+var audio = document.getElementById("playerDesktop");
 
 $('#slideshowModal').on('closed', function () {
 	
