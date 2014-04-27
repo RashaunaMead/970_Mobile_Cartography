@@ -139,3 +139,16 @@ $("li.Railroad").click(function(){
 $("li.allLocations").click(function(){
   map.setView([ 43.078307,-89.377041],zoomPOI-3)
 });
+
+
+
+
+
+$('#closeSlideshow').click(function(){
+  console.log("Layer");
+
+});
+
+
+
+

@@ -143,9 +143,11 @@ h3{
  z-index: 0;*/
 
 }
-#audioText h1, #audioText h2, #audioText h3, #audioText p, #audioText ul {
+
+#audioText h1, #audioText h2, #audioText h3, #audioText p, #audioText ul, .script {
   margin-right: 10px;
   padding: 5px 5px 5px 5px;
+  color: #fff;
 }
 #audioText p{
   font-size: 1em;

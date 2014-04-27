@@ -101,6 +101,7 @@ var audio = document.getElementById("player");
 $('#slideshowModal').on('closed', function () {
 	
     highlightRoute();
+    addScript();
     
     // start to play audio after 1 sec closing sliede show
 	setTimeout(playAudio, 1000);
@@ -116,6 +117,37 @@ function highlightRoute()
 		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
 		highlightLayer.addTo(map);
 	}
+
+	console.log(highlightLayer);
+}
+
+function addScript(){
+
+	console.log("siteID",siteID);
+	for(var prop in PointsofInterest[0]){
+		//console.log(PointsofInterest[0][prop]);
+		for(var key in PointsofInterest[0][prop]){
+			//console.log(PointsofInterest[0][prop][key]);
+			for(var one in PointsofInterest[0][prop][key]){
+			
+				//console.log(PointsofInterest[0][prop][key][one].id);
+				if(siteID === PointsofInterest[0][prop][key][one].id){
+					//console.log("X",PointsofInterest[0][prop][key-1][one].Scripts);
+					if(siteID<4){
+						$('.script').html(PointsofInterest[0][prop][key-1][one].Scripts)
+					}
+				}
+
+			}
+		}
+
+	}
+	// var scriptNum = siteID;
+
+	// console.log("x",L.geoJson(routes[0].features[siteID + 1]));
+
+	// $('.script').html();
+
 }
 
 function playAudio()
