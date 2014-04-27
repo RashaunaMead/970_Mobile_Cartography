@@ -54,6 +54,23 @@ var POI = {
 				"Descriptio": "Think through questions about energy flows through homes and business, inequalities related to the electric grid, and alternative forms of power.", "PhotoLink": "images\/powerPlant.jpg", "Address": "722 E Main St.", "iconLink24": null, "iconLink36": null
 			} //end properties  
 		},
+		"Railroad":{
+			"geometry": { 
+				"type": "Point", 
+				"coordinates": [ 43.076639533539343 ,-89.376029686082973] 
+			},
+			"properties": { 
+				"id": 2, "title": "Railroad Station", 
+				"icon": {
+					"iconUrl": "images/transportation24design1.png",
+					"iconSize": [24, 24], // size of the icon
+					"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+					"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+				
+					},
+				"Descriptio": "Think through questions about energy flows through homes and business, inequalities related to the electric grid, and alternative forms of power.", "PhotoLink": "images\/powerPlant.jpg", "Address": "722 E Main St.", "iconLink24": null, "iconLink36": null
+			} //end properties  
+		},
 		"Shoe_Factory":{
 			"geometry": { 
 				"type": "Point", 

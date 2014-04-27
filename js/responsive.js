@@ -128,6 +128,10 @@ $("li.Power_Plant").click(function(){
   map.setView(POI.features.Power_Plant.geometry.coordinates,zoomPOI)
 });
 
+$("li.Railroad").click(function(){
+  map.setView(POI.features.Railroad.geometry.coordinates,zoomPOI)
+});
+
 $("li.allLocations").click(function(){
   map.setView([ 43.078307,-89.377041],zoomPOI-3)
 });
