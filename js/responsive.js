@@ -26,6 +26,7 @@ $(window).load(function() {
 //this will need to change to add the .ontop class or map div until splash has loded or closed
   switchElements(winWidth);
     $("#container").hide();
+    $("nav").hide();
     $(".ontop").hide()
     $("audio").prop('muted', true);
     //after splash pabe link clicked
@@ -33,6 +34,7 @@ $(window).load(function() {
      $("#container").show();
      $("#splash").hide();
      $(".ontop").show();
+     $("nav").show();
      //Moved to responsive function
      // $("audio").load();
      // $("audio").prop('muted', false);
@@ -84,6 +86,7 @@ var switchElements = function (width,height,screen,pos){
       $(".audioForText").remove();
       $(".smallPlayer").hide();
        $("#audioText").show();
+
 
 
     }
