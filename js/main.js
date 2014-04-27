@@ -134,7 +134,7 @@ function addScript(){
 				if(siteID === PointsofInterest[0][prop][key][one].id){
 					//console.log("X",PointsofInterest[0][prop][key-1][one].Scripts);
 					if(siteID<4){
-						$('.script').html(PointsofInterest[0][prop][key-1][one].Scripts)
+						$('.script').html(PointsofInterest[0][prop][key+1][one].Scripts)
 					}
 				}
 
