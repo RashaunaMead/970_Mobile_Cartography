@@ -141,13 +141,21 @@ $("li.allLocations").click(function(){
 });
 
 
-
-
-
-$('#closeSlideshow').click(function(){
-  console.log("Layer");
-
+$(".audioForText").click(function(){
+  $(".leaflet-control-attribution").css({
+    position: 'absolute'
+  });
 });
+
+$(".close-reveal-modal").click(function(){
+
+  $(".leaflet-control-attribution").css({
+    position: 'relative'
+  });
+});
+
+
+
 
 
 
