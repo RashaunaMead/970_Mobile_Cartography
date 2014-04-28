@@ -39,7 +39,7 @@ $(window).load(function() {
      $("nav").show();
      //Moved to responsive function
      $("audio").load();
-     $("audio").prop('muted', true);
+     $("audio").prop('muted', false);
 
      if(winWidth<=midBreakPoint){
      map.setView([43.076364, -89.384336], 14);
@@ -105,7 +105,7 @@ var switchElements = function (width,height,screen,pos){
       $("#playerDesktop").prop('muted', true);
       $("#playerDesktop").hide();
     
-      $(".smallPlayer").prop('muted', true);
+      $(".smallPlayer").prop('muted', false);
       $(".smallPlayer").show();
       //$("audio").load();
       //$(".smallPlayer").load();
