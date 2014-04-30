@@ -45,6 +45,7 @@ h3{
 .reveal-modal{
   z-index: 999;
 }
+
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
 #container{
@@ -193,6 +194,9 @@ h3{
 
 
 @media only screen and (min-width: 0em) and (max-width: 40em) {
+  #map{
+  z-index: 800;
+}
   .top-bar, .top-bar-section {
     bottom: 0px;
     height: 45px; }
