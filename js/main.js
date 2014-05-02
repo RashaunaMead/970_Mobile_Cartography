@@ -57,6 +57,8 @@ function toggleTiles(){
 		console.log("switch to historic basemap"); 
 		//this just adds the historic basemap on top of the existing tiles
 		historicTileset.addTo(map);
+		//change the button text
+		document.getElementById("tileToggle").innerHTML = "<b>Hide Historic Basemap</b>"; 
 		//reset variable 
 		currentTile = 'historic';
 	}
@@ -64,6 +66,8 @@ function toggleTiles(){
 		console.log("switch to modern basemap"); 
 		//this removes the historic basemap tile layer 
 		map.removeLayer (historicTileset);
+		//change the button text
+		document.getElementById("tileToggle").innerHTML = "<b>Show Historic Basemap</b>"; 
 		//reset variable 
 		currentTile = 'modern';
 	}
