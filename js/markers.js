@@ -109,6 +109,7 @@ function openInfoScreen (feature){
 		showText.innerHTML = imageSet[0].image_texts;
 	}
 	
+	
 	// clear existing contents
 	showImagesList.innerHTML = '';
 	
