@@ -22,30 +22,78 @@ $(window).on("resize", function(){
 	cwinHeight = $(window).height();
 });
 
+var POIlayer;
+var POIlayer_gray;
+var POIlayer_red;
 //this function adds custom icons to the map, drawing the path to the image from the geojson 
-function addMarkers (map) {
+function addMarkers (map, i) {
 
-	var POIlayer = L.geoJson(PointsofInterest, {
+	POIlayer = L.geoJson(PointsofInterest[0].features[i], {
         //some options
 		pointToLayer: function(feature, latlng){
-			return L.marker(latlng, {icon: L.icon(feature.properties.icon)});
+			if(!current[i]){
+				return L.marker(latlng, {icon: L.icon(feature.properties.icon)});
+			}
+			if(current[i]){
+				return L.marker(latlng, {icon: L.icon(feature.properties.icon_red)});
+			}
+			//return L.marker(latlng, {icon: L.icon(feature.properties.icon)});
 		}, //end pointToLayer
 		
 		onEachFeature: function (feature, layer){
 
 			//listener for click event 
 			layer.on("click", function() {
+				
+				siteID = feature.properties.id;	
+				
+				viewed[siteID] = true;
+				
+				for(var j=0; j<current.length;j++){
+					current[j]=false;
+				}
+				current[i]=true;
+				
+				highlightMarkers();
 				openInfoScreen (feature);
-				siteID = feature.properties.id;
+				//siteID = feature.properties.id;
 			});
 			
 		} //end onEachFeature
     }); 
 	
-	map.addLayer(POIlayer);
+	//map.addLayer(POIlayer);
+	if(!current[i]){
+		POIlayer_gray = POIlayer;
+		map.addLayer(POIlayer_gray);
+	}
+	if(current[i]){		
+		if(POIlayer_red){
+			map.removeLayer(POIlayer_red);
+		}
+		POIlayer_red = POIlayer;
+		map.addLayer(POIlayer_red);
+	}
 	
 } //ends addMarkers function 
 
+//this function updates markers on map 
+function updateMarkers () {
+	for(var i=0; i<viewed.length-1; i++)
+	{
+		if(viewed[i] && !viewed[i+1]){
+           addMarkers(map, i+1);             
+        }
+	}
+	
+} //ends updateMarkers function 
+
+//this function updates markers on map 
+function highlightMarkers () {
+	
+	addMarkers(map, siteID); 
+	
+} //ends highlightMarkers function 
 
 function openInfoScreen (feature){
 	console.log("open info screen for ", feature.properties.title);

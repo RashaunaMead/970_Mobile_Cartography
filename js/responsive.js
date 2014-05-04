@@ -126,14 +126,16 @@ $("li.findMe").click(function(){
       GetLocation(map);
 });
 
+/*
 $("li.candy ").click(function(){
   map.setView(POI.features.Candy_Factory.geometry.coordinates,zoomPOI)
 });
+*/
 
 $("li.Shoe_Factory ").click(function(){
   map.setView(POI.features.Shoe_Factory.geometry.coordinates,zoomPOI)
 });
-
+/*
 $("li.Wil_Mar").click(function(){
   map.setView(POI.features.Wil_Mar.geometry.coordinates,zoomPOI)
 });
@@ -149,7 +151,7 @@ $("li.Railroad").click(function(){
 $("li.allLocations").click(function(){
   map.setView([ 43.078307,-89.377041],zoomPOI-3)
 });
-
+*/
 
 $(".audioForText").click(function(){
   $(".leaflet-control-attribution").css({
