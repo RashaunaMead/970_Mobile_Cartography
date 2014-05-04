@@ -87,9 +87,30 @@ setMap(map);
 /* Loads Markers Into Map*/
 addMarkers(map, 0); //function defined in markers.js file
 
-/* initial script */
-$('.script').html(PointsofInterest[0].features[0].properties.Scripts);
 
+/* initial script */
+    //to allow for next buttons for the intro script
+if(siteID==null){
+   $('.script').html(PointsofInterest[0].features[0].properties.Scripts[0]);
+$('.script').before( "<b><a href='#' class='previous' style='color:#C41E3A; padding-left:20px' >< previous</a></b>" );
+$('.script').before( "<b><a href='#' class='next' style='color:#C41E3A; float:right; padding-right:20px' >next ></a></b>" );
+}
+var i=0;
+
+$('.next').click(function(){
+    i++;
+    if(i==PointsofInterest[0].features[0].properties.Scripts.length){i=0}
+     updateScript(i);
+});
+$('.previous').click(function(){
+    i--;
+    if(i==-1){i=PointsofInterest[0].features[0].properties.Scripts.length}
+     updateScript(i); 
+});
+
+function updateScript(i){
+    $('.script').html(PointsofInterest[0].features[0].properties.Scripts[i]);
+}
 /*Load Route Into Map*/ 
 var routeStyle = {
     "color": "#645e5f",
@@ -159,7 +180,8 @@ function highlightRoute()
 }
 
 function addScript(){
-
+$('.next').remove();
+$('.previous').remove();
 	//console.log("siteID",siteID);
 	for(var prop in PointsofInterest[0]){
 		//console.log(PointsofInterest[0][prop]);
@@ -171,7 +193,7 @@ function addScript(){
 				if(siteID === PointsofInterest[0][prop][key][one].id - 1){
 					//console.log("X",PointsofInterest[0][prop][key][one].Scripts);
 					if(siteID<4){
-						$('.script').html(PointsofInterest[0][prop][key][one].Scripts)
+						$('.script').html(PointsofInterest[0][prop][key][one].Scripts[0])
 					}
 				}
 

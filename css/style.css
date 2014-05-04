@@ -103,6 +103,9 @@ h3{
   }
  }}
  
+ #next {
+  background-color: black;
+ }
  #audioText{
   z-index: 900;
  }
