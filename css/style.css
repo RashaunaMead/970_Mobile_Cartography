@@ -64,25 +64,24 @@ h3{
 }
 
 .script {
-  margin: 10px;
+  margin: 15px;
   color: #fff;
 }
 #map{
     z-index: 2;
    height:80%;
-   margin-top: 245px;
-   margin-bottom: 0px;
-    padding-top: -250px;
-    
-    padding-bottom: -250px;
-    margin-bottom: -250px;
+   margin-top: 45px;
+   margin-bottom: -250px;
+    padding-top: -45px;
+ /*   padding-bottom: -250px;
+    margin-bottom: -250px;*/
   }
   #audioText {
    z-index: 900;
   position: fixed;
   background: none repeat scroll 0 0 #858585;
   height: 200px;
-  top:45px;
+  bottom:0px;
   width: 100%;
   overflow:scroll;
 /*
@@ -126,7 +125,7 @@ h3{
 /*------------------ Styles for tileToggle ----------------- */
   
  #tileToggle{
-  position: fixed;
+  position: absolute;
   z-index: 1;
   bottom: 10px;
   left: 10px;
