@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Routing Demo</title>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.js"></script>
+
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.4.5/leaflet.css"/>
+        <link type="text/css" rel="stylesheet" href="css/main.css" />
+
+    </head>
+
+    <body>
+
+    <!--start point-->
+    <p><b>Current Location</b></p>
+    <button onclick="getLocation()">Get Current Location</button>
+    <input id="coordinates" size = "60" value="" readonly></input>
+    <br>
+    <p>Address</p>
+    <!--
+    <button onclick="getGeoCode()">Reverse Geocoding</button>
+    -->
+    <input id="gcode" size = "60" value="address..." readonly></input>
+
+    <!--end point-->
+    <br>
+    <p><b>Destination</b></p>
+    <button onclick="setDestination()">Preset Location</button>
+    <input id="destlatlng" size = "60" value="43.07465,-89.384267" onchange="getDestGeoCode()"></input>
+    <br>
+    <p>Address</p>
+    <!--
+    <button onclick="getDestGeoCode()">Reverse Geocoding</button>
+    -->
+    <input id="dest_address" size = "60" value="Madison, WI 53703, USA" readonly></input>
+
+    <!--direction-->
+    <br><br>
+    <button onclick="getDirection()"><b>Get Direction</b></button>
+    <p id="route"></p>
+    <div id="map"></div>
+
+    <script src="js/main.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,14 @@
+CACHE MANIFEST
+# Cache Manifest v5
+
+CACHE:
+images/current_small.jpg
+images/current_large.jpg
+images/historic_small.jpg
+images/historic_large.jpg
+
+
+FALLBACK:
+/ index.html
+NETWORK:
+*
