@@ -230,7 +230,7 @@ function updateLocationMenu()
     for(var i=0; i<viewed.length-1; i++){
         if(viewed[i] && !viewed[i+1]){
             
-            if(i==0){
+            if(i==0 && document.getElementsByClassName('Railroad').length==0){
                 var locationLi = document.createElement('li');
                 locationLi.setAttribute('class', 'Railroad');
                 locationLi.innerHTML = '<a href="#"><img src="images/transportation24design1.png"  alt="Locations"/> Railroad Station</a>';
@@ -239,7 +239,7 @@ function updateLocationMenu()
 });
             }
             
-            if(i==1){
+            if(i==1 && document.getElementsByClassName('Power_Plant').length==0){
                 var locationLi = document.createElement('li');
                 locationLi.setAttribute('class', 'Power_Plant');
                 locationLi.innerHTML = '<a href="#"><img src="images/energy24design2.png" alt="Locations"/> Power Plant</a>';
@@ -248,7 +248,7 @@ function updateLocationMenu()
   map.setView(POI.features.Power_Plant.geometry.coordinates,zoomPOI)
 });
             }
-            if(i==2){
+            if(i==2 && document.getElementsByClassName('Wil_Mar').length==0){
                 var locationLi = document.createElement('li');
                 locationLi.setAttribute('class', 'Wil_Mar');
                 locationLi.innerHTML = '<a href="#"><img src="images/housing24design2.png" alt="Locations"/> Community Center</a>';
@@ -257,7 +257,7 @@ function updateLocationMenu()
   map.setView(POI.features.Wil_Mar.geometry.coordinates,zoomPOI)
 });
             }
-            if(i==3){
+            if(i==3 && document.getElementsByClassName('candy').length==0){
                 var locationLi = document.createElement('li');
                 locationLi.setAttribute('class', 'candy');
                 locationLi.innerHTML = '<a href="#"><img src="images/coffee24_grey.png"  alt="Locations"/> Candy Company</a>';
