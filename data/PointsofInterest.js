@@ -262,20 +262,6 @@ var PointsofInterest = [{
 				"current_small": "images/site5_1_cs.jpg",
 				"current_large": "images/site5_1_cl.jpg",
 				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos she took along the way."
-			},
-			{
-				"historic_small": "images/site5_2_hs.jpg",
-				"historic_large": "images/site5_2_hl.jpg",
-				"current_small": "images/site5_2_cs.jpg",
-				"current_large": "images/site5_2_cl.jpg",
-				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos she took along the way."
-			},
-			{
-				"historic_small": "images/site5_3_hs.jpg",
-				"historic_large": "images/site5_3_hl.jpg",
-				"current_small": "images/site5_3_cs.jpg",
-				"current_large": "images/site5_3_cl.jpg",
-				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos she took along the way."
 			}
 		 ],
 		 // end for image set in slide show
