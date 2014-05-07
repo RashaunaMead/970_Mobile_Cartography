@@ -126,7 +126,8 @@ var highlightStyle = {
 };
 
 // all segments of the route
-var initrouteLayer = L.geoJson(routes[0].features[0], {style: routeStyle});
+//var initrouteLayer = L.geoJson(routes[0].features[0], {style: routeStyle});
+var initrouteLayer = L.geoJson(routes[0].features[0]); // default blue color for routes
 initrouteLayer.addTo(map);
 // hilighted segment
 var highlightLayer;
@@ -158,7 +159,8 @@ function updateRoute(){
     for(var i=0; i<viewed.length-1; i++){
         if(viewed[i] && !viewed[i+1]){
             //routeLayer[i].addTo(map);
-            var route = L.geoJson(routes[0].features[i+1], {style: routeStyle});
+            //var route = L.geoJson(routes[0].features[i+1], {style: routeStyle});
+            var route = L.geoJson(routes[0].features[i+1]); // default blue color for route
             route.addTo(map);
             
         }
