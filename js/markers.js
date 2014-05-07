@@ -32,10 +32,10 @@ function addMarkers (map, i) {
         //some options
 		pointToLayer: function(feature, latlng){
 			if(!current[i]){
-				return L.marker(latlng, {icon: L.icon(feature.properties.icon)});
+				return L.marker(latlng, {icon: L.icon(feature.properties.icon_larger)});
 			}
 			if(current[i]){
-				return L.marker(latlng, {icon: L.icon(feature.properties.icon_red)});
+				return L.marker(latlng, {icon: L.icon(feature.properties.icon_red_larger)});
 			}
 			//return L.marker(latlng, {icon: L.icon(feature.properties.icon)});
 		}, //end pointToLayer

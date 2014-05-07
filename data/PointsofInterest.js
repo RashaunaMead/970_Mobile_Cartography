@@ -27,6 +27,20 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
 			},
+        "icon_larger": {
+			"iconUrl": "images/labor36design2.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
+        "icon_red_larger": {
+            "iconUrl": "images/labor36_red.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
 		"Descriptio": "(From Wikipedia) The building was constructed in 1910 after the company had originally expanded its production to Madison in 1900.  designated a landmark by the Madison Landmarks Commission in 1989.", "PhotoLink": "images\/BadgerStateShoeFactory1.jpg", "Address": "123 N Blount", "iconLink24": null, "iconLink36": null,
 		
 		"Scripts": ["Hello. My name is Stephen Young. I’m a member of faculty in International Studies and Geography at UW-Madison, and I teach courses on globalization. Today, you are going on an expedition through the City of Madison. I’ll be guiding you through the City with audio and visual materials. But the landscape itself will be your main teacher.","The tour is designed to help you meet three learning objectives. First, you will find out how Madison, like any city, has been shaped by its interdependencies with other places around the world. Most case studies of globalization focus on cities such as New York or Tokyo. But, as you’ll see, the landscape in Madison also bears the marks of various rounds of global economic restructuring.","Second, by mapping these interdependencies, you’ll also be exploring the relationship between global economic integration and rising inequalities. Madison occupies a privileged position within global networks of production and trade. But Madison’s prosperity always has been bound together with the relative impoverishment of other people and places. ","Third, by grounding the analysis in the landscape that surrounds you, I hope to dispel the idea that globalization is something that happens “out there”, beyond our control. Ultimately, the economy works the way it does because of decisions people make about what to buy, where to invest their money, and so on. If those actions are not promoting the wellbeing of the community and the planet, you can think about alternatives. I want you to reflect on how your own actions impact the lives of others―including those who may seem distant―in positive or negative ways.","Today’s lesson about globalization takes place on Madison’s isthmus, a narrow strip of land located between Lakes Mendota and Monona that formed at the end of the last glacial period over ten thousand years ago. Three Michigan-based businessmen purchased this land in the 1830s. At that time, there wasn’t a single building or road in the area. Nevertheless, ambitious plans were drawn up to develop the city according to a grid-like structure fanning out from what is now the Capitol. In 1856, Madison officially was recognized as a city, by which time it also had been awarded the status of state capital.","As well as money, the development of a city requires raw materials and labor power. The acquisition of these different inputs helps to underscore the idea that Madison always has been a product of broader regional and global flows. Those distinctive cream-colored bricks used to build many of the older buildings in the city? They were made from clay quarried close to Milwaukee. The quaint, yet decorative architecture of older houses you see just off campus? They signal the waves of migrants who arrived in the city from Germany and Scandinavia in the second half on the ninetieth century.","But beware the lie of the land! Landscapes also are shaped in ways that reflect inequalities in power between different population groups. The role played by some migrant populations may not be so apparent at first glance. Processes of urbanization in the nineteenth century worked to marginalize the rich cultural histories of native populations who have lived in this area since the isthmus first was formed ten thousand years ago. Discriminatory attitudes and regulations continue to restrict racial diversity across the city to this day. Reading the landscape means paying careful attention to these erasures too.","Soon, you will be introduced to your first destination on the tour. The main drivers of Madison’s economy always have been services supporting the university and the state government. But other industries have played an important role too. The isthmus is where the first factories were established in the city in the late nineteenth century. The manufacturing sector in Madison reflected the dominant system of production of the time: Fordism. Companies invested in the construction of large factories across the isthmus and directly employed hundreds of assembly line workers in industries ranging from machinery to food processing.","In recent decades, manufacturing has declined on the isthmus, and across Madison, although the impacts have not been as dramatic as in other parts of the “rust belt” spanning much of the Great Lakes region. Today, services are more dominant in this part of the city than ever. The transition to a service or post-Fordist economy has overlain and altered much of the landscape. But, as we’ll see, that earlier era of manufacturing remains sedimented within the built environment of the isthmus.","Your first destination is a six-story building constructed at the start of the twentieth century. Between 1910-1930, it was home to the Badger State Shoe Company. At its peak, the company employed about 250 workers – of whom half were women – and produced roughly 2,000 pairs of shoes a day. As you explore the factory, think about how the shoe factory was embedded within evolving local, regional, and global economies."],
@@ -79,6 +93,20 @@ var PointsofInterest = [{
         "icon_red": {
             "iconUrl": "images/transportation24_red.png",
 			"iconSize": [24, 24], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
+        "icon_larger": {
+			"iconUrl": "images/transportation36design1.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
+        "icon_red_larger": {
+            "iconUrl": "images/transportation36_red.png",
+			"iconSize": [36, 36], // size of the icon
 			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
@@ -138,6 +166,20 @@ var PointsofInterest = [{
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 		
 			},
+        "icon_larger": {
+			"iconUrl": "images/energy36design2.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+		
+			},
+        "icon_red_larger": {
+            "iconUrl": "images/energy36_red.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+		
+			},
 		"Descriptio": "Think through questions about energy flows through homes and business, inequalities related to the electric grid, and alternative forms of power.", "PhotoLink": "images\/powerPlant.jpg", "Address": "722 E Main St.", "iconLink24": null, "iconLink36": null,
         
         "Scripts":["The expansion of industry and transportation networks also depended on increasing the supply of energy in the city. The first gaslights appeared along these streets in 1855, and the first electrical lighting arrived in the 1880s. The Madison Gas & Electric Company was established on the isthmus in 1902. Coal was transported to the plant along the old train tracks you just explored and then burned as fuel, with CO2 released through the signature four smokestacks. This helped fuel a significant expansion in Madison’s industrial base during the first half of the twentieth century. The plant is still in operation today, but in 2011 it was converted from a coal-burning facility to one that only utilizes natural gas."],
@@ -189,6 +231,20 @@ var PointsofInterest = [{
         "icon_red": {
             "iconUrl": "images/housing24_red.png",
 			"iconSize": [24, 24], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
+        "icon_larger": {
+			"iconUrl": "images/housing36design2.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+			
+			},
+        "icon_red_larger": {
+            "iconUrl": "images/housing36_red.png",
+			"iconSize": [36, 36], // size of the icon
 			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 			
@@ -245,6 +301,20 @@ var PointsofInterest = [{
         "icon_red": {
             "iconUrl": "images/coffee24_red.png",
 			"iconSize": [24, 24], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+	
+			},
+        "icon_larger": {
+			"iconUrl": "images/coffee36_grey.png",
+			"iconSize": [36, 36], // size of the icon
+			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
+			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
+	
+			},
+        "icon_red_larger": {
+            "iconUrl": "images/coffee36_red.png",
+			"iconSize": [36, 36], // size of the icon
 			"iconAnchor": [12, 12], // point of the icon which will correspond to marker's location
 			"popupAnchor": [0, -12] // point from which the popup should open relative to the iconAnchor
 	
