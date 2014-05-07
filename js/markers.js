@@ -154,11 +154,25 @@ function openInfoScreen (feature){
 		// add 'li' to 'imagesList'
 		showImagesList.appendChild(li);
 	}
-    	
+    
+	// add the fourth slide
+	if(siteID != 4){
+		var li = document.createElement('li');
+		
+		// this is the <div> in <li>
+		var div = document.createElement('div');
+		div.setAttribute('class', 'ready_next');
+		div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site.</span>";
+		li.appendChild(div);
+		showImagesList.appendChild(li);	
+		//showText.innerHTML
+	}
+		
 	//hide the timer
 	$('.orbit-timer').hide();
 	//show the close button
 	$('#closeSlideshow').html("&#215;");
+	$('#closeSlideshow').hide();
 	$('.orbit-next').show();
     $('.orbit-prev').show();
 	
@@ -168,8 +182,20 @@ function openInfoScreen (feature){
 	//-------- make changes after each slide transition --------------
 	$("#slideshow_images").on("after-slide-change.fndtn.orbit", function(event, orbit) {  
 
+		$('#closeSlideshow').hide();
+		if(orbit.slide_number == orbit.total_slides - 1){
+			$('#closeSlideshow').show();
+		}
+		
 		// description texts change as slide goes
-		showText.innerHTML = imageSet[orbit.slide_number].image_texts;		
+		if(orbit.slide_number != orbit.total_slides - 1){
+			//showText.innerHTML = null;
+			showText.innerHTML = imageSet[orbit.slide_number].image_texts;	
+		}else{
+			showText.innerHTML = "After closing this slide show window, you will be guided by the highted route and audio recording to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.";
+			
+		}
+		
 	});
 	
 	$("#slideshowModal").foundation("reveal", "open");

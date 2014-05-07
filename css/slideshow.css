@@ -21,3 +21,11 @@
 .twentytwenty-overlay{
 	pointer-events: none;
 }
+
+.ready_next {
+	font-size: 3em;
+	text-align: center;
+}
+.ready_next_text {
+	padding-top: 50%;
+}
