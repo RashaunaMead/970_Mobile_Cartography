@@ -11,17 +11,19 @@ var map;
  
 var currentTile = 'modern';
 //define variables hold the path to each tile layer
-var historicTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
+//below was commented out to cut the historical tiles for time being
+// var historicTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 
 
 //var studentRoute = L.geoJson(route1);
  
 //these objects will hold pairs of keys (name of the tile layer) and values (variable holding the path to the tile layer) 
- var baseMaps = {
-    "Modern": modernTileset,
-    "Historic": historicTileset
-};
+// Commented out for the time being until we want to add back baseme
+//  var baseMaps = {
+//     "Modern": modernTileset,
+//     "Historic": historicTileset
+// };
 
 /*var overlayMaps = {
 	//route is defined in a .js file within the data folder. 
@@ -44,7 +46,7 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
     
     
  
-  addTileToggle();
+  //addTileToggle();
 
 
 }
