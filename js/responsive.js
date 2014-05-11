@@ -125,7 +125,10 @@ var switchElements = function (width,height,screen,pos){
 
 $("li.findMe").click(function(){
       GetLocation(map);
+
 });
+
+
 
 /*
 $("li.candy ").click(function(){

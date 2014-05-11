@@ -1,11 +1,13 @@
 //Get Location Function test
 var firstTime = true;
 
+
 var GetLocation = function(map){
 
- 	map.locate({setView:true, watch:true, enableHighAccuracy: true} );
+ 	map.locate({setView:false, watch:true, enableHighAccuracy: true} );
 
  	function onLocationFound(e){
+         
 
       var radius = e.accuracy / 2;
 
@@ -29,10 +31,20 @@ var GetLocation = function(map){
  		 	
  		 	count++;
  		}
- 		
+ 		removeFoundMarker(circle, locationMarker);
 
  	}
 
 	map.on('locationfound', onLocationFound);
+
+
+
+}
+
+function removeFoundMarker (circle, marker){
+      setTimeout(function() {
+            map.removeLayer(circle);
+            map.removeLayer(marker);
+      }, 15000);
 
 }
