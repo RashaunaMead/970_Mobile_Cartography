@@ -45,6 +45,6 @@ function removeFoundMarker (circle, marker){
       setTimeout(function() {
             map.removeLayer(circle);
             map.removeLayer(marker);
-      }, 15000);
+      }, 10000);
 
 }

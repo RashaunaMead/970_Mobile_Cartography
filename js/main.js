@@ -45,9 +45,125 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
     
  
   addTileToggle();
+
+
+}
+// adds the find me control
+L.Control.Button = L.Control.extend({
+  options: {
+    position: 'topleft'
+  },
+  initialize: function (options) {
+    this._button = {};
+    this.setButton(options);
+  },
+ 
+  onAdd: function (map) {
+    this._map = map;
+    var container = L.DomUtil.create('div', 'leaflet-control-button');
+    
+    this._container = container;
+    
+    this._update();
+    return this._container;
+  },
+ 
+  onRemove: function (map) {
+  },
+ 
+  setButton: function (options) {
+    var button = {
+      'iconUrl': options.iconUrl,           //string
+      'onClick': options.onClick,           //callback function
+      'maxWidth': options.maxWidth || 70,     //number
+      'doToggle': options.toggle,           //bool
+      'toggleStatus': false                 //bool
+    };
+ 
+    this._button = button;
+    this._update();
+  },
+  
+
+  getIconUrl: function () {
+    return this._button.iconUrl;
+  },
+  
+  destroy: function () {
+    this._button = {};
+    this._update();
+  },
+  
+  toggle: function (e) {
+    if(typeof e === 'boolean'){
+        this._button.toggleStatus = e;
+    }
+    else{
+        this._button.toggleStatus = !this._button.toggleStatus;
+    }
+    this._update();
+  },
+  
+  _update: function () {
+    if (!this._map) {
+      return;
+    }
+ 
+    this._container.innerHTML = '';
+    this._makeButton(this._button);
+ 
+  },
+ 
+  _makeButton: function (button) {
+    var newButton = L.DomUtil.create('div', 'leaflet-buttons-control-button leaflet-bar a', this._container);
+    if(button.toggleStatus)
+        L.DomUtil.addClass(newButton,'leaflet-buttons-control-toggleon');
+        
+    var image = L.DomUtil.create('img', 'leaflet-buttons-control-img', newButton);
+    image.setAttribute('src',button.iconUrl);
+    
+ 
+    L.DomEvent
+      .addListener(newButton, 'click', L.DomEvent.stop)
+      .addListener(newButton, 'click', button.onClick,this)
+      .addListener(newButton, 'click', this._clicked,this);
+    L.DomEvent.disableClickPropagation(newButton);
+    return newButton;
+ 
+  },
+  
+  _clicked: function () {  //'this' refers to button
+    if(this._button.doToggle){
+        if(this._button.toggleStatus) { //currently true, remove class
+            L.DomUtil.removeClass(this._container.childNodes[0],'leaflet-buttons-control-toggleon');
+        }
+        else{
+            L.DomUtil.addClass(this._container.childNodes[0],'leaflet-buttons-control-toggleon');
+        }
+        this.toggle();
+    }
+    return;
+  }
+ 
+});
+
+var myButtonOptions = {
+      'iconUrl': './images/img/icon_12638/icon_12638_24r.png',  // string
+      'onClick': my_button_onClick,  // callback function
+      'hideText': true,  // bool
+      'maxWidth': 30,  // number
+      'doToggle': false,  // bool
+      'toggleStatus': false  // bool
+}   
+
+var myButton = new L.Control.Button(myButtonOptions).addTo(map);
+
+function my_button_onClick() {
+    console.log("someone clicked my button");
+     GetLocation(map);
 }
 
-
+//end of find me control
 
 function addTileToggle() { //called at the end of loadmap function
 

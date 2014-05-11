@@ -123,11 +123,10 @@ var switchElements = function (width,height,screen,pos){
 /* NAV BAR Locations change map zoom and center */
 //this might need to be moved to a new js file for responsive zoom levels
 
-$("li.findMe").click(function(){
+$("findMe").click(function(){
       GetLocation(map);
 
 });
-
 
 
 /*
