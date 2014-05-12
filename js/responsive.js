@@ -42,12 +42,7 @@ $(window).load(function() {
      $("#playerMobile").prop('muted', true);
      $("#playerDesktop").prop('muted', false);
 
-     if(winWidth<=midBreakPoint){
-     map.setView([43.076364, -89.384336], 14);
-     }
-     else{
-       map.setView([43.076364, -89.384336], 14);
-     }
+
 
  })
 

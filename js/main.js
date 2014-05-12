@@ -48,8 +48,9 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
  
   //addTileToggle();
 
-
+      map.setView([43.076364, -89.384336], 14);
 }
+
 // adds the find me control
 L.Control.Button = L.Control.extend({
   options: {
