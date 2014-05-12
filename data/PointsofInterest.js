@@ -48,24 +48,24 @@ var PointsofInterest = [{
         // for image set in slide show
 		 "imageSet": [
 			{
-				"historic_small": "images/site1_1_hs.png",
-				"historic_large": "images/site1_1_hl.png",
-				"current_small": "images/site1_1_cs.png",
-				"current_large": "images/site1_1_cl.png",
+				"historic_small": "images/site1_1_hs.jpg",
+				"historic_large": "images/site1_1_hl.jpg",
+				"current_small": "images/site1_1_cs.jpg",
+				"current_large": "images/site1_1_cl.jpg",
 				"image_texts": "<b>Interdependencies</b>: The Badger State Company was originally based in this factory in Milwaukee. The company relocated to south Madison in 1903 and then, in 1910, to the building in front of you. What factors do you think influenced its operations at this site, on the corner of East Dayton & Blount, between 1910-1930?"
 			},
 			{
-				"historic_small": "images/site1_2_hs.png",
-				"historic_large": "images/site1_2_hl.png",
-				"current_small": "images/site1_2_cs.png",
-				"current_large": "images/site1_2_cl.png",
+				"historic_small": "images/site1_2_hs.jpg",
+				"historic_large": "images/site1_2_hl.jpg",
+				"current_small": "images/site1_2_cs.jpg",
+				"current_large": "images/site1_2_cl.jpg",
 				"image_texts": "<b>Inequalities</b>: There used to be an open market located just across the street from where you’re standing. Who do you think would have been the main consumers of the goods produced by the Badger State Shoe Company and similar companies located on the isthmus?"
 			},
 			{
-				"historic_small": "images/site1_3_hs.png",
-				"historic_large": "images/site1_3_hl.png",
-				"current_small": "images/site1_3_cs.png",
-				"current_large": "images/site1_3_cl.png",
+				"historic_small": "images/site1_3_hs.jpg",
+				"historic_large": "images/site1_3_hl.jpg",
+				"current_small": "images/site1_3_cs.jpg",
+				"current_large": "images/site1_3_cl.jpg",
 				"image_texts": "<b>Alternatives</b>: Most Nike shoes are made in factories like this in southeast Asia. Why do you think Nike chooses to have its shoes made in these locations, rather than in American cities like Madison? Who do you think the main consumers of shoes produced by Nike are?"
 			}
 		 ],
@@ -118,24 +118,24 @@ var PointsofInterest = [{
         // for image set in slide show
 		 "imageSet": [
 			{
-				"historic_small": "images/site2_1_hs.png",
-				"historic_large": "images/site2_1_hl.png",
-				"current_small": "images/site2_1_cs.png",
-				"current_large": "images/site2_1_cl.png",
+				"historic_small": "images/site2_1_hs.jpg",
+				"historic_large": "images/site2_1_hl.jpg",
+				"current_small": "images/site2_1_cs.jpg",
+				"current_large": "images/site2_1_cl.jpg",
 				"image_texts": "<b>Interdependencies</b>: The building you are currently standing in front of used to be a train station. What do you think were the main cities connected to Madison by railroad in the early twentieth century?"
 			},
 			{
-				"historic_small": "images/site2_2_hs.png",
-				"historic_large": "images/site2_2_hl.png",
-				"current_small": "images/site2_2_cs.png",
-				"current_large": "images/site2_2_cl.png",
+				"historic_small": "images/site2_2_hs.jpg",
+				"historic_large": "images/site2_2_hl.jpg",
+				"current_small": "images/site2_2_cs.jpg",
+				"current_large": "images/site2_2_cl.jpg",
 				"image_texts": "<b>Inequalities</b>: How do you think that Nike shoes are transported to retail stores in Wisconsin today? How much farther do you think shoes produced by Nike travel today compared to shoes the Badger State Shoe Company produced in the nineteenth century?"
 			},
 			{
-				"historic_small": "images/site2_3_hs.png",
-				"historic_large": "images/site2_3_hl.png",
-				"current_small": "images/site2_3_cs.png",
-				"current_large": "images/site2_3_cl.png",
+				"historic_small": "images/site2_3_hs.jpg",
+				"historic_large": "images/site2_3_hl.jpg",
+				"current_small": "images/site2_3_cs.jpg",
+				"current_large": "images/site2_3_cl.jpg",
 				"image_texts": "<b>Alternatives</b>: What kinds of transportation networks can you see in this area today, and what do these networks suggest about Madison’s changing position within the global economy?"
 			}
 		 ],
@@ -194,17 +194,17 @@ var PointsofInterest = [{
 				"image_texts": "<b>Interdependencies</b>: Economic development has created interdependencies with other places that supply fossil fuels. Sometimes geopolitical factors can affect the price and access to these fuel sources, leading to protests such as the one shown in this poster. What are some of the factors that can contribute to rising energy prices?"
 			},
 			{
-				"historic_small": "images/site3_2_hs.png",
-				"historic_large": "images/site3_2_hl.png",
-				"current_small": "images/site3_2_cs.png",
-				"current_large": "images/site3_2_cl.png",
+				"historic_small": "images/site3_2_hs.jpg",
+				"historic_large": "images/site3_2_hl.jpg",
+				"current_small": "images/site3_2_cs.jpg",
+				"current_large": "images/site3_2_cl.jpg",
 				"image_texts": "<b>Inequalities</b>: This map depicts the millions of metric tonnes of CO2 that were released into the atmosphere in order to produce goods for the global economy in 2011. The color shading shows the CO2 emissions in the country producing the goods, while the flow arrows show the volume of these goods that then were consumed in the United States. Who do you think is responsible for these emissions?"
 			},
 			{
-				"historic_small": "images/site3_3_hs.png",
-				"historic_large": "images/site3_3_hl.png",
-				"current_small": "images/site3_3_cs.png",
-				"current_large": "images/site3_3_cl.png",
+				"historic_small": "images/site3_3_hs.jpg",
+				"historic_large": "images/site3_3_hl.jpg",
+				"current_small": "images/site3_3_cs.jpg",
+				"current_large": "images/site3_3_cl.jpg",
 				"image_texts": "<b>Alternatives</b>: Recently, there have been efforts to develop wind farms in rural areas of Wisconsin. What percentage of Wisconsin’s electricity do you think currently comes from renewable energy sources? Do you think development of rural wind farms is a viable alternative to urban coal plants?"
 			}
 		 ],
@@ -256,24 +256,24 @@ var PointsofInterest = [{
         // for image set in slide show
 		 "imageSet": [
 			{
-				"historic_small": "images/site4_1_hs.png",
-				"historic_large": "images/site4_1_hl.png",
-				"current_small": "images/site4_1_cs.png",
-				"current_large": "images/site4_1_cl.png",
+				"historic_small": "images/site4_1_hs.jpg",
+				"historic_large": "images/site4_1_hl.jpg",
+				"current_small": "images/site4_1_cs.jpg",
+				"current_large": "images/site4_1_cl.jpg",
 				"image_texts": "<b>Interdependencies</b>: Looking across the isthmus, how do you think zoning has changed over the past century? How do you think these changes have impacted the demographic composition of the Wil-Mar and adjacent neighborhoods?"
 			},
 			{
-				"historic_small": "images/site4_2_hs.png",
-				"historic_large": "images/site4_2_hl.png",
-				"current_small": "images/site4_2_cs.png",
-				"current_large": "images/site4_2_cl.png",
+				"historic_small": "images/site4_2_hs.jpg",
+				"historic_large": "images/site4_2_hl.jpg",
+				"current_small": "images/site4_2_cs.jpg",
+				"current_large": "images/site4_2_cl.jpg",
 				"image_texts": "<b>Inequalities</b>: Wil-Mar’s association with the counterculture movement in the 1960s remains present in the landscape, as evident by the large mural on the northeast side of the Wil-Mar Neighborhood Center. What does the mural represent to you? Where do you think the history of this neighborhood fits with the global justice movement today?"
 			},
 			{
-				"historic_small": "images/site4_3_hs.png",
-				"historic_large": "images/site4_3_hl.png",
-				"current_small": "images/site4_3_cs.png",
-				"current_large": "images/site4_3_cl.png",
+				"historic_small": "images/site4_3_hs.jpg",
+				"historic_large": "images/site4_3_hl.jpg",
+				"current_small": "images/site4_3_cs.jpg",
+				"current_large": "images/site4_3_cl.jpg",
 				"image_texts": "<b>Alternatives</b>: Some of the businesses in this neighborhood are local or community-owned, such as the Willy Street Co-Op, a grocery store founded in 1974. How do you think these businesses differ from retail outlets in other parts of Madison?"
 			}
 		 ],
@@ -327,17 +327,17 @@ var PointsofInterest = [{
         // for image set in slide show
 		 "imageSet": [
 			{
-				"historic_small": "images/site5_1_hs.png",
-				"historic_large": "images/site5_1_hl.png",
-				"current_small": "images/site5_1_cs.png",
-				"current_large": "images/site5_1_cl.png",
+				"historic_small": "images/site5_1_hs.jpg",
+				"historic_large": "images/site5_1_hl.jpg",
+				"current_small": "images/site5_1_cs.jpg",
+				"current_large": "images/site5_1_cl.jpg",
 				"image_texts": "Walk through the first floor hallway of the former Madison Candy Company and observe the historic photographs and other materials on the walls that depict the building's original uses and its restoration."
 			}, 
 			{
-				"historic_small": "images/site5_2_hs.png",
-				"historic_large": "images/site5_2_hl.png",
-				"current_small": "images/site5_2_cs.png",
-				"current_large": "images/site5_2_cl.png",
+				"historic_small": "images/site5_2_hs.jpg",
+				"historic_large": "images/site5_2_hl.jpg",
+				"current_small": "images/site5_2_cs.jpg",
+				"current_large": "images/site5_2_cl.jpg",
 				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos you took along the way."
 			}
 
