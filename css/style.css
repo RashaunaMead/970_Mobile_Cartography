@@ -18,6 +18,11 @@ body {
 /*  height: 100%;*/
   width: 100%;
 }
+/*does this work for scrollbars?  */
+body::-webkit-scrollbar { 
+    display: none; 
+}
+body::-webkit-scrollbar { width: 0 !important }
 /*--------------- Audio ----------------*/
   audio {
       position: relative;
