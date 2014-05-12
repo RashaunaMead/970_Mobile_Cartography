@@ -29,3 +29,13 @@
 .ready_next_text {
 	padding-top: 50%;
 }
+
+.orbit-container .orbit-prev:hover,
+.orbit-container .orbit-next:hover {
+      background-color: rgba(196, 30, 58, .8);
+}
+
+.orbit-container .orbit-prev,
+.orbit-container .orbit-next {
+      background-color: rgba(0, 0, 0, 0.3);
+}
