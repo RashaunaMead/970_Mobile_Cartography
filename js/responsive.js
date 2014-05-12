@@ -86,8 +86,8 @@ var switchElements = function (width,height,screen,pos){
      map.attributionControl.setPosition('bottomright');
     //map.setView([43.076364, -89.384336], 14);
       $("audio").prop('muted', true);
-      $(".audioForText").remove();
-      $(".smallPlayer").hide();
+      $(".audioForText").show();
+      $(".smallPlayer").show();
        $("#audioText").show();
        $('.leaflet-control-zoom').show();
 
@@ -123,10 +123,10 @@ var switchElements = function (width,height,screen,pos){
 /* NAV BAR Locations change map zoom and center */
 //this might need to be moved to a new js file for responsive zoom levels
 
-$("findMe").click(function(){
-      GetLocation(map);
+// $("findMe").click(function(){
+//       GetLocation(map);
 
-});
+// });
 
 
 /*
