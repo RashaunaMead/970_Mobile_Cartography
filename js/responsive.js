@@ -46,7 +46,7 @@ $(window).load(function() {
      map.setView([43.076364, -89.384336], 14);
      }
      else{
-       map.setView([43.076364, -89.384336], 13);
+       map.setView([43.076364, -89.384336], 14);
      }
 
  })
