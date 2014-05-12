@@ -80,37 +80,20 @@ h3{
   height: 0px;
 }
 
-.script {
+/*.script {
   margin: 15px;
   color: #fff;
-}
+}*/
 #map{
   position: absolute;
     z-index: 2;
-    height: calc(100% - 195px);
+    height: calc(100% - 45px);
 
    
    top:45px;
  
   }
-  #audioText {
-   z-index: 900;
-  position: fixed;
-  background: none repeat scroll 0 0 #858585;
-  height: 150px;
-  bottom:0px;
-  width: 100%;
-  overflow:hidden;
-/*
-  margin-top: 0px;
-  top: 0px;
 
-  color: #fff;
-  width: 100%;
- z-index: 0;
- */
- 
-} /*end #audioText styles*/
 
 .ready_next{
 	background-color: #C41E3A;
