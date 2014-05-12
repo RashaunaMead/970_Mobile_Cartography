@@ -115,3 +115,25 @@
 **Permissions:** copyright; permission granted for web image
 **URL:** http://bit.ly/1mPdUmF
 
+### site3_2
+**Description:** carbon traded in goods and services in 2004
+**Date taken:** 11/8/2011
+**Author:** Steven J. Davis, Glen P. Peters, Ken Caldeira
+**Publisher:** National Academy of Sciences of the United States of America
+**Permissions:** open access
+
+### site3_3_h
+**Description:** MG&E transformers
+**Date taken:** 5/5/2014
+**Author:** Carl Sack
+**Publisher:** none
+**Permissions:** unlicensed
+
+### site 3_3_c
+**Description:** Illinois wind farm
+**Date taken:** October 2006
+**Author:** Dual Freq
+**Publisher:** Wikipedia
+**Permissions:** GNU Free Documentation License
+**URL:** http://en.wikipedia.org/wiki/File:Illinois_wind_farm_near_I-39_exit_82.jpg
+
