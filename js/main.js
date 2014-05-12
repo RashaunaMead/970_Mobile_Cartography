@@ -247,14 +247,17 @@ var highlightStyle = {
 //var initrouteLayer = L.geoJson(routes[0].features[0], {style: routeStyle});
 var initrouteLayer = L.geoJson(routes[0].features[0]); // default blue color for routes
 initrouteLayer.addTo(map);
-// hilighted segment
+// highlighted segment
 var highlightLayer;
 
 // audio
 //var audioDesktop = document.getElementById("playerDesktop");
 var audioMobile = document.getElementById("playerMobile");
 
-$('#slideshowModal').on('closed', function () {
+//I think I've  made this function obsolete by adding button functionality to ready_next div in markers.js
+$('#ready_next_button').click( function () {
+//$('#slideshowModal').on('closed', function () {
+	console.log("move on to next location main");
 	
     updateLocationMenu();
     updateMarkers();
@@ -268,7 +271,7 @@ $('#slideshowModal').on('closed', function () {
     highlightRoute();
     addScript();
     
-    // start to play audio after 1 sec closing sliede show
+    // start to play audio after 1 sec closing slide show
 	setTimeout(playAudio, 1000);
 });
 

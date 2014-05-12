@@ -1,5 +1,3 @@
-//this file created by Caroline. 
-
 // keep track of which site are they working on
 var siteID;
 
@@ -165,6 +163,31 @@ function openInfoScreen (feature){
 		div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site.</span>";
 		li.appendChild(div);
 		showImagesList.appendChild(li);	
+		
+//adding button functionality to the ready_next div: 
+		div.addEventListener("click", function () {		
+			console.log("move on to next location markers");
+			
+			updateLocationMenu();
+			updateMarkers();
+			updateRoute();
+			
+			if(siteID==3)
+			{		
+				viewed[4]=true;
+			}
+    
+			highlightRoute();
+			addScript();
+			
+			//close the slideshow
+			$("#slideshowModal").foundation('reveal', 'close');
+			
+			// start to play audio after 1 sec closing slide show
+			setTimeout(playAudio, 1000);
+			
+			
+		});
 		//showText.innerHTML
 	}
 		
@@ -172,7 +195,7 @@ function openInfoScreen (feature){
 	$('.orbit-timer').hide();
 	//show the close button
 	$('#closeSlideshow').html("&#215;");
-	$('#closeSlideshow').hide();
+//	$('#closeSlideshow').hide();
 	$('.orbit-next').show();
     $('.orbit-prev').show();
 	
@@ -182,10 +205,12 @@ function openInfoScreen (feature){
 	//-------- make changes after each slide transition --------------
 	$("#slideshow_images").on("after-slide-change.fndtn.orbit", function(event, orbit) {  
 
-		$('#closeSlideshow').hide();
-		if(orbit.slide_number == orbit.total_slides - 1){
+// I think the close button should always appear on the slideshow. 	
+//		$('#closeSlideshow').hide();
+/*		if(orbit.slide_number == orbit.total_slides - 1){
 			$('#closeSlideshow').show();
 		}
+*/
 		
 		// description texts change as slide goes
 		if(orbit.slide_number != orbit.total_slides - 1){
@@ -199,7 +224,7 @@ function openInfoScreen (feature){
 	});
 	
 	$("#slideshowModal").foundation("reveal", "open");
-}
+} //end "Open Info Screen" function
 
 
 
