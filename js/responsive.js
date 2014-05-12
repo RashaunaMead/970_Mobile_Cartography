@@ -30,7 +30,7 @@ $(window).load(function() {
     $("#container").hide();
     $("nav").hide();
     $(".ontop").hide()
-    $("audio").prop('muted', true).delay(2000);
+    $("audio").prop('muted', true).delay(3000);
     //after splash pabe link clicked
      $("#splash a").click(function(){
      $("#container").show();
@@ -51,6 +51,8 @@ $(window).load(function() {
 function responsiveDivs(){
 
 }
+
+
 
 
 
