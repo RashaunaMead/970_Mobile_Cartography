@@ -100,7 +100,7 @@ h3{
   height: 150px;
   bottom:0px;
   width: 100%;
-  overflow:scroll;
+  overflow:hidden;
 /*
   margin-top: 0px;
   top: 0px;
