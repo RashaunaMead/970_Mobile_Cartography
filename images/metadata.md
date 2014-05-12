@@ -31,20 +31,20 @@
 **URL:** http://bit.ly/SUztoR
 
 ### site1_3_c
-**Description:** Nike factory floor
-**Date taken:** unknown
-**Author:** unknown
-**Publisher:** zero-drop.com
-**Permissions:** unknown
-**URL:** http://zero-drop.com/wp-content/uploads/2011/01/217540431VTBjsL_fs.jpg
-
-### site1_3_h
 **Description:** Screenshot from "Where do major garment companies manufacture their clothes" interactive map
 **Date taken:** 5/12/2014
 **Author:** Anna Flagg
 **Publisher:** School of Data/Visual.ly
 **Permissions:** unknown
 **URL:** http://www.annaflagg.com/GarmentFactories/
+
+### site1_3_h
+**Description:** Nike factory floor
+**Date taken:** unknown
+**Author:** unknown
+**Publisher:** zero-drop.com
+**Permissions:** unknown
+**URL:** http://zero-drop.com/wp-content/uploads/2011/01/217540431VTBjsL_fs.jpg
 
 ### site2_1_c
 **Description:** Chicago and NorthWestern Railroad Station Facade
