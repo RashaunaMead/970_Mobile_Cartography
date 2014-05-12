@@ -251,7 +251,7 @@ initrouteLayer.addTo(map);
 var highlightLayer;
 
 // audio
-var audioDesktop = document.getElementById("playerDesktop");
+//var audioDesktop = document.getElementById("playerDesktop");
 var audioMobile = document.getElementById("playerMobile");
 
 $('#slideshowModal').on('closed', function () {
@@ -333,14 +333,14 @@ function playAudio()
 {	
     var winHeight = $(window).height();
     var winWidth = $(window).width();
-    if(winWidth > midBreakPoint){
-        audioDesktop.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
-        audioDesktop.play();
-    }
-    else{
+    // if(winWidth > midBreakPoint){
+    //     audioDesktop.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
+    //     audioDesktop.play();
+    // }
+    // else{
         audioMobile.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
         audioMobile.play(); 
-    }
+   // }
 }
 
 function updateLocationMenu()
