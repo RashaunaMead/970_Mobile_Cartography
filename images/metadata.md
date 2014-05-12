@@ -78,12 +78,12 @@
 **URL:** http://bit.ly/1mSzcLY
 
 ### site2_3_c
--**Description:** Aerial image centered South Blair Street
--**Date taken:** 11/13/2012
--**Author:** USGS
--**Publisher:** USGS
--**Permissions:** public
--**URL:** http://earthexplorer.usgs.gov/
+- **Description:** Aerial image centered South Blair Street
+- **Date taken:** 11/13/2012
+- **Author:** USGS
+- **Publisher:** USGS
+- **Permissions:** public
+- **URL:** http://earthexplorer.usgs.gov/
 
 ### site2_3_h
 -**Description:** Aerial image centered South Blair Street
