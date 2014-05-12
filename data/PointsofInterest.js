@@ -338,7 +338,7 @@ var PointsofInterest = [{
 				"historic_large": "images/site5_2_hl.jpg",
 				"current_small": "images/site5_2_cs.jpg",
 				"current_large": "images/site5_2_cl.jpg",
-				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos she took along the way."
+				"image_texts": "Take some time to relax here and write down a longer response to the questions that were posed to her throughout the tour, to be submitted with the photos you took along the way."
 			}
 
 			

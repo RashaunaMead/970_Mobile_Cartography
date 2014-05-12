@@ -214,12 +214,18 @@ function openInfoScreen (feature){
 		
 		// description texts change as slide goes
 		if(orbit.slide_number != orbit.total_slides - 1){
+			//if we're not on the final slide... 
 			//showText.innerHTML = null;
 			showText.innerHTML = imageSet[orbit.slide_number].image_texts;	
-		}else{
-			showText.innerHTML = "After closing this slide show window, you will be guided by the highted route and audio recording to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.";
 			
-		}
+		}else{  //if we are on the final slide...
+			if (siteID == 4) {
+				showText.innerHTML = imageSet[orbit.slide_number].image_texts;
+			}
+			if (siteID != 4){//if we're not on the final slideshow, show this message
+				showText.innerHTML = "After closing this slide show window, you will be guided by the highted route and audio recording to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.";
+			}
+		} 
 		
 	});
 	
