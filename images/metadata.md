@@ -78,27 +78,27 @@
 **URL:** http://bit.ly/1mSzcLY
 
 ### site2_3_c
-**Description:** Aerial image centered South Blair Street
-**Date taken:** 11/13/2012
-**Author:** USGS
-**Publisher:** USGS
-**Permissions:** public
-**URL:** http://earthexplorer.usgs.gov/
+-**Description:** Aerial image centered South Blair Street
+-**Date taken:** 11/13/2012
+-**Author:** USGS
+-**Publisher:** USGS
+-**Permissions:** public
+-**URL:** http://earthexplorer.usgs.gov/
 
 ### site2_3_h
-**Description:** Aerial image centered South Blair Street
-**Date taken:** 1937
-**Author:** unknown
-**Publisher:** National Archives
-**Permissions:** public
-**URL:** http://www.sco.wisc.edu/aerial-photography-catalog.html
+-**Description:** Aerial image centered South Blair Street
+-**Date taken:** 1937
+-**Author:** unknown
+-**Publisher:** National Archives
+-**Permissions:** public
+-**URL:** http://www.sco.wisc.edu/aerial-photography-catalog.html
 
 ### site3_1_c
-**Description:** MG&E Blount Street Station sign
-**Date taken:** 5/5/2014
-**Author:** Carl Sack
-**Publisher:** none
-**Permissions:** unlicensed
+-**Description:** MG&E Blount Street Station sign
+-**Date taken:** 5/5/2014
+-**Author:** Carl Sack
+-**Publisher:** none
+-**Permissions:** unlicensed
 
 ### site3_1_h
 **Description:** "Fight Madison Gas and Electric Rate Increase"
