@@ -8,11 +8,17 @@ html, body, #container {
  }
 #container{
   background-color: #858585;
+  visibility: hidden;
 }
 body {
   margin: 0;
   padding: 0;
-  font: 100% Helvetica, sans-serif; }
+  font: 100% Helvetica, sans-serif; 
+}
+
+nav {
+  visibility: hidden;
+}
 #map{
 /*  height: 100%;*/
   width: 100%;
@@ -150,7 +156,9 @@ h3{
 .ontop {
   z-index: 5;
   position: fixed;
-  width: 100%; }
+  width: 100%;
+  visibility: hidden;
+}
 
 
 .top-bar {

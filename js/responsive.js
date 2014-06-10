@@ -21,34 +21,27 @@ $(window).load(function() {
 
   var winHeight = $(window).height();
   var winWidth = $(window).width();
-  //.leaflet-control-zoom.
-  
-
   zoomLevel(winWidth);
-//this will need to change to add the .ontop class or map div until splash has loded or closed
   switchElements(winWidth);
-    $("#container").hide();
-    $("nav").hide();
-    $(".ontop").hide()
-    $("audio").prop('muted', true);
-    //after splash pabe link clicked
-     $("#splash a").click(function(){
-     $("#container").show();
-     $("#splash").hide();
-     $(".ontop").show();
-     $("nav").show();
-     //Moved to responsive function
-     $("audio").load();
-     $("audio").prop('muted', false);
 
-     if(winWidth<=midBreakPoint){
-     map.setView([43.076364, -89.384336], 14);
-     }
-     else{
-       map.setView([43.076364, -89.384336], 13);
-     }
+  //after splash page link clicked
+  $("#splash a").click(function(){
+    $("#container").css("visibility", "visible");
+    $("#splash").hide();
+    $(".ontop").css("visibility", "visible");
+    $("nav").css("visibility", "visible");
+    //Moved to responsive function
+    $("audio").load();
+    $("audio").prop('muted', false);
 
- })
+    if(winWidth<=midBreakPoint){
+    map.setView([43.076364, -89.384336], 14);
+    }
+    else{
+      map.setView([43.076364, -89.384336], 13);
+    }
+
+  })
 
 });
 

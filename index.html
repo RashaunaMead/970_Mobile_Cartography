@@ -1,227 +1,254 @@
 <!DOCTYPE html>
-<html lang="en"> <!--  manifest="index.manifest" -->
+<html lang="en">
   <head>
     <title>MobileMap</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> 
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
    
-    <script src="libraries/leaflet.js" type="text/javascript"></script>
-        <script src="libraries/jQuery.js" type="text/javascript"></script>
-
-
+    <!--library stylesheets-->
     <link rel="stylesheet" type="text/css" href="libraries/leaflet.css" />
- 
-
     <link rel="stylesheet" href="libraries/foundation/css/foundation.css" />
-    <script src="libraries/foundation/js/vendor/modernizr.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     
-    <!--For slideshow Guiming-->
+    <!--stylesheets for slideshow-->
     <link type="text/css" rel="stylesheet" href="libraries/twentytwenty.css" />
     <link type="text/css" rel="stylesheet" href="libraries/foundation/css/normalize.css" />
-	<link type="text/css" rel="stylesheet" href="css/slideshow.css" />
-    <!--END Guiming-->
-    
- </head>
- <body>
+	  <link type="text/css" rel="stylesheet" href="css/slideshow.css" />
 
+    <!--custom stylesheet-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
 
-  <div id="splash">
-    <h1>Madison's East Isthmus: Paths To Change</h1>
-    <h2>Welcome to our page! This is a project about globalization. Bacon ipsum dolor sit amet andouille tail pancetta hamburger bresaola biltong. Short ribs swine kielbasa short loin strip steak cow ribeye tongue andouille pig shoulder jerky. Doner biltong rump ham hock drumstick sausage beef ribs landjaeger tail short loin sirloin short ribs swine capicola. Brisket chicken spare ribs pork chop beef ribs frankfurter doner chuck, prosciutto kevin salami shank hamburger andouille fatback. Kielbasa tongue swine drumstick andouille biltong beef ribs. Andouille tri-tip hamburger beef. Hamburger beef tail drumstick ribeye shoulder leberkas short loin pork belly tongue turkey shankle, boudin capicola corned beef.</h2>
-    
-      <h3><a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps"> Get directions to starting location </a></h3>
-      <br>
-      <h2> If you are already prepared and at the first stop, please select the link below. This is also the moment to plug in your headphones</h2>
-      <h3><a href="#"> Go To The Map </a></h3>
- 
-  </div> 
- <div id="container">
-  
-    <nav class="top-bar" data-topbar>
-   
-      <ul class="title-area">  
-
-          <li class="name"><audio id="playerMobile" controls autoplay class="smallPlayer left "> 
-        <source src="audio/intro_site1.mp3" type="audio/mp3"> Your browser does not support the audio element.
-      </audio></li>
-    
-        
-          <!--audo can go here for mobile version-->
-          <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
-      </ul>
-
-        
-        <section class="top-bar-section">
-
-        
-        <!-- Left Nav Section -->
-        <ul class="left">
-
-          <li class="has-dropdown "><a href="#" data-options="align:left">  
-           <img class="locations"src="images/img/icon_13378/icon_13378.png" width="44" height="38" alt="Locations"/> Locations </a>
-            <ul class="dropdown" id="locationMenu">
-              <li class="Shoe_Factory"><a href="#"><img src="images/labor24design2.png"alt="Locations"/> Shoe Factory</a></li>
-<!--			  
-			   <li class="Railroad"><a href="#"><img src="images/transportation24design1.png"  alt="Locations"/> Railroad Station</a></li>
-			   
-              <li class="Power_Plant"><a href="#"><img src="images/energy24design2.png" alt="Locations"/> Power Plant</a></li>
-
-              <li class="Wil_Mar"><a href="#"><img src="images/housing24design2.png" alt="Locations"/> Community Center</a></li>
-              <li class ="candy"><a href="#"><img src="images/production24design2.png"  alt="Locations"/> Candy Company</a></li>
-              <li class="allLocations"><a href="#">All Locations</a></li>
--->
-            </ul>
-          </li>
-        
-          <li class="findMe"><a href="#"><img src="images/img/icon_12638/icon_12638.png" width="34" height="34" alt="find Me"/> Find Me</a></li>
-
-          <li><a href="#"  data-reveal-id="helpModal" data-reveal>
-             <img src="images/img/icon_18734/icon_18734.png" width="34" height="34" alt="Help"/>
-               Help</a></li>
-             <li><a href="#" data-reveal-id="infoModal" data-reveal>
-             <img src="images/img/icon_2824/icon_2824.png" width="34" height="34" alt="Infomation"/>
-              Information</a></li>
-            <!--audio section-->
-            <li class="audioForText"><a href="#"  data-reveal-id="textModal" data-reveal><img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
-             Text for Audio</a>
-             </li>
-
+  <body>
+    <div id="splash">
+      <h1>Madison's East Isthmus: Paths To Change</h1>
       
+      <h2>Welcome to our page! This is a project about globalization. Bacon ipsum dolor sit amet andouille tail pancetta hamburger bresaola biltong. Short ribs swine kielbasa short loin strip steak cow ribeye tongue andouille pig shoulder jerky. Doner biltong rump ham hock drumstick sausage beef ribs landjaeger tail short loin sirloin short ribs swine capicola. Brisket chicken spare ribs pork chop beef ribs frankfurter doner chuck, prosciutto kevin salami shank hamburger andouille fatback. Kielbasa tongue swine drumstick andouille biltong beef ribs. Andouille tri-tip hamburger beef. Hamburger beef tail drumstick ribeye shoulder leberkas short loin pork belly tongue turkey shankle, boudin capicola corned beef.</h2>
+    
+      <h3>
+          <a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">Get directions to starting location</a>
+      </h3>
+
+      <h2>If you are already prepared and at the first stop, please select the link below. This is also the moment to plug in your headphones</h2>
+      
+      <h3>
+        <a href="#">Go To The Map</a>
+      </h3>
+    </div><!--end splash screen div--> 
+    
+    <div id="container">
+      <nav class="top-bar" data-topbar>
+        <ul class="title-area">  
+          <li class="name">
+            <!--need to establish ONE audio element with attributes determined according to device-->
+            <audio id="playerMobile" controls autoplay class="smallPlayer left" muted> 
+              <source src="audio/intro_site1.mp3" type="audio/mp3"> Your browser does not support the audio element.
+            </audio>
+          </li>
+          
+          <li class="toggle-topbar menu-icon">
+            <a href="#">Menu</a>
+          </li>
         </ul>
 
-         
-      
-      
-    
+        <!--left nav section-->
+        <section class="top-bar-section">
+          <ul class="left">
+            <li class="has-dropdown">
+              <a href="#" data-options="align:left">  
+                <img class="locations"src="images/img/icon_13378/icon_13378.png" width="44" height="38" alt="Locations"/>
+                Locations
+              </a>
+              <ul class="dropdown" id="locationMenu">
+                <li class="Shoe_Factory">
+                  <a href="#"><img src="images/labor24design2.png"alt="Locations"/>
+                    Shoe Factory
+                  </a>
+                </li>
+                
+                <!--wtf is all this???>			  
+			          <li class="Railroad">
+                  <a href="#">
+                    <img src="images/transportation24design1.png" alt="Locations"/>
+                    Railroad Station
+                  </a>
+                </li>
+			   
+                <li class="Power_Plant">
+                  <a href="#">
+                    <img src="images/energy24design2.png" alt="Locations"/>
+                    Power Plant
+                  </a>
+                </li>
 
-      </section>
-</nav>
+                <li class="Wil_Mar">
+                  <a href="#">
+                    <img src="images/housing24design2.png" alt="Locations"/>
+                    Community Center
+                  </a>
+                </li>
+              
+                <li class ="candy">
+                  <a href="#">
+                    <img src="images/production24design2.png" alt="Locations"/>
+                    Candy Company
+                  </a>
+                </li>
+                
+                <li class="allLocations">
+                  <a href="#">All Locations</a>
+                </li>
+                <-->
+              </ul>
+            </li>
+          
+            <li class="findMe">
+              <a href="#">
+                <img src="images/img/icon_12638/icon_12638.png" width="34" height="34" alt="find Me"/>
+                Find Me
+              </a>
+            </li>
 
-   
-     
- 
-    <div id="map"> 
-      <!--switch from osm tiles to historic tiles -->
-      <div id="tileToggle"><b>Show Historic Basemap</b></div>
-    </div> <!-- end 'map' div-->
+            <li>
+              <a href="#" data-reveal-id="helpModal" data-reveal>
+                <img src="images/img/icon_18734/icon_18734.png" width="34" height="34" alt="Help"/>
+                Help
+              </a>
+            </li>
+
+            <li>
+              <a href="#" data-reveal-id="infoModal" data-reveal>
+                <img src="images/img/icon_2824/icon_2824.png" width="34" height="34" alt="Infomation"/>
+                Information
+              </a>
+            </li>
+
+            <!--audio section-->
+            <li class="audioForText">
+              <a href="#"  data-reveal-id="textModal" data-reveal>
+                <img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
+                Text for Audio
+              </a>
+            </li>
+          </ul>
+        </section><!--end left nav section-->
+      </nav>
+
+      <div id="map"> 
+        <!--switch from osm tiles to historic tiles -->
+        <div id="tileToggle">
+          <b>Show Historic Basemap</b>
+        </div>
+      </div><!-- end map div-->
  
     <div id="audioText">
+      <!--this is doubling up the audio controls!><p>
+        <audio id="playerDesktop" controls autoplay class="" muted>
+          <source src="audio/intro_site1.mp3" type="audio/mp3"> Your browser does not support the audio element. 
+        </audio>
+      </p-->
 
-    <p>
-    <audio id="playerDesktop" controls autoplay class="" > <source src="audio/intro_site1.mp3" type="audio/mp3"> Your browser does not support the audio element. </audio></p>
+      <div class="script"></div>
+      <br/><br/>
+    </div>
 
-     <div class="script">
+    <!--slideshow for marker divs-->
+    <div id="slideshowModal" class="reveal-modal" data-reveal>
+      <p id="show_title"></p>
+      
+      <!--more work need to do to change image links dynamically in markers.js. Will come later-->
+      <div id="slideshow_images"> 
+        <ul id="imagesList" class="orbit-slideshow" data-orbit></ul>
+      </div>
+    
+      <div id="slideshow_texts"></div>
+    
+      <a id="closeSlideshow" class="close-reveal-modal"></a>
+    </div><!--end slideshow for marker divs-->
+  </div><!--end container div-->
+
+  <!--Get Info Reveal-->
+  <div id="infoModal" class="reveal-modal" data-reveal>
+    <h2>Info</h2>
+    <p class="lead">Attribution</p>
+    <p>list of noun project images, tiles, sources, etc.</p>
+    <a class="close-reveal-modal">&#215;</a>
   </div>
 
-    <p></p>
-    </div>
-  <!-- slideshow for marker divs -->
-  <div id="slideshowModal" class="reveal-modal" data-reveal>
-    <p id="show_title"></p>
-    <!--more work need to do to change image links dynamically in markers.js. Will come later-->
-     <div id="slideshow_images"> 
-        <ul  id="imagesList" class="orbit-slideshow" data-orbit>
-        </ul>
-    </div>
-    
-    <div id="slideshow_texts"></div>
-    
-    <a id="closeSlideshow" class="close-reveal-modal"></a>
-  </div><!-- ends slideshow for marker divs -->
-
-  </div><!--ends container -->
-
-
-  <!-- Get Info Reveal -->
-
-<div id="infoModal" class="reveal-modal" data-reveal>
-  <h2>Info</h2>
-  <p class="lead">Attribution</p>
-  <p>list of noun project images, tiles, sources, etc. </p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="helpModal" class="reveal-modal" data-reveal>
-  <h2>Info</h2>
-  <p class="lead">Attribution</p>
-  <p>list of noun project images, tiles, sources, etc. </p>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="textModal" class="reveal-modal" data-reveal>
-  <div class="">
-  <p class="script">Text for audio</p>
-  <a class="close-reveal-modal">&#215;</a>
+  <div id="helpModal" class="reveal-modal" data-reveal>
+    <h2>Info</h2>
+    <p class="lead">Attribution</p>
+    <p>list of noun project images, tiles, sources, etc.</p>
+    <a class="close-reveal-modal">&#215;</a>
   </div>
-</div>
 
-<!-- Joyride on start for mobile  -->
-<!-- <ol class="joyride-list" data-joyride>
-  <li data-id="player"  data-options="tip_location: top">
-    <p>To start the podcast press play.</p>
-  </li>
-  <li data-class="dropdown"  data-options="tip_location: top">
-    <p>To find your location on the map, view the locations, or for any other help you may
-      need check out the menu selection</p>
-  </li>
-</ol> -->
-    
-<!-- end try -->
+  <div id="textModal" class="reveal-modal" data-reveal>
+    <div class="">
+    <p class="script">Text for audio</p>
+    <a class="close-reveal-modal">&#215;</a>
+    </div>
+  </div>
+
+  <!-- Joyride on start for mobile  -->
+  <!-- <ol class="joyride-list" data-joyride>
+    <li data-id="player"  data-options="tip_location: top">
+      <p>To start the podcast press play.</p>
+    </li>
+    <li data-class="dropdown"  data-options="tip_location: top">
+      <p>To find your location on the map, view the locations, or for any other help you may
+        need check out the menu selection</p>
+    </li>
+  </ol> -->
+  <!-- end try -->
    
- <!---  Scripts   -->
+  <!--SCRIPTS-->
+  <!--foundation-->
+  <script src="libraries/foundation/js/vendor/jquery.js"></script>
+  <script src="libraries/foundation/js/foundation.min.js"></script>
+  <script src="libraries/foundation/js/foundation/foundation.joyride.js"></script>
+  <script src="libraries/foundation/js/foundation/foundation.reveal.js"></script> 
+  <script src="libraries/foundation/js/foundation/foundation.orbit.js"></script> 
+  <script src="libraries/foundation/js/foundation/foundation.interchange.js"></script>
+  <script src="libraries/foundation/js/vendor/jquery.cookie.js"></script> <!-- Optional -->
+ 	<script src="libraries/foundation/js/vendor/fastclick.js"></script>
+  <script src="libraries/foundation/js/vendor/modernizr.js"></script>
+  
+  <script>
+    //orbit settings
+    $(document).foundation({
+        orbit: {
+            animation: 'slide',
+            navigation_arrows: true,
+            circular: true,
+            timer: false,
+            swipe: false,
+            next_class: 'orbit-next',
+            prev_class: 'orbit-prev',
+            timer_show_progress_bar: false
+        }
+    });	
 
+    $(document).foundation();
+  </script>
 
+  <!--jQuery stuff-->
+  <script src="libraries/jQuery.js" type="text/javascript"></script>
+  <script src="libraries/jquery.event.move.js"></script>
+  <script src="libraries/jquery.twentytwenty.js"></script>
   
-   <script src="libraries/foundation/js/vendor/jquery.js"></script>
-    <script src="libraries/foundation/js/foundation.min.js"></script>
-    <script src="libraries/foundation/js/foundation/foundation.joyride.js"></script>
-    <script src="libraries/foundation/js/vendor/jquery.cookie.js"></script> <!-- Optional -->
+  <!--sweet sweet magic sauce-->
+  <script src="libraries/leaflet.js" type="text/javascript"></script>
   
-    <!--Guiming-->
-  	<script src="libraries/foundation/js/vendor/fastclick.js"></script>
-	<script src="libraries/foundation/js/foundation/foundation.reveal.js"></script> 
-	<script src="libraries/foundation/js/foundation/foundation.orbit.js"></script> 
-	<script src="libraries/foundation/js/foundation/foundation.interchange.js"></script>
-  
-  	<script src="libraries/jquery.event.move.js"></script>
-	<script src="libraries/jquery.twentytwenty.js"></script>
-    <!--End Guiming-->
-  
-    <script>
-      //orbit settings
-      $(document).foundation({
-          orbit: {
-              animation: 'slide',
-              navigation_arrows: true,
-              circular: true,
-              timer: false,
-              swipe: false,
-              next_class: 'orbit-next',
-              prev_class: 'orbit-prev',
-              timer_show_progress_bar: false
-          }
-      });	
-
-      $(document).foundation();
-    </script>
-
-  
+  <!--stuff that's going to go into queue/ajax-->
   <script type="text/javascript" src="data/routes.js"></script>
   <script type="text/javascript" src="data/PointsofInterest.js"></script>
   <script type="text/javascript" src="data/POIzoom.js"></script>
 
-   <script type="text/javascript" src="js/getLocation.js"></script>
-   <script type="text/javascript" src="js/responsive.js"></script>
-   <script type="text/javascript" src="js/markers.js"></script>
-
+  <!--project scripts-->
+  <script type="text/javascript" src="js/getLocation.js"></script>
+  <script type="text/javascript" src="js/responsive.js"></script>
+  <script type="text/javascript" src="js/markers.js"></script>
   <script type="text/javascript" src="js/main.js"></script> 
-
-
- 
-
 
 </body>
 </html>
