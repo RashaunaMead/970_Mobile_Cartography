@@ -7,7 +7,7 @@ var current = [false, false, false, false, false];
 //main.js initiates the map and runs the functionality of the map 
 
 var map;
- window.onload = loadmap();
+window.onload = loadmap();
  
 var currentTile = 'modern';
 //define variables hold the path to each tile layer
@@ -32,7 +32,6 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
 
  function loadmap(){
 
- 
   map = L.map('map', { zoomControl:true});
     // tiles can change once we know our basemap 
     L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
@@ -41,9 +40,7 @@ var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/
       minzoom: 5,
     }).addTo(map);
     // initial zoom & set map coords, these will change 
-    
-    
- 
+
   addTileToggle();
 }
 
