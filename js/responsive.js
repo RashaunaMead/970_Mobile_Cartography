@@ -18,24 +18,19 @@ function setMap(mapSent){
 }
 
 $(window).load(function() {
-
   var winHeight = $(window).height();
-  var winWidth = $(window).width();
-  //.leaflet-control-zoom.
-  
-
+  var winWidth = $(window).width();  
   zoomLevel(winWidth);
-//this will need to change to add the .ontop class or map div until splash has loded or closed
   switchElements(winWidth);
-    $("#container").hide();
-    $("nav").hide();
-    $(".ontop").hide()
+  $("#container").hide();
+  $("nav").hide();
+  $(".ontop").hide()
     //after splash pabe link clicked
      $("#splash a").click(function(){
-     $("#container").show();
+     $("#container").css("visibility", "visible");
      $("#splash").hide();
-     $(".ontop").show();
-     $("nav").show();
+     $(".ontop").css("visibility", "visible");
+     $("nav").css("visibility", "visible");
      //Moved to responsive function
      $("audio").load();
      $("#playerMobile").prop('muted', true);
