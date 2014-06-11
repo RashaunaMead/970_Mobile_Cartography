@@ -210,21 +210,20 @@ addMarkers(map, 0); //function defined in markers.js file
 /* initial script */
     //to allow for next buttons for the intro script
 if(siteID==null){
-   $('.script').html(PointsofInterest[0].features[0].properties.Scripts[0]);
-$('.script').before( "<b><a href='#' class='previous' style='color:#C41E3A; padding-left:20px' >< previous</a></b>" );
-$('.script').before( "<b><a href='#' class='next' style='color:#C41E3A; float:right; padding-right:20px' >next ></a></b>" );
+  $('.script').html(PointsofInterest[0].features[0].properties.Scripts[0]);
+  $('.script').before( "<b><a href='#' class='previous' style='color:#C41E3A; padding-left:20px' >< previous</a></b>" );
+  $('.script').before( "<b><a href='#' class='next' style='color:#C41E3A; float:right; padding-right:20px' >next ></a></b>" );
 }
 var i=0;
-
 $('.next').click(function(){
     i++;
-    if(i==PointsofInterest[0].features[0].properties.Scripts.length){i=0}
-     updateScript(i);
+    i = i == PointsofInterest[0].features[0].properties.Scripts.length ? 0 : i;
+    updateScript(i);
 });
 $('.previous').click(function(){
     i--;
-    if(i==-1){i=PointsofInterest[0].features[0].properties.Scripts.length}
-     updateScript(i); 
+    i = i == -1 ? PointsofInterest[0].features[0].properties.Scripts.length : i;
+    updateScript(i); 
 });
 
 function updateScript(i){
@@ -253,7 +252,7 @@ var highlightLayer;
 
 // audio
 //var audioDesktop = document.getElementById("playerDesktop");
-var audioMobile = document.getElementById("playerMobile");
+var audioMobile = $("audio");
 
 //I think I've  made this function obsolete by adding button functionality to ready_next div in markers.js
 $('#ready_next_button').click( function () {

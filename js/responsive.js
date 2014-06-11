@@ -15,97 +15,53 @@ var smallWindow = true;
 
 function setMap(mapSent){
 	map = mapSent;
-}
+};
+
+$(window).on("resize", setLayout);
 
 $(window).load(function() {
-  var winHeight = $(window).height();
-  var winWidth = $(window).width();  
-  zoomLevel(winWidth);
-  switchElements(winWidth);
-    //after splash pabe link clicked
-     $("#splash a").click(function(){
-     $("#container").css("visibility", "visible");
-     $("#splash").hide();
-     $(".ontop").css("visibility", "visible");
-     $("nav").css("visibility", "visible");
-     //Moved to responsive function
-     $("audio").load();
-     $("#playerMobile").prop('muted', false);
-     $("#playerDesktop").prop('muted', false);
-
-
-
- })
-
+  setLayout();
+    
+  //after splash pabe link clicked
+  $("#splash a").click(function(){
+    $("#container").css("visibility", "visible");
+    $(".ontop").css("visibility", "visible");
+    $("nav").css("visibility", "visible");
+    $("#splash").hide(); //sets display property to none
+    $(window).width() > midBreakPoint ? $('.audioText a').trigger('click') : null;
+  })
 });
 
-function responsiveDivs(){
-
-}
-
-
-
-
-
-
-var zoomLevel = function (width){
-     if(width>midBreakPoint){
-    zoomPOI = 18;
-  }
-  else{
-    zoomPOI = 17;
-  }
-}
- 
-$(window).on("resize", methodToFixLayout);
-
-function methodToFixLayout( e ) {
+function setLayout() {
     var winHeight = $(window).height();
     var winWidth = $(window).width();
-    //console.log(winWidth);
+    zoomPOI = winWidth > midBreakPoint ? 18 : 19;
     switchElements(winWidth);
-    zoomLevel(winWidth);
-    
 }
+
 //the function that will handle the swiching
 var switchElements = function (width,height,screen,pos){
-  // if it is larger than mid breakpoint
-  if(width> midBreakPoint){
-     map.attributionControl.setPosition('bottomright');
+  if(width > midBreakPoint){ //@large screen
     //map.setView([43.076364, -89.384336], 14);
-      //$("audio").prop('muted', true);
-      $(".audioForText").show();
-      $(".smallPlayer").show();
-       $("#audioText").show();
-       $('.leaflet-control-zoom').show();
-
-
-
-    }
-    else{
-     map.attributionControl.setPosition('topright');
-     //map.setView([43.076364, -89.384336], 13);
-
-     // $(document).foundation('joyride', 'start');
-      $("#audioText").hide();
-      $(".audioForText").show();
-        
-      // do not allow player for desktop to work
-      $("#playerDesktop").prop('muted', true);
-      $("#playerDesktop").hide();
-    
-      $(".smallPlayer").prop('muted', false);
-      $(".smallPlayer").show();
-      //$("audio").load();
-      //$(".smallPlayer").load();
-      //$("audio").prop('muted', false);
-
-
-        
-      $('.leaflet-control-zoom').hide();
-    }
-
-}
+    map.attributionControl.setPosition('bottomright');
+    $("audio").prop('muted', true);
+    $("audio").hide();
+    $("#audioText").show();
+    $('.leaflet-control-zoom').show();
+    if ($('#readAloud').length == 0){
+      $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/img/icon_26460/icon_26460.png" width="34" height="34" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+    };
+  } else { //@small screen
+    //map.setView([43.076364, -89.384336], 13);
+    //$(document).foundation('joyride', 'start');
+    map.attributionControl.setPosition('topright');
+    $("audio").load(); //restart audio
+    $("audio").prop('muted', false);
+    $("audio").show();
+    $("#audioText").hide();
+    $('.leaflet-control-zoom').hide();
+  }
+};
 
 
 /* NAV BAR Locations change map zoom and center */
@@ -144,7 +100,7 @@ $("li.allLocations").click(function(){
 });
 */
 
-$(".audioForText").click(function(){
+$(".audioText").click(function(){
   $(".leaflet-control-attribution").css({
     position: 'absolute'
   });
@@ -156,10 +112,3 @@ $(".close-reveal-modal").click(function(){
     position: 'relative'
   });
 });
-
-
-
-
-
-
-

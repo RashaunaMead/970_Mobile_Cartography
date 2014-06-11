@@ -67,6 +67,27 @@ h3{
   z-index: 999;
 }
 
+#readAloud {
+  text-align: center;
+}
+
+#readAloud div {
+  background: #C41E3A;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px;
+}
+
+#readAloud span {
+  color: #fff;
+  line-height: 45px;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  text-transform: none;
+}
+
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
 
@@ -86,10 +107,10 @@ h3{
   height: 0px;
 }
 
-/*.script {
-  margin: 15px;
-  color: #fff;
-}*/
+.script {
+  margin: 2em 0em;
+}
+
 #map{
   position: absolute;
     z-index: 2;
@@ -126,12 +147,12 @@ h3{
  }}
  
 
- #audioText{
+#audioText{
   z-index: 900;
- }
+}
 
-   #infoScreen{
-  background-color: grey;
+#infoScreen{
+  background-color: gray;
   opacity: 0.7;
   color: white;
   position: fixed;
@@ -139,14 +160,15 @@ h3{
   right: 50%;
   left: auto;
   z-index: 1;
- }
-  #infoScreen p {
-  padding: 5px;
-  }
+}
   
-  #leaflet-control-button{
-    z-index: 1;
-  }
+#infoScreen p {
+  padding: 5px;
+}
+  
+#leaflet-control-button{
+  z-index: 1;
+}
   
 /*------------------ Styles for tileToggle ----------------- */
   
