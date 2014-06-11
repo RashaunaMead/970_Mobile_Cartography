@@ -22,9 +22,6 @@ $(window).load(function() {
   var winWidth = $(window).width();  
   zoomLevel(winWidth);
   switchElements(winWidth);
-  $("#container").hide();
-  $("nav").hide();
-  $(".ontop").hide()
     //after splash pabe link clicked
      $("#splash a").click(function(){
      $("#container").css("visibility", "visible");
@@ -33,7 +30,7 @@ $(window).load(function() {
      $("nav").css("visibility", "visible");
      //Moved to responsive function
      $("audio").load();
-     $("#playerMobile").prop('muted', true);
+     $("#playerMobile").prop('muted', false);
      $("#playerDesktop").prop('muted', false);
 
 
@@ -76,7 +73,7 @@ var switchElements = function (width,height,screen,pos){
   if(width> midBreakPoint){
      map.attributionControl.setPosition('bottomright');
     //map.setView([43.076364, -89.384336], 14);
-      $("audio").prop('muted', true);
+      //$("audio").prop('muted', true);
       $(".audioForText").show();
       $(".smallPlayer").show();
        $("#audioText").show();
