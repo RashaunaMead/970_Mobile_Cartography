@@ -15,40 +15,19 @@ var currentTile = 'modern';
 // var historicTileset = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 
-
-//var studentRoute = L.geoJson(route1);
- 
-//these objects will hold pairs of keys (name of the tile layer) and values (variable holding the path to the tile layer) 
-// Commented out for the time being until we want to add back baseme
-//  var baseMaps = {
-//     "Modern": modernTileset,
-//     "Historic": historicTileset
-// };
-
-/*var overlayMaps = {
-	//route is defined in a .js file within the data folder. 
-    "Route": studentRoute
-};*/
- 
-
-
- function loadmap(){
-
- 
+function loadmap(){
   map = L.map('map', { zoomControl:true});
-    // tiles can change once we know our basemap 
-    L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18,
-      minzoom: 5,
-    }).addTo(map);
-    // initial zoom & set map coords, these will change 
-    
-    
- 
+  // tiles can change once we know our basemap 
+  L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    minzoom: 5,
+  }).addTo(map);
+  // initial zoom & set map coords, these will change 
+      
   //addTileToggle();
 
-      map.setView([43.076364, -89.384336], 14);
+  map.setView([43.076364, -89.384336], 14);
 }
 
 // adds the find me control
@@ -246,7 +225,7 @@ $("#readAloud a").click(function(){
 
 /*Load Route Into Map*/ 
 var routeStyle = {
-    "color": "#645e5f",
+    "color": "#E2788B",
     "weight": 5,
     "opacity": 0.7
 };
@@ -255,18 +234,13 @@ var routeStyle = {
 var highlightStyle = {
     "color": "#C41E3A",
     "weight": 5,
-    "opacity": 0.8
+    "opacity": 1
 };
 
-// all segments of the route
-//var initrouteLayer = L.geoJson(routes[0].features[0], {style: routeStyle});
-var initrouteLayer = L.geoJson(routes[0].features[0]); // default blue color for routes
-initrouteLayer.addTo(map);
-// highlighted segment
-var highlightLayer;
+//first route segment
+var initrouteLayer = L.geoJson(routes[0].features[0], routeStyle).addTo(map);
+var highlightLayer = L.geoJson(routes[0].features[0], highlightStyle).addTo(map);
 
-// audio
-//var audioDesktop = document.getElementById("playerDesktop");
 var audioMobile = $("audio");
 
 //I think I've  made this function obsolete by adding button functionality to ready_next div in markers.js
@@ -291,27 +265,22 @@ $('#ready_next_button').click( function () {
 });
 
 function updateRoute(){
-    // show the route to next site after the previous site was viewed
-    for(var i=0; i<viewed.length-1; i++){
-        if(viewed[i] && !viewed[i+1]){
-            //routeLayer[i].addTo(map);
-            //var route = L.geoJson(routes[0].features[i+1], {style: routeStyle});
-            var route = L.geoJson(routes[0].features[i+1]); // default blue color for route
-            route.addTo(map);
-            
-        }
+  console.log(viewed);
+  // show the route to next site after the previous site was viewed
+  for(var i=0; i<viewed.length-1; i++){
+    if(viewed[i] && !viewed[i+1]){
+      L.geoJson(routes[0].features[i+1], routeStyle).addTo(map); //visited style route underlays highlight
     }
+  }
 }
 
-function highlightRoute()
-{
-    if(highlightLayer){
-        map.removeLayer(highlightLayer);
-    }
-    // "siteID" is a variable declared in markers.js to keep track of which site they are working on
+function highlightRoute() {
+  if(highlightLayer){
+      map.removeLayer(highlightLayer);
+  }
+  // "siteID" is a variable declared in markers.js to keep track of which site they are working on
 	if(siteID < 4){
-		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle});
-		highlightLayer.addTo(map);
+		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle}).addTo(map);
 	}
 
 	console.log(highlightLayer);
@@ -337,14 +306,7 @@ $('.previous').remove();
 
 			}
 		}
-
 	}
-	// var scriptNum = siteID;
-
-	// console.log("x",L.geoJson(routes[0].features[siteID + 1]));
-
-	// $('.script').html();
-
 }
 
 function playAudio()
@@ -356,8 +318,8 @@ function playAudio()
     //     audioDesktop.play();
     // }
     // else{
-        audioMobile.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
-        audioMobile.play(); 
+        $("audio").attr('src', PointsofInterest[0].features[siteID+1].properties.audio);
+        //audioMobile.play(); 
    // }
 }
 
