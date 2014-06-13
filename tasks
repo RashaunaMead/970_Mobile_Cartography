@@ -1,0 +1,25 @@
+WISHLIST
+-Pre-load and cache entire app(!)
+-Text readaloud with button
+-Find Me button persistent on interface and recenters map
+-Dynamically size pictures so they don't go beyond screen
+-Always start slideshop on Pair 1
+-Lines: Brign current to fore with right red (same hex as UI tools), dark red for past visited (fade to ground)
+-Add silence to start of audio tracks; give animated visual cue that audio is playing
+-Pop-up window after audio finishes or on end of text with instruction to click icon to proceed
+-Custom historical tiles served with TileStache?
+-Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
+-Load data asynchronously
+
+
+BUGS
+-Reveal modal won't close after two clicks on reveal button
+-GetLocation broken? Won't turn off?
+-Same site added to menu multiple times?
+-Photos don't always load properly
+-Photos don't load at all afterwards if slideshow window closed before slideshow fully loaded (Chrome issue)
+-Need to tell mobile Chrome users to click for audio
+
+
+RESOLVED
+-Dual audio play

@@ -20,7 +20,8 @@ function setMap(mapSent){
 $(window).on("resize", setLayout);
 
 $(window).load(function() {
-  setLayout();
+  var winDims = setLayout();
+  var clickcount = 0;
     
   //after splash pabe link clicked
   $("#splash a").click(function(){
@@ -28,15 +29,26 @@ $(window).load(function() {
     $(".ontop").css("visibility", "visible");
     $("nav").css("visibility", "visible");
     $("#splash").hide(); //sets display property to none
-    $(window).width() > midBreakPoint ? $('.audioText a').trigger('click') : null;
+    $('#helpBubble').offset({top: 0, left: 10});
+    $("#helpBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
+    winDims[1] > midBreakPoint ? $('.audioText a').trigger('click') : null;
+    $(window).click(function(){
+      clickcount++;
+      clickcount > 1 ? $('#helpBubble').fadeOut() : null;
+    });
   })
 });
 
+function getWinDimensions(){
+  return [$(window).height(), $(window).width()];
+}
+
 function setLayout() {
-    var winHeight = $(window).height();
-    var winWidth = $(window).width();
+    var winDims = getWinDimensions();
+    var winHeight = winDims[0], winWidth = winDims[1];
     zoomPOI = winWidth > midBreakPoint ? 18 : 19;
-    switchElements(winWidth);
+    switchElements(winWidth, winHeight);
+    return winDims;
 }
 
 //the function that will handle the swiching
@@ -51,15 +63,20 @@ var switchElements = function (width,height,screen,pos){
     if ($('#readAloud').length == 0){
       $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/img/icon_26460/icon_26460.png" width="34" height="34" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
     };
+    $('#helpBubble').css({display: "none"});
   } else { //@small screen
     //map.setView([43.076364, -89.384336], 13);
     //$(document).foundation('joyride', 'start');
+
     map.attributionControl.setPosition('topright');
-    $("audio").load(); //restart audio
     $("audio").prop('muted', false);
     $("audio").show();
     $("#audioText").hide();
     $('.leaflet-control-zoom').hide();
+
+    $('#helpBubble span').html("Play Audio Here");
+    var oheight = height-60;
+    $('#helpBubble').offset({top: height-90, left: 10});
   }
 };
 

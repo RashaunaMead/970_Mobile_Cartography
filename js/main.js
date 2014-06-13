@@ -216,9 +216,7 @@ if(siteID==null){
 }
 var i=0;
 $('.next').click(function(){
-    i++;
-    i = i == PointsofInterest[0].features[0].properties.Scripts.length ? 0 : i;
-    updateScript(i);
+    forwardScript();
 });
 $('.previous').click(function(){
     i--;
@@ -226,9 +224,26 @@ $('.previous').click(function(){
     updateScript(i); 
 });
 
+function forwardScript(){
+  i++;
+  i = i == PointsofInterest[0].features[0].properties.Scripts.length ? 0 : i;
+  updateScript(i);
+}
+
 function updateScript(i){
     $('.script').html(PointsofInterest[0].features[0].properties.Scripts[i]);
 }
+
+$("#readAloud a").click(function(){
+  console.log("clicked");
+  i = 0;
+  updateScript(i);
+  //start audio
+  //start timer
+  window.setTimeout(function(){forwardScript()}, 23000);
+  window.setTimeout(function(){forwardScript()}, 50000);
+})
+
 /*Load Route Into Map*/ 
 var routeStyle = {
     "color": "#645e5f",
