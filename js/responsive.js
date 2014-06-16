@@ -62,6 +62,7 @@ var switchElements = function (width,height,screen,pos){
     $('.leaflet-control-zoom').show();
     if ($('#readAloud').length == 0){
       $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/img/icon_26460/icon_26460.png" width="34" height="34" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+      readAloud();
     };
     $('#helpBubble').css({display: "none"});
   } else { //@small screen
@@ -79,7 +80,6 @@ var switchElements = function (width,height,screen,pos){
     $('#helpBubble').offset({top: height-90, left: 10});
   }
 };
-
 
 /* NAV BAR Locations change map zoom and center */
 //this might need to be moved to a new js file for responsive zoom levels

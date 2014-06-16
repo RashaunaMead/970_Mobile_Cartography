@@ -1,5 +1,5 @@
 // keep track of which site are they working on
-var siteID;
+var siteID = 0;
 
 //===============some elements in the images slideshow window=============//
 // this is the modal window holding images slideshow
@@ -41,10 +41,7 @@ function addMarkers (map, i) {
 		onEachFeature: function (feature, layer){
 
 			//listener for click event 
-			layer.on("click", function() {
-				
-				siteID = feature.properties.id;	
-				
+			layer.on("click", function() {		
 				viewed[siteID] = true;
 				
 				for(var j=0; j<current.length;j++){
@@ -167,6 +164,7 @@ function openInfoScreen (feature){
 //adding button functionality to the ready_next div: 
 		div.addEventListener("click", function () {		
 			console.log("move on to next location markers");
+			siteID++;	
 			
 			updateLocationMenu();
 			updateMarkers();

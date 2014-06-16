@@ -2,7 +2,9 @@
 // viewed--keep track of whether a site was already viewed
 var viewed = [true, false, false, false, false];
 // current--keep track of the current viewed site
-var current = [false, false, false, false, false];
+var current = [false, false, false, false, false]; //is this being used???
+//siteID is number of current site (markers.js)
+var timeouts = [];
 
 //main.js initiates the map and runs the functionality of the map 
 
@@ -188,40 +190,39 @@ addMarkers(map, 0); //function defined in markers.js file
 
 /* initial script */
     //to allow for next buttons for the intro script
-if(siteID==null){
+if(siteID==0){
   $('.script').html(PointsofInterest[0].features[0].properties.Scripts[0]);
   $('.script').before( "<b><a href='#' class='previous' style='color:#C41E3A; padding-left:20px' >< previous</a></b>" );
   $('.script').before( "<b><a href='#' class='next' style='color:#C41E3A; float:right; padding-right:20px' >next ></a></b>" );
 }
-var i=0;
+
+var s=0;
 $('.next').click(function(){
-    forwardScript();
+  for (var i in timeouts){
+    window.clearTimeout(timeouts[i]);
+  };
+  forwardScript();
 });
+
 $('.previous').click(function(){
-    i--;
-    i = i == -1 ? PointsofInterest[0].features[0].properties.Scripts.length : i;
-    updateScript(i); 
+    s--;
+    s = s == -1 ? PointsofInterest[0].features[siteID].properties.Scripts.length-1 : s;
+    updateScript(s); 
+
+    for (var i in timeouts){
+      window.clearTimeout(timeouts[i]);
+    };
 });
 
 function forwardScript(){
-  i++;
-  i = i == PointsofInterest[0].features[0].properties.Scripts.length ? 0 : i;
-  updateScript(i);
+  s++;
+  s = s == PointsofInterest[0].features[siteID].properties.Scripts.length ? 0 : s;
+  updateScript(s);
 }
 
-function updateScript(i){
-    $('.script').html(PointsofInterest[0].features[0].properties.Scripts[i]);
+function updateScript(scr){
+    $('.script').html(PointsofInterest[0].features[siteID].properties.Scripts[scr]);
 }
-
-$("#readAloud a").click(function(){
-  console.log("clicked");
-  i = 0;
-  updateScript(i);
-  //start audio
-  //start timer
-  window.setTimeout(function(){forwardScript()}, 23000);
-  window.setTimeout(function(){forwardScript()}, 50000);
-})
 
 /*Load Route Into Map*/ 
 var routeStyle = {
@@ -245,23 +246,20 @@ var audioMobile = $("audio");
 
 //I think I've  made this function obsolete by adding button functionality to ready_next div in markers.js
 $('#ready_next_button').click( function () {
-//$('#slideshowModal').on('closed', function () {
-	console.log("move on to next location main");
-	
-    updateLocationMenu();
-    updateMarkers();
-    updateRoute();
-	
-    if(siteID==3)
-    {
-        viewed[4]=true;
-    }
+  updateLocationMenu();
+  updateMarkers();
+  updateRoute();
+
+  if(siteID==3)
+  {
+      viewed[4]=true;
+  }
+  
+  highlightRoute();
+  addScript();
     
-    highlightRoute();
-    addScript();
-    
-    // start to play audio after 1 sec closing slide show
-	setTimeout(playAudio, 1000);
+  // start to play audio 2 secs after closing slide show
+	setTimeout(playAudio, 2000);
 });
 
 function updateRoute(){
@@ -278,53 +276,60 @@ function highlightRoute() {
   if(highlightLayer){
       map.removeLayer(highlightLayer);
   }
-  // "siteID" is a variable declared in markers.js to keep track of which site they are working on
-	if(siteID < 4){
-		highlightLayer = L.geoJson(routes[0].features[siteID + 1], {style: highlightStyle}).addTo(map);
+	if(siteID < 5){
+		highlightLayer = L.geoJson(routes[0].features[siteID], {style: highlightStyle}).addTo(map);
 	}
-
-	console.log(highlightLayer);
 }
 
 function addScript(){
-$('.next').remove();
-$('.previous').remove();
-	//console.log("siteID",siteID);
-	for(var prop in PointsofInterest[0]){
-		//console.log(PointsofInterest[0][prop]);
-		for(var key in PointsofInterest[0][prop]){
-			//console.log(PointsofInterest[0][prop][key]);
-			for(var one in PointsofInterest[0][prop][key]){
-			
-				//console.log(PointsofInterest[0][prop][key][one].id);
-				if(siteID === PointsofInterest[0][prop][key][one].id - 1){
-					//console.log("X",PointsofInterest[0][prop][key][one].Scripts);
-					if(siteID<4){
-						$('.script').html(PointsofInterest[0][prop][key][one].Scripts[0])
-					}
-				}
-
-			}
-		}
-	}
+  $('.next').remove();
+  $('.previous').remove();
+  $('.script').html(PointsofInterest[0].features[siteID].properties.Scripts[0])
 }
 
-function playAudio()
-{	
-    var winHeight = $(window).height();
-    var winWidth = $(window).width();
-    // if(winWidth > midBreakPoint){
-    //     audioDesktop.setAttribute('src', PointsofInterest[0].features[siteID+1].properties.audio);
-    //     audioDesktop.play();
-    // }
-    // else{
-        $("audio").attr('src', PointsofInterest[0].features[siteID+1].properties.audio);
-        //audioMobile.play(); 
-   // }
+function playAudio(isdesktop){	
+  //var winHeight = $(window).height();
+  //var winWidth = $(window).width();
+  console.log('playAudio site '+siteID);
+
+  $("audio").prop('autoplay', true);
+  $("audio").attr('src', PointsofInterest[0].features[siteID].properties.audio);
+
+  if (isdesktop){
+    $("audio").prop('muted', false);
+    $("audio").show();
+    $("#textModal .close-reveal-modal").click(function(){ hideAudio() });
+  } 
 }
 
-function updateLocationMenu()
-{   
+function hideAudio(){
+  $("audio").prop('muted', true);
+  $("audio").prop('autoplay', false);
+  $("audio").hide();
+}
+
+function readAloud(){
+  $("#readAloud").click(function(){
+    console.log("clicked");
+    i = 0;
+    updateScript(i);
+    //start audio
+    //start timer
+
+    var scripts = PointsofInterest[0].features[siteID].properties.Scripts;
+
+    var delay = 0;
+    for (var i=0; i<scripts.length-1; i++){                      
+      delay = delay + (scripts[i].length*68.2);
+      timeouts[i] = window.setTimeout(function(){
+        forwardScript();
+      }, delay);
+    }
+    playAudio(true);
+  })
+}
+
+function updateLocationMenu(){   
     var locationMenu = document.getElementById('locationMenu');
     // show site in location menu after the site was explored
     for(var i=0; i<viewed.length-1; i++){
