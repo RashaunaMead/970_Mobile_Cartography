@@ -75,9 +75,14 @@ nav {
   bottom: -11px;
 }
 
-#helpBubble {
+#playBubble, #iconClickBubble {
   /*display: none;*/
   opacity: 0;
+}
+
+#iconClickBubble .notch  {
+  left: auto;
+  right: 20px;
 }
 
 /*does this work for scrollbars?  */

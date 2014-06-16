@@ -29,12 +29,25 @@ $(window).load(function() {
     $(".ontop").css("visibility", "visible");
     $("nav").css("visibility", "visible");
     $("#splash").hide(); //sets display property to none
-    $('#helpBubble').offset({top: 0, left: 10});
-    $("#helpBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
+    $('#playBubble').offset({top: 0, left: 10});
+    $("#playBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
     winDims[1] > midBreakPoint ? $('.audioText a').trigger('click') : null;
     $(window).click(function(){
       clickcount++;
-      clickcount > 1 ? $('#helpBubble').fadeOut() : null;
+      console.log(clickcount);
+      if (clickcount===2){
+        $('#playBubble').fadeOut();
+
+        var iconOffset = $(".leaflet-marker-icon").offset();
+        $('#iconClickBubble span').html("When ready, click icon for site information");
+        var bubbleWidth = $("#iconClickBubble").width();
+        var bubbleHeight = $("#iconClickBubble").height();
+        $('#iconClickBubble').offset({top: 10, left: 10});
+        $("#iconClickBubble").animate({opacity: 1, top: iconOffset.top-bubbleHeight-32, left: iconOffset.left-bubbleWidth+28}, 1000);
+        $(".leaflet-clickable").click(function(){ $('#iconClickBubble').fadeOut() });
+      } else if (clickcount===3){
+        $('#iconClickBubble').fadeOut();
+      }
     });
   })
 });
@@ -53,8 +66,9 @@ function setLayout() {
 
 //the function that will handle the swiching
 var switchElements = function (width,height,screen,pos){
-  if(width > midBreakPoint){ //@large screen
-    //map.setView([43.076364, -89.384336], 14);
+  if(width > midBreakPoint){ 
+    //@large screen
+    //fit map bounds to route layer
     map.attributionControl.setPosition('bottomright');
     $("audio").prop('muted', true);
     $("audio").hide();
@@ -64,20 +78,18 @@ var switchElements = function (width,height,screen,pos){
       $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/img/icon_26460/icon_26460.png" width="34" height="34" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
       readAloud();
     };
-    $('#helpBubble').css({display: "none"});
-  } else { //@small screen
-    //map.setView([43.076364, -89.384336], 13);
-    //$(document).foundation('joyride', 'start');
-
+    $('#playBubble').css({display: "none"});
+  } else { 
+    // @small screen
     map.attributionControl.setPosition('topright');
     $("audio").prop('muted', false);
     $("audio").show();
     $("#audioText").hide();
     $('.leaflet-control-zoom').hide();
 
-    $('#helpBubble span').html("Play Audio Here");
+    $('#playBubble span').html("Play Audio Here");
     var oheight = height-60;
-    $('#helpBubble').offset({top: height-90, left: 10});
+    $('#playBubble').offset({top: height-90, left: 10});
   }
 };
 

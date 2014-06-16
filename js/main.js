@@ -244,24 +244,6 @@ var highlightLayer = L.geoJson(routes[0].features[0], highlightStyle).addTo(map)
 
 var audioMobile = $("audio");
 
-//I think I've  made this function obsolete by adding button functionality to ready_next div in markers.js
-$('#ready_next_button').click( function () {
-  updateLocationMenu();
-  updateMarkers();
-  updateRoute();
-
-  if(siteID==3)
-  {
-      viewed[4]=true;
-  }
-  
-  highlightRoute();
-  addScript();
-    
-  // start to play audio 2 secs after closing slide show
-	setTimeout(playAudio, 2000);
-});
-
 function updateRoute(){
   console.log(viewed);
   // show the route to next site after the previous site was viewed

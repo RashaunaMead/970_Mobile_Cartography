@@ -162,7 +162,8 @@ function openInfoScreen (feature){
 		showImagesList.appendChild(li);	
 		
 //adding button functionality to the ready_next div: 
-		div.addEventListener("click", function () {		
+		div.addEventListener("click", function () {
+			//for ready_next div class	
 			console.log("move on to next location markers");
 			siteID++;	
 			
@@ -181,12 +182,14 @@ function openInfoScreen (feature){
 			//close the slideshow
 			$("#slideshowModal").foundation('reveal', 'close');
 			
-			// start to play audio after 1 sec closing slide show
-			setTimeout(playAudio, 1000);
-			
-			
+			//open textModal for desktop version
+			if (getWinDimensions()[1]>midBreakPoint){
+			    setTimeout(triggerTextModal, 1000);
+			} else {
+				// start to play audio 2 secs after closing slide show
+				setTimeout(playAudio, 1000);
+			}
 		});
-		//showText.innerHTML
 	}
 		
 	//hide the timer
@@ -230,7 +233,9 @@ function openInfoScreen (feature){
 	$("#slideshowModal").foundation("reveal", "open");
 } //end "Open Info Screen" function
 
-
+function triggerTextModal(){
+	$('.audioText a').trigger('click')
+}
 
 //resize the pop-up modal window
 $('#slideshowModal').on('opened', function () {

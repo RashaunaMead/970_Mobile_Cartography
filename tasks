@@ -1,6 +1,5 @@
 WISHLIST
 -Pre-load and cache entire app(!)
--Text readaloud with button
 -Find Me button persistent on interface and recenters map
 -Dynamically size pictures so they don't go beyond screen
 -Always start slideshop on Pair 1
@@ -12,16 +11,25 @@ WISHLIST
 -Load data asynchronously
 -desktop map zoomed to fit visible routes
 -recenter map on route to next site
+-prompt user to click on icon after audio finished
 
 
 BUGS
 -Reveal modal won't close after two clicks on reveal button
 -GetLocation broken? Won't turn off?
--Same site added to menu multiple times?
 -Photos don't always load properly
 -Photos don't load at all afterwards if slideshow window closed before slideshow fully loaded (Chrome issue)
--Need to tell mobile Chrome users to click for audio
+-Locations selection does not change siteID
+-Broken image symbol flashes on icon click
+-Icons don't highlight when selected
 
 
 RESOLVED
 -Dual audio play
+-Text readaloud with button
+-Same site added to menu multiple times?
+-Need to tell mobile Chrome users to click for audio
+
+PHOTOS TO RE-TAKE
+Wil-Mar Center
+Co-Op?
