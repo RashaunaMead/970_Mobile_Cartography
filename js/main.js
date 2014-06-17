@@ -1,8 +1,6 @@
 
 // viewed--keep track of whether a site was already viewed
 var viewed = [true, false, false, false, false];
-// current--keep track of the current viewed site
-var current = [false, false, false, false, false]; //is this being used???
 //siteID is number of current site (markers.js)
 var timeouts = [];
 

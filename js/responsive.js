@@ -34,10 +34,10 @@ $(window).load(function() {
     winDims[1] > midBreakPoint ? $('.audioText a').trigger('click') : null;
     $(window).click(function(){
       clickcount++;
-      console.log(clickcount);
       if (clickcount===2){
         $('#playBubble').fadeOut();
 
+        //clickBubble--need to disable clicking on textModal before if statement
         var iconOffset = $(".leaflet-marker-icon").offset();
         $('#iconClickBubble span').html("When ready, click icon for site information");
         var bubbleWidth = $("#iconClickBubble").width();
