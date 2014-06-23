@@ -2,16 +2,17 @@ WISHLIST
 -Pre-load and cache entire app(!)
 	-use AJAX to load json data
 	-ways to asynchronously load images and audio?
--Find Me button persistent on interface and recenters map
+-Find Me button recenters map
 -Dynamically size pictures so they don't go beyond screen
--Always start slideshop on Pair 1
--Pop-up window after audio finishes or on end of text with instruction to click icon to proceed
+-Always start slideshow on Pair 1
 -Custom historical tiles served with TileStache?
 -Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
 -Load data asynchronously
 -desktop map zoomed to fit visible routes
 -recenter map on route to next site
 -prompt user to click on icon after audio finished
+-remove last highlighted route after coffeeshop slidshow closed
+-physical back button closes windows rather than activating browser back button
 
 
 BUGS
@@ -19,10 +20,8 @@ BUGS
 -GetLocation broken? Won't turn off?
 -Photos don't always load properly
 -Photos don't load at all afterwards if slideshow window closed before slideshow fully loaded (Chrome issue)
--Locations selection does not change siteID
 -Broken image symbol flashes on icon click
--Icons don't highlight when selected
--orbit.slide_number is undefined upon opening info screen for Wil-Mar after all other info modals have been viewed
+-iconClickBubble should not show up until textModal closed by user or audio stops
 
 
 RESOLVED
@@ -32,6 +31,11 @@ RESOLVED
 -Need to tell mobile Chrome users to click for audio
 -Lines: Brign current to fore with right red (same hex as UI tools), dark red for past visited (fade to ground)
 -Add silence to start of audio tracks; give animated visual cue that audio is playing
+-Locations selection does not change siteID
+-Icons don't highlight when selected
+-orbit.slide_number is undefined upon opening info screen for Wil-Mar after all other info modals have been viewed
+-Pop-up window after audio finishes or on end of text with instruction to click icon to proceed
+
 
 PHOTOS TO RE-TAKE
 Wil-Mar Center

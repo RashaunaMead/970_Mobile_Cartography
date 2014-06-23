@@ -126,6 +126,7 @@ h3{
 }
 .reveal-modal{
   z-index: 999;
+  pointer-events: none;
 }
 
 #readAloud {
