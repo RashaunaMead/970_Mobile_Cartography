@@ -142,7 +142,7 @@
 { "type": "Feature", 
 	"geometry": { 
 		"type": "Point", 
-		"coordinates": [ -89.3755195746634, 43.079486335352208 ] 
+		"coordinates": [ -89.37514722347258, 43.079177903418305 ] 
 	},
 	"properties": { 
 		"id": 2, "title": "Power Plant Transformers", 
