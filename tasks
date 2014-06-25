@@ -9,6 +9,7 @@ WISHLIST
 -Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
 -remove last highlighted route after coffeeshop slidshow closed
 -physical back button should close windows rather than activating browser back button
+-fit map bounds to show location when find me button is activated
 
 
 BUGS
@@ -18,6 +19,7 @@ BUGS
 -Broken image symbol flashes on icon click
 -Shoe factory location button won't recenter map
 -Coffee shop not added to list of locations
+-icon prompt doesn't move with map
 
 
 RESOLVED
