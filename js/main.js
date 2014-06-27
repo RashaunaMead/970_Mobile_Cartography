@@ -196,26 +196,24 @@ function callback(error, routes, PointsofInterest){
 
   //desktop next step user direction bubble shown when text modal closes
   $(document).on('close.fndtn.reveal', '[data-reveal]', function (){ 
-    hideAudio();
-    triggerIconBubble();
-    console.log("reveal close--siteID=="+siteID);
-    //after last slideshow closed, remove highlighted route
-    if (siteID===4){
-      sid++
+    //hide audio and set user prompt on first modal close if desktop
+    if (getWinDimensions()[1] > midBreakPoint){
+      hideAudio();
+      triggerIconBubble();
     };
-    if (sid===6){
-      if (highlightLayer){
-        map.removeLayer(highlightLayer);
-      }
-    }
+
+    //after last slideshow closed, remove highlighted route
+    sid += siteID===4 ? 1 : 0;
+    if (sid===6){ highlightLayer ? map.removeLayer(highlightLayer) : null };
   });
 
-  $(window).click(function(){
+  $("#container").click(function(){
     //mobile play direction bubble closed on next click after it is in place and next step direction bubble opened
     if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
       $('#playBubble').fadeOut();
       triggerIconBubble();
     };
+    $('.reveal-modal').foundation('reveal', 'close');
   });
 
   function triggerIconBubble(){
@@ -278,6 +276,7 @@ function callback(error, routes, PointsofInterest){
         readAloud();
       };
       $('#playBubble').css({display: "none"});
+      $(".leaflet-buttons-control-img").hide();
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
@@ -289,6 +288,7 @@ function callback(error, routes, PointsofInterest){
       $('#playBubble span').html("Play Audio Here");
       var oheight = height-90;
       $('#playBubble').offset({top: oheight, left: 10});
+      $(".leaflet-buttons-control-img").show();
     };
   };
 

@@ -152,62 +152,59 @@ h3{
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
 
-#container{
-    margin-bottom: -250px;
-  padding-bottom: -250px;
-  overflow: hidden;
-}
- .top-bar {
-  z-index: 800;
-  position: fixed;
-  top:0px;
-  background: none repeat scroll 0 0 #C41E3A;
-  /*  this will change with screen size*/
-  width: 100%; 
-  min-width: 800px;
-  height: 0px;
-}
+  #container {
+      margin-bottom: -250px;
+    padding-bottom: -250px;
+    overflow: hidden;
+  }
 
-.script {
-  margin: 2rem 0rem;
-}
+  .top-bar {
+    z-index: 800;
+    position: fixed;
+    top:0px;
+    background: none repeat scroll 0 0 #C41E3A;
+    /*  this will change with screen size*/
+    width: 100%; 
+    min-width: 800px;
+    height: 0px;
+  }
 
-#map{
-  position: absolute;
+  .script {
+    margin: 2rem 0rem;
+  }
+
+  #map {
+    position: absolute;
     z-index: 2;
     height: calc(100% - 45px);
+    top:45px;
+    }
 
-   
-   top:45px;
+  .ready_next {
+  	background-color: #C41E3A;
+  	border-radius:25px;
+  }
+
+  .ready_next:hover {
+  	opacity: 0.8;
+  	cursor: pointer;
+  }
+
+  .reveal-modal .script {
+    color: #000;
+  }
+
+  .reveal-modal {
+      z-index: 999;
+  }
+
+  .reveal-modal-bg {
+      width: 200%;
+      height: 200%;
+      z-index: 991;
+  }
+}
  
-  }
-
-
-.ready_next{
-	background-color: #C41E3A;
-	border-radius:25px;
-	
-}
-.ready_next:hover{
-	opacity: 0.8;
-	cursor: pointer;
-}
-
-.reveal-modal .script{
-  color: #000;
-}
-
-.reveal-modal {
-    z-index: 999;
-  }
-   .reveal-modal-bg {
-    width: 200%;
-    height: 200%;
-    z-index: 991;
-  }
- }}
- 
-
 #audioText{
   z-index: 900;
 }
