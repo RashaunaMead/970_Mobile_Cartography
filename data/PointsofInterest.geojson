@@ -12,7 +12,7 @@
 		"title": "Badger State Shoe Factory",
 		"classname": "shoe_factory",
 		"icon": {
-			"iconUrl": "images/labor24design2.png",
+			"iconUrl": "images/labor24.png",
 			"iconSize": [24, 24],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -24,13 +24,13 @@
 			"popupAnchor": [0, -12]
 		},
         "icon_larger": {
-			"iconUrl": "images/labor36design2.png",
+			"iconUrl": "images/labor36.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
 		},
         "icon_red_larger": {
-            "iconUrl": "images/labor36_red.png",
+            "iconUrl": "images/labor40_red.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -74,7 +74,7 @@
 		"title": "Chicago and NorthWestern Railroad Station",
 		"classname": "train_station",
 		"icon": {
-			"iconUrl": "images/transportation24design1.png",
+			"iconUrl": "images/transportation24.png",
 			"iconSize": [24, 24],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -86,13 +86,13 @@
 			"popupAnchor": [0, -12]
 		},
         "icon_larger": {
-			"iconUrl": "images/transportation36design1.png",
+			"iconUrl": "images/transportation36.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
 		},
         "icon_red_larger": {
-            "iconUrl": "images/transportation36_red.png",
+            "iconUrl": "images/transportation40_red.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -136,7 +136,7 @@
 		"title": "Power Plant Transformers",
 		"classname": "power_plant",
 		"icon": {
-			"iconUrl": "images/energy24design2.png",
+			"iconUrl": "images/energy24.png",
 			"iconSize": [24, 24],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -148,13 +148,13 @@
 			"popupAnchor": [0, -12]
 		},
         "icon_larger": {
-			"iconUrl": "images/energy36design2.png",
+			"iconUrl": "images/energy36.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
 		},
         "icon_red_larger": {
-            "iconUrl": "images/energy36_red.png",
+            "iconUrl": "images/energy40_red.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -198,7 +198,7 @@
 		"title": "Wil-Mar Community Center",
 		"classname": "wil_mar",
 		"icon": {
-			"iconUrl": "images/housing24design2.png",
+			"iconUrl": "images/housing24.png",
 			"iconSize": [24, 24],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -210,13 +210,13 @@
 			"popupAnchor": [0, -12]
 		},
         "icon_larger": {
-			"iconUrl": "images/housing36design2.png",
+			"iconUrl": "images/housing36.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
 		},
         "icon_red_larger": {
-            "iconUrl": "images/housing36_red.png",
+            "iconUrl": "images/housing40_red.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -260,7 +260,7 @@
 		"title": "Madison Candy Company",
 		"classname": "candy_company",
 		"icon": {
-			"iconUrl": "images/coffee24_grey.png",
+			"iconUrl": "images/coffee24.png",
 			"iconSize": [24, 24],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
@@ -272,13 +272,13 @@
 			"popupAnchor": [0, -12]
 		},
         "icon_larger": {
-			"iconUrl": "images/coffee36_grey.png",
+			"iconUrl": "images/coffee36.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]
 		},
         "icon_red_larger": {
-            "iconUrl": "images/coffee36_red.png",
+            "iconUrl": "images/coffee40_red.png",
 			"iconSize": [36, 36],
 			"iconAnchor": [12, 12],
 			"popupAnchor": [0, -12]

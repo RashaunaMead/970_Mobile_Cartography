@@ -40,7 +40,6 @@ nav {
 
 .callout span {
   color: #fff;
-  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
   font-weight: bold;
 }
 
@@ -76,13 +75,19 @@ nav {
 }
 
 #playBubble, #iconClickBubble {
-  /*display: none;*/
   opacity: 0;
 }
 
 #iconClickBubble .notch  {
   left: auto;
   right: 20px;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: #CE3234;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1rem;
 }
 
 /*does this work for scrollbars?  */
@@ -270,16 +275,16 @@ h3{
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
-  background: none repeat scroll 0 0 #C41E3A; }
-
+  background: none repeat scroll 0 0 #C41E3A; 
+}
 
 .top-bar-section .dropdown a /*li:not(.has-form) a:not(.button)*/ {
-  background: none repeat scroll 0 0 #fff; }
+  background: none repeat scroll 0 0 #fff; 
+}
 
 .top-bar-section li:not(.has-form) a:hover:not(.button) {
- background: #BEBEBE; 
-
-  }
+  background: #BEBEBE; 
+}
 
 
 #audioText h1, #audioText h2, #audioText h3, #audioText p, #audioText ul,  {
@@ -288,17 +293,9 @@ h3{
   color: #fff;
 }
 
-#audioText p{
+#audioText p {
   font-size: 1rem;
 }
-
-.leaflet-control-zoom {
- /* top: 250px;*/
-
-}
-
-
-
 
 @media only screen and (min-width: 0em) and (max-width: 40em) {
   #map{

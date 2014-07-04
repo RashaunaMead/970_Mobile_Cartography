@@ -9,14 +9,13 @@ WISHLIST
 -Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
 -Mobile device back button should close windows rather than activating browser back button
 -Fit map bounds to show location when find me button is activated
--Remove findme button from desktop map
 
 
 BUGS
--Reveal modal won't close after two clicks on reveal button
 -Photos don't always load properly
 -Photos don't load at all afterwards if slideshow window closed before slideshow fully loaded (Chrome issue)
 -View all locations doesn't recenter map on second click
+-Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
 
 
 RESOLVED
@@ -40,6 +39,8 @@ RESOLVED
 -Shoe factory location button won't recenter map
 -Broken image symbol flashes on icon click
 -remove last highlighted route after coffeeshop slidshow closed
+-Reveal modal won't close after two clicks on reveal button
+-Remove findme button from desktop map
 
 
 PHOTOS TO RE-TAKE

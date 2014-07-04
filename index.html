@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> <!--  manifest="index.manifest" -->
+<html lang="en">
   <head>
     <title>MobileMap</title>
     
@@ -20,6 +20,8 @@
   </head>
 
   <body>
+    <div id="preload" style="display: none"><img/></div>
+
     <div id="splash">
       <h1>Madison's East Isthmus: Paths To Change</h1>
       
@@ -242,15 +244,9 @@
     <!--sweet sweet magic sauce-->
     <script src="libraries/leaflet.js" type="text/javascript"></script>
 
-    <!--stuff that's going to end up in queue/ajax-->
-    <script type="text/javascript" src="data/routes.js"></script>
-    <script type="text/javascript" src="data/PointsofInterest.js"></script>
-    <script type="text/javascript" src="data/POIzoom.js"></script>
-
     <!--project scripts-->
     <script type="text/javascript" src="js/findMeButton.js"></script> 
     <script type="text/javascript" src="js/getLocation.js"></script>
-    <script type="text/javascript" src="js/responsive.js"></script>
     <script type="text/javascript" src="js/markers.js"></script>
     <script type="text/javascript" src="js/main.js"></script> 
   </body>

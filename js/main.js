@@ -2,6 +2,38 @@
 var timeouts = [];
 var map;
 var currentTiles = 'modern';
+var tilesToLoad = {
+  13: { x1: 2061, xn: 2062, y1: 3007, yn: 3007 },
+  14: { x1: 4123, xn: 4124, y1: 6015, yn: 6015 },
+  15: { x1: 8246, xn: 8249, y1: 12030, yn: 12031 },
+  16: { x1: 16492, xn: 16499, y1: 24060, yn: 24062 },
+  17: { x1: 32987, xn: 32998, y1: 48121, yn: 48125 },
+  18: { x1: 65972, xn: 65998, y1: 96241, yn: 96250 }
+};
+var tZ = 13, 
+  tX = tilesToLoad[tZ].x1,
+  tY = tilesToLoad[tZ].y1;
+
+var imagesToLoad = [
+  "/alert36.png",
+  "/alert42_red.png",
+  "/labor24.png",
+  "/labor36.png",
+  "/labor40_red.png",
+  "/transportation24.png",
+  "/transportation36.png",
+  "/transportation40_red.png",
+  "/energy24.png",
+  "/energy36.png",
+  "/energy40_red.png",
+  "/housing24.png",
+  "/housing36.png",
+  "/housing40_red.png",
+  "/coffee24.png",
+  "/coffee36.png",
+  "/coffee40_red.png"
+], img = 0;
+
 //var historicTiles = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 
@@ -9,15 +41,65 @@ window.onload = initialize();
 
 function initialize(){
   loadmap(); //load the map
+  //preloadTiles(13, 2061, 3007); //preload all map tiles so they are cached and viewable offline
+  preloadImages();
 
   //use queue.js to parallelize asynchronous data loading for cpu efficiency
   queue()
     .defer(d3.json, "data/routes.geojson")
     .defer(d3.json, "data/PointsofInterest.geojson")
+    .defer(d3.json, "data/alerts.geojson")
     .await(callback);
 }
 
-function callback(error, routes, PointsofInterest){
+function preloadImages(){
+  $("#preload img").attr("src",imagesToLoad[img]);
+  $("#preload img").attr("onload","imageLoaded()");
+  $("#preload img").attr("onerror","imageLoaded()");
+};
+
+function imageLoaded(){
+  img++;
+  if (img < imagesToLoad.length){
+    preloadImages();
+  }
+}
+
+function preloadTiles(tZ, tX, tY){
+  var instances = ["a", "b", "c"];
+  var rand = (Math.round(Math.random() * 10) % 3);
+  var tS = instances[rand];
+
+  $("#preload img").attr("src","http://a.www.toolserver.org/tiles/bw-mapnik/"+tZ+"/"+tX+"/"+tY+".png");
+  $("#preload img").attr("onload","tileLoaded("+tZ+","+tX+","+tY+")");
+  $("#preload img").attr("onerror","tileLoaded("+tZ+","+tX+","+tY+")");
+};
+
+function tileLoaded(tZ, tX, tY){
+  var change = false;
+  console.log("loaded: z: "+tZ+", x: "+tX+", y: "+tY);
+  var tileset = tilesToLoad[tZ];
+  if (tX < tileset.xn){
+    if (tY < tileset.yn){
+      tY++;
+      change = true;
+    } else {
+      tY = tileset.y1;
+      tX++;
+      change = true;
+    };
+  } else {
+    if (tZ < 18){
+      tZ++
+      change = true;
+      tX = tilesToLoad[tZ].x1;
+      tY = tilesToLoad[tZ].y1;
+    };
+  };
+  change ? preloadTiles(tZ, tX, tY) : null;
+}
+
+function callback(error, routes, PointsofInterest, alerts){
   var POIlayer;
   var POIlayers = [];
   var POIlayer_red;
@@ -67,25 +149,21 @@ function callback(error, routes, PointsofInterest){
 
   /***ROUTES***/
   var routeStyle = {
-    "color": "#E2788B",
+    "color": "#CE3234",
     "weight": 5,
-    "opacity": 0.7
+    "opacity": 0.4
   };
 
   var highlightStyle = {
-      "color": "#C41E3A",
+      "color": "#CE3234",
       "weight": 5,
       "opacity": 1
   };
 
-  //add initial route and recenter map on it
-  var initrouteLayer = L.geoJson(routes.features[0], routeStyle).addTo(map);
-  map.fitBounds(L.latLngBounds(initrouteLayer.getBounds().getSouthWest(),initrouteLayer.getBounds().getNorthEast()));
-  fixZoom();
-  
-  //highlight initial route
-  var highlightLayer = L.geoJson(routes.features[0], highlightStyle).addTo(map);
+  var highlightLayer, alertlayer;
 
+  updateRoute(); //add initial route
+  highlightRoute(); //highlight initial route
   updateLocationMenu(); //add first site to locations menu
 
   function updateRoute(){
@@ -93,14 +171,36 @@ function callback(error, routes, PointsofInterest){
       var newroute = L.geoJson(routes.features[siteID], routeStyle).addTo(map); //visited style route underlays highlight
       map.fitBounds(L.latLngBounds(newroute.getBounds().getSouthWest(),newroute.getBounds().getNorthEast()));
       fixZoom();
+
+      //remove old alerts and add any new alerts to map
+      alertlayer ? map.removeLayer(alertlayer) : null;
+      for (var alert in alerts.features){
+        if (alerts.features[alert].properties.routeid === siteID){
+          alertlayer = L.geoJson(alerts.features[alert], {
+            pointToLayer: function(feature, latlng){
+              return L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: "images/alert40_red.png",
+                  iconSize: [40, 40],
+                  popupAnchor: [0, -12]
+                })
+              });
+            },
+            
+            onEachFeature: function (feature, layer){
+              layer.bindPopup(feature.properties.alert);
+            }
+          }).addTo(map);
+        }
+      }
     }
   }
 
   function highlightRoute() {
-    if(highlightLayer){
+    if (highlightLayer){
         map.removeLayer(highlightLayer);
     }
-    if(siteID < 5){
+    if (siteID < 5){
       highlightLayer = L.geoJson(routes.features[siteID], {style: highlightStyle}).addTo(map);
     }
   }
