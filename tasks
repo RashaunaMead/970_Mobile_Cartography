@@ -1,20 +1,20 @@
 WISHLIST
 -Pre-load and cache entire app(!)
-	-ways to asynchronously load images and audio?
-	-load all map tiles into browser cache
+	-may need to create client database for images, icons, audio, tiles
 	-give user feedback once all data and files are in cache
--Dynamically size pictures so they don't go beyond screen
--Always start slideshow on Pair 1
 -Custom historical tiles served with TileStache?
--Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
 -Mobile device back button should close windows rather than activating browser back button
 -Fit map bounds to show location when find me button is activated
--Add note to splash screen for desktop to reduce width for best viewing if low aspect ratio.
+-Add note to splash screen for desktop to reduce width for best viewing if low aspect ratio
+-Get rid of slideshow modal size and offset jump after open
+-Set up Tilestache on Geography server
+-Splash screen content
+-Help content
+-Information content
 
 
 BUGS
--Photos don't always load properly
--Photos don't load at all afterwards if slideshow window closed before slideshow fully loaded (Chrome issue)
+-Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
 -View all locations doesn't recenter map on second click
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
 
@@ -42,10 +42,15 @@ RESOLVED
 -remove last highlighted route after coffeeshop slidshow closed
 -Reveal modal won't close after two clicks on reveal button
 -Remove findme button from desktop map
+-Photos don't always load fully the first time a slideshow modal is opened
+-Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
+-All highlighted icons have white outlines
+-Dynamically size pictures so they don't go beyond screen
+-Always start slideshow on Pair 1
 
 
 PHOTOS TO RE-TAKE
-Wil-Mar Center
-Co-Op?
+Wil-Mar Center (crappy)
+Co-Op (proprietary [Cap Times] & privacy issue)
 5_1 (candy company plaque)
 5_2 (candy factory photo)

@@ -29,7 +29,7 @@
 
       var calcOffset = function(dimensionPct) {
         var w = beforeImg.width();
-        var h = $(".orbit-container").height() < beforeImg.height() ? $(".orbit-container").height() : beforeImg.height();
+        var h = beforeImg.height();
         return {
           w: w+"px",
           h: h+"px",
@@ -55,6 +55,7 @@
       }
 
       $(window).on("resize.twentytwenty", function(e) {
+        console.log("resize");
         adjustSlider(sliderPct);
       });
 

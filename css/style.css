@@ -157,6 +157,10 @@ h3{
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
 
+  .ready_next {
+    font-size: 4vw;
+  }
+
   #container {
       margin-bottom: -250px;
     padding-bottom: -250px;
@@ -293,10 +297,14 @@ h3{
 }
 
 @media only screen and (min-width: 0em) and (max-width: 40em) {
+  .ready_next {
+    font-size: 6vw;
+  }
+
   #map{
-  z-index: 800;
-  height: 100%;
-}
+    z-index: 800;
+    height: 100%;
+  }
   .top-bar, .top-bar-section {
     bottom: 0px;
     height: 45px; }
