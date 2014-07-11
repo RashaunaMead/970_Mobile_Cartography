@@ -42,7 +42,20 @@ window.onload = initialize();
 function initialize(){
   loadmap(); //load the map
   //preloadTiles(13, 2061, 3007); //preload all map tiles so they are cached and viewable offline
-  preloadImages();
+  //preloadImages();
+
+  $(document).foundation({
+      orbit: {
+          animation: 'slide',
+          navigation_arrows: true,
+          circular: true,
+          timer: false,
+          swipe: false,
+          next_class: 'orbit-next',
+          prev_class: 'orbit-prev',
+          timer_show_progress_bar: false
+      }
+  });
 
   //use queue.js to parallelize asynchronous data loading for cpu efficiency
   queue()
@@ -169,6 +182,7 @@ function callback(error, routes, PointsofInterest, alerts){
   function updateRoute(){
     if (siteID < 5){
       var newroute = L.geoJson(routes.features[siteID], routeStyle).addTo(map); //visited style route underlays highlight
+
       map.fitBounds(L.latLngBounds(newroute.getBounds().getSouthWest(),newroute.getBounds().getNorthEast()));
       fixZoom();
 
@@ -271,14 +285,15 @@ function callback(error, routes, PointsofInterest, alerts){
   }
 
   /***RESPONSIVE***/
-  var midBreakPoint = 640;
-  var largeBreakPoint = 1024;
-  var zoomPOI = 18;
+  var winDims = getWinDimensions();
+  var aspectRatio = winDims[1]/winDims[0];
+  var setting = winDims[1] > 640 ? "desktop" : "mobile";
+  var zoomPOI = setting == "desktop" ? 18 : 19;
   var smallWindow = true;
-  var winDims = setLayout();
   var adjustedBubble = false;
   var sid = 4;
 
+  setLayout();
   $(window).on("resize", setLayout);
     
   //after splash pabe link clicked
@@ -291,13 +306,13 @@ function callback(error, routes, PointsofInterest, alerts){
     //user direction to click on play for mobile
     $('#playBubble').offset({top: 0, left: 10});
     $("#playBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
-    winDims[1] > midBreakPoint ? $('.audioText a').trigger('click') : null;
+    setting == "desktop" ? $('.audioText a').trigger('click') : null;
   });
 
   //desktop next step user direction bubble shown when text modal closes
   $(document).on('close.fndtn.reveal', '[data-reveal]', function (){ 
     //hide audio and set user prompt on first modal close if desktop
-    if (getWinDimensions()[1] > midBreakPoint){
+    if (setting == "desktop"){
       hideAudio();
       triggerIconBubble();
     };
@@ -314,6 +329,13 @@ function callback(error, routes, PointsofInterest, alerts){
       triggerIconBubble();
     };
     $('.reveal-modal').foundation('reveal', 'close');
+  });
+
+  $(".leaflet-clickable").click(function(){
+    if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
+      $('#playBubble').fadeOut();
+      $('#iconClickBubble').fadeOut();
+    };
   });
 
   function triggerIconBubble(){
@@ -363,7 +385,7 @@ function callback(error, routes, PointsofInterest, alerts){
 
   //the function that will handle the swiching
   function switchElements(width,height,screen,pos){
-    if(width > midBreakPoint){ 
+    if(setting == "desktop"){ 
       //@large screen
       //fit map bounds to route layer
       map.attributionControl.setPosition('bottomright');
@@ -377,6 +399,7 @@ function callback(error, routes, PointsofInterest, alerts){
       };
       $('#playBubble').css({display: "none"});
       $(".leaflet-buttons-control-img").hide();
+      orbitHeight();
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
@@ -393,18 +416,20 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 
   function setLayout() {
-      var winDims = getWinDimensions();
-      var winHeight = winDims[0], winWidth = winDims[1];
-      zoomPOI = winWidth > midBreakPoint ? 18 : 19;
-      switchElements(winWidth, winHeight);
-      adjustIconBubble();
-      return winDims;
-  }
+    winDims = getWinDimensions();
+    var winHeight = winDims[0], winWidth = winDims[1];
+    setting = winWidth > 640 ? "desktop" : "mobile";
+    aspectRatio = winWidth/winHeight;
+    zoomPOI = setting == "desktop" ? 18 : 19;
+    switchElements(winWidth, winHeight);
+    adjustIconBubble();
+  };
 
   function fixZoom(){
-    var z = map.getZoom() > 18 ? 18 : map.getZoom(); //don't go beyond max zoom!
+    var z = map.getZoom()
+    z = z > 19 ? 19 : z; //don't go beyond max zoom!
     map.setZoom(z);
-  }
+  };
 
   $(".audioText").click(function(){
     $(".leaflet-control-attribution").css({
@@ -463,6 +488,7 @@ function callback(error, routes, PointsofInterest, alerts){
   } 
 
   function openInfoScreen(feature, imageSet){
+    console.log("openInfoScreen");
     // set show title
     showTitle.innerHTML = feature.properties.title;
     
@@ -472,13 +498,14 @@ function callback(error, routes, PointsofInterest, alerts){
     }
     
     // clear existing contents
-    showImagesList.innerHTML = '';
+    $("#imagesList").html("");
     
     // dynamically add images to imagesList
     for(var i = 0; i < imageSet.length; i++){
       
       // this is the <li> to hold a pair of historic/current images
       var li = document.createElement('li');
+      li.setAttribute('data-orbit-slide','li_'+i);
       
       // this is the <div> in <li>
       var div = document.createElement('div');
@@ -486,20 +513,18 @@ function callback(error, routes, PointsofInterest, alerts){
       
       // this is the <img> to hold historic image
       var imgHistorical = document.createElement('img');    
-      if(cwinWidth > midBreakPoint){
+      if (setting == "desktop"){
         imgHistorical.setAttribute('src', imageSet[i].historic_large);
-      }else
-      {
+      } else {
         imgHistorical.setAttribute('src', imageSet[i].historic_small);
       }
       div.appendChild(imgHistorical);
       
       // this is the <img> to hold curent image
       var imgCurrent = document.createElement('img');
-      if(cwinWidth > midBreakPoint){
+      if (setting == "desktop"){
         imgCurrent.setAttribute('src', imageSet[i].current_large);
-      }else
-      {
+      } else {
         imgCurrent.setAttribute('src', imageSet[i].current_small);
       }
       div.appendChild(imgCurrent);
@@ -519,8 +544,8 @@ function callback(error, routes, PointsofInterest, alerts){
     // add the fourth slide
     if (siteID < 4){
       var li = document.createElement('li');
+      li.setAttribute('data-orbit-slide','li_3');
       
-      // this is the <div> in <li>
       var div = document.createElement('div');
       div.setAttribute('class', 'ready_next');
       div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site.</span>";
@@ -528,43 +553,42 @@ function callback(error, routes, PointsofInterest, alerts){
       showImagesList.appendChild(li); 
       
       //adding button functionality to the ready_next div: 
-      div.addEventListener("click", function () {
-        //for ready_next div class  
+      div.addEventListener("click", function (){
         siteID++;
         currentFeature = siteID;
-        
         updateLocationMenu();
         updateMarkers();
         updateRoute();
-      
         highlightRoute();
         addScript();
         
         //close the slideshow
         $("#slideshowModal").foundation('reveal', 'close');
-        
-        //open textModal for desktop version
-        if (getWinDimensions()[1]>midBreakPoint){
-            setTimeout(triggerTextModal, 1000);
-        } else {
-          // start to play audio 2 secs after closing slide show
-          setTimeout(playAudio, 1000);
-        }
+        //open next textModal or play next audio
+        setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(playAudio, 1000);
       });
-    }
-      
-    //hide the timer
-    $('.orbit-timer').hide();
-    //show the close button
-    $('#closeSlideshow').html("&#215;");
-  //  $('#closeSlideshow').hide();
-    $('.orbit-next').show();
-      $('.orbit-prev').show();
-    
+    };
+ 
+    $('#closeSlideshow').html("&#215;"); //close button 
     $("#slideshowModal").foundation("reveal", "open");
   } //end "Open Info Screen" function
 
-  //-------- make changes after each slide transition --------------
+  $('#slideshowModal').on('opened', function () {
+    //hack--requires manual activation to see first slide
+    var firstSlide = $("#imagesList").find("li:first");
+    firstSlide.attr("class","active");
+    var ofSlides = $(".orbit-slide-number").find("span:last");
+    var numberOfSlides = PointsofInterest.features[siteID].properties.imageSet.length;
+    numberOfSlides += siteID === 4 ? 0 : 1;
+    ofSlides.text(numberOfSlides);
+
+    orbitHeight();
+
+    $(".twentytwenty-container").twentytwenty(); //still not sure this always fires at right time
+    //$(window).trigger('resize'); NOT SURE WHAT THIS WAS FOR
+  });
+
+  //make changes after each slide transition
   $("#slideshow_images").on("after-slide-change.fndtn.orbit", function(event, orbit) {
     imageSet = imageSets[currentFeature];
     // description texts change as slide goes
@@ -574,7 +598,7 @@ function callback(error, routes, PointsofInterest, alerts){
       if (siteID === 4){
         showText.innerHTML = imageSet[orbit.slide_number].image_texts;
       } else if (siteID < 4){ //if we're not on the final slideshow, show this message
-        showText.innerHTML = "After closing this slide show window, you will be guided by the highted route and audio recording to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.";
+        showText.innerHTML = "After closing this slide show window, you will be guided by the highted route to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.";
       }
     }
   });
@@ -583,16 +607,25 @@ function callback(error, routes, PointsofInterest, alerts){
     $('.audioText a').trigger('click')
   }
 
-  //resize the pop-up modal window
-  $('#slideshowModal').on('opened', function () {
-
-    $(".twentytwenty-container").twentytwenty();
-    $(window).trigger('resize');
-
-    $('.orbit-next').click(); 
-    setTimeout("$('.orbit-prev').click()",700); 
-  });
-} //end of callback
+  function orbitHeight(){
+    //sets slideshow container dimensions on initiation or window resize
+    if (setting == "desktop"){
+      if (aspectRatio <= 1.5) {
+        $(".orbit-container").height($(".twentytwenty-before").height());
+        $('#slideshowModal').offset({top: 80})
+      } else if (aspectRatio > 1.5 && aspectRatio <= 1.85){
+        $(".orbit-container").height("32vw");
+        $('#slideshowModal').offset({top: 70})
+      } else if (aspectRatio > 1.85){
+        $(".orbit-container").height("26vw");
+        $('#slideshowModal').offset({top: 60})
+      };
+    } else {
+      //$(".orbit-container").height($(".twentytwenty-before").height());
+      $('#slideshowModal').offset({top: 0})
+    }
+  }
+} //end of data callback
 
 function loadmap(){
   map = L.map('map', { zoomControl:true});

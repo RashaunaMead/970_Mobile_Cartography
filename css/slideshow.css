@@ -7,7 +7,7 @@
 #slideshow_texts {
 	width: 100%;
 	height: auto;
-	overflow-y:scroll;
+	overflow-y:auto;
 }
 
 #slideshow_images, #imagesList, .twentytwenty-container, .twentytwenty-before, .twentytwenty-after{
@@ -25,9 +25,15 @@
 .ready_next {
 	font-size: 3em;
 	text-align: center;
+	background-color: #C41E3A;
+  	border-radius:25px;
 }
 .ready_next_text {
 	padding-top: 50%;
+}
+
+.orbit-container {
+	margin-bottom: 10px;
 }
 
 .orbit-container .orbit-prev:hover,

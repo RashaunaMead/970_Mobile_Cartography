@@ -183,11 +183,6 @@ h3{
     z-index: 2;
     height: calc(100% - 45px);
     top:45px;
-    }
-
-  .ready_next {
-  	background-color: #C41E3A;
-  	border-radius:25px;
   }
 
   .ready_next:hover {

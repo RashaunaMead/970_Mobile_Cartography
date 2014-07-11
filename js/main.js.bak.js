@@ -1,8 +1,39 @@
 /***CLASS-LEVEL VARIABLES***/
-var viewed = [true, false, false, false, false]; //keep track of which sites were viewed (REPLACE WITH SITEID)
 var timeouts = [];
 var map;
 var currentTiles = 'modern';
+var tilesToLoad = {
+  13: { x1: 2061, xn: 2062, y1: 3007, yn: 3007 },
+  14: { x1: 4123, xn: 4124, y1: 6015, yn: 6015 },
+  15: { x1: 8246, xn: 8249, y1: 12030, yn: 12031 },
+  16: { x1: 16492, xn: 16499, y1: 24060, yn: 24062 },
+  17: { x1: 32987, xn: 32998, y1: 48121, yn: 48125 },
+  18: { x1: 65972, xn: 65998, y1: 96241, yn: 96250 }
+};
+var tZ = 13, 
+  tX = tilesToLoad[tZ].x1,
+  tY = tilesToLoad[tZ].y1;
+
+var imagesToLoad = [
+  "/alert36.png",
+  "/alert42_red.png",
+  "/labor24.png",
+  "/labor36.png",
+  "/labor40_red.png",
+  "/transportation24.png",
+  "/transportation36.png",
+  "/transportation40_red.png",
+  "/energy24.png",
+  "/energy36.png",
+  "/energy40_red.png",
+  "/housing24.png",
+  "/housing36.png",
+  "/housing40_red.png",
+  "/coffee24.png",
+  "/coffee36.png",
+  "/coffee40_red.png"
+], img = 0;
+
 //var historicTiles = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var modernTileset = L.tileLayer ('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 
@@ -10,17 +41,69 @@ window.onload = initialize();
 
 function initialize(){
   loadmap(); //load the map
+  //preloadTiles(13, 2061, 3007); //preload all map tiles so they are cached and viewable offline
+  //preloadImages();
 
   //use queue.js to parallelize asynchronous data loading for cpu efficiency
   queue()
     .defer(d3.json, "data/routes.geojson")
     .defer(d3.json, "data/PointsofInterest.geojson")
-    .defer(d3.json, "data/POIzoom.geojson")
+    .defer(d3.json, "data/alerts.geojson")
     .await(callback);
 }
 
-function callback(error, routes, PointsofInterest, POI){
-  addMarkers(map, 0); //function defined in markers.js
+function preloadImages(){
+  $("#preload img").attr("src",imagesToLoad[img]);
+  $("#preload img").attr("onload","imageLoaded()");
+  $("#preload img").attr("onerror","imageLoaded()");
+};
+
+function imageLoaded(){
+  img++;
+  if (img < imagesToLoad.length){
+    preloadImages();
+  }
+}
+
+function preloadTiles(tZ, tX, tY){
+  var instances = ["a", "b", "c"];
+  var rand = (Math.round(Math.random() * 10) % 3);
+  var tS = instances[rand];
+
+  $("#preload img").attr("src","http://a.www.toolserver.org/tiles/bw-mapnik/"+tZ+"/"+tX+"/"+tY+".png");
+  $("#preload img").attr("onload","tileLoaded("+tZ+","+tX+","+tY+")");
+  $("#preload img").attr("onerror","tileLoaded("+tZ+","+tX+","+tY+")");
+};
+
+function tileLoaded(tZ, tX, tY){
+  var change = false;
+  console.log("loaded: z: "+tZ+", x: "+tX+", y: "+tY);
+  var tileset = tilesToLoad[tZ];
+  if (tX < tileset.xn){
+    if (tY < tileset.yn){
+      tY++;
+      change = true;
+    } else {
+      tY = tileset.y1;
+      tX++;
+      change = true;
+    };
+  } else {
+    if (tZ < 18){
+      tZ++
+      change = true;
+      tX = tilesToLoad[tZ].x1;
+      tY = tilesToLoad[tZ].y1;
+    };
+  };
+  change ? preloadTiles(tZ, tX, tY) : null;
+}
+
+function callback(error, routes, PointsofInterest, alerts){
+  var POIlayer;
+  var POIlayers = [];
+  var POIlayer_red;
+  updateMarkers(map, 0, "gray");
 
   //add script and next/back buttons to textModal--needs work
   if (siteID===0){
@@ -55,7 +138,7 @@ function callback(error, routes, PointsofInterest, POI){
   }
 
   function updateScript(scr){
-      $('.script').html(PointsofInterest.features[siteID].properties.Scripts[scr]);
+    $('.script').html(PointsofInterest.features[siteID].properties.Scripts[scr]);
   }
 
   function addScript(){
@@ -66,57 +149,70 @@ function callback(error, routes, PointsofInterest, POI){
 
   /***ROUTES***/
   var routeStyle = {
-    "color": "#E2788B",
+    "color": "#CE3234",
     "weight": 5,
-    "opacity": 0.7
+    "opacity": 0.4
   };
 
   var highlightStyle = {
-      "color": "#C41E3A",
+      "color": "#CE3234",
       "weight": 5,
       "opacity": 1
   };
 
-  //add initial route and recenter map on it
-  var initrouteLayer = L.geoJson(routes.features[0], routeStyle).addTo(map);
-  map.fitBounds(L.latLngBounds(initrouteLayer.getBounds().getSouthWest(),initrouteLayer.getBounds().getNorthEast()));
-  var z = map.getZoom() > 18 ? 18 : map.getZoom(); //don't go beyond max zoom!
-  map.setZoom(z);
-  
-  //highlight initial route
-  var highlightLayer = L.geoJson(routes.features[0], highlightStyle).addTo(map);
+  var highlightLayer, alertlayer;
+
+  updateRoute(); //add initial route
+  highlightRoute(); //highlight initial route
+  updateLocationMenu(); //add first site to locations menu
 
   function updateRoute(){
     if (siteID < 5){
       var newroute = L.geoJson(routes.features[siteID], routeStyle).addTo(map); //visited style route underlays highlight
       map.fitBounds(L.latLngBounds(newroute.getBounds().getSouthWest(),newroute.getBounds().getNorthEast()));
-      var z = map.getZoom() > 18 ? 18 : map.getZoom(); //don't go beyond max zoom!
-      map.setZoom(z);
+      fixZoom();
+
+      //remove old alerts and add any new alerts to map
+      alertlayer ? map.removeLayer(alertlayer) : null;
+      for (var alert in alerts.features){
+        if (alerts.features[alert].properties.routeid === siteID){
+          alertlayer = L.geoJson(alerts.features[alert], {
+            pointToLayer: function(feature, latlng){
+              return L.marker(latlng, {
+                icon: L.icon({
+                  iconUrl: "images/alert40_red.png",
+                  iconSize: [40, 40],
+                  popupAnchor: [0, -12]
+                })
+              });
+            },
+            
+            onEachFeature: function (feature, layer){
+              layer.bindPopup(feature.properties.alert);
+            }
+          }).addTo(map);
+        }
+      }
     }
   }
 
   function highlightRoute() {
-    if(highlightLayer){
+    if (highlightLayer){
         map.removeLayer(highlightLayer);
     }
-    if(siteID < 5){
+    if (siteID < 5){
       highlightLayer = L.geoJson(routes.features[siteID], {style: highlightStyle}).addTo(map);
     }
   }
 
   /***AUDIO***/
   function playAudio(isdesktop){  
-    //var winHeight = $(window).height();
-    //var winWidth = $(window).width();
-    console.log('playAudio site '+siteID);
-
     $("audio").prop('autoplay', true);
     $("audio").attr('src', PointsofInterest.features[siteID].properties.audio);
 
     if (isdesktop){
       $("audio").prop('muted', false);
       $("audio").show();
-      $("#textModal .close-reveal-modal").click(function(){ hideAudio() });
     } 
   }
 
@@ -128,12 +224,7 @@ function callback(error, routes, PointsofInterest, POI){
 
   function readAloud(){
     $("#readAloud").click(function(){
-      console.log("clicked");
-      i = 0;
-      updateScript(i);
-      //start audio
-      //start timer
-
+      updateScript(0);
       var scripts = PointsofInterest.features[siteID].properties.Scripts;
 
       var delay = 0;
@@ -147,70 +238,46 @@ function callback(error, routes, PointsofInterest, POI){
     })
   }
 
-  function updateLocationMenu(){   
-    var locationMenu = document.getElementById('locationMenu');
-    
-    // show site in location menu after the site was explored
-    for(var i=0; i<viewed.length-1; i++){
-      if(viewed[i] && !viewed[i+1]){
-        if(i==0 && document.getElementsByClassName('Railroad').length==0){
-          var locationLi = document.createElement('li');
-          locationLi.setAttribute('class', 'Railroad');
-          locationLi.innerHTML = '<a href="#"><img src="images/transportation24design1.png"  alt="Locations"/> Railroad Station</a>';
-          locationMenu.appendChild(locationLi);
-          $("li.Railroad").click(function(){
-            map.setView(POI.features.Railroad.geometry.coordinates,zoomPOI)
-          });
-        }
-      
-        if(i==1 && document.getElementsByClassName('Power_Plant').length==0){
-          var locationLi = document.createElement('li');
-          locationLi.setAttribute('class', 'Power_Plant');
-          locationLi.innerHTML = '<a href="#"><img src="images/energy24design2.png" alt="Locations"/> Power Plant</a>';
-          locationMenu.appendChild(locationLi);
-          $("li.Power_Plant").click(function(){
-            map.setView(POI.features.Power_Plant.geometry.coordinates,zoomPOI)
-          });
-        }
-
-        if(i==2 && document.getElementsByClassName('Wil_Mar').length==0){
-          var locationLi = document.createElement('li');
-          locationLi.setAttribute('class', 'Wil_Mar');
-          locationLi.innerHTML = '<a href="#"><img src="images/housing24design2.png" alt="Locations"/> Community Center</a>';
-          locationMenu.appendChild(locationLi);
-          $("li.Wil_Mar").click(function(){
-            map.setView(POI.features.Wil_Mar.geometry.coordinates,zoomPOI)
-          });
-        }
-      
-        if(i==3 && document.getElementsByClassName('candy').length==0){
-          var locationLi = document.createElement('li');
-          locationLi.setAttribute('class', 'candy');
-          locationLi.innerHTML = '<a href="#"><img src="images/coffee24_grey.png"  alt="Locations"/> Candy Company</a>';
-          locationMenu.appendChild(locationLi);
-          $("li.candy ").click(function(){
-            map.setView(POI.features.Candy_Factory.geometry.coordinates,zoomPOI)
-          });
-
-          var locationLi = document.createElement('li');
-          locationLi.setAttribute('class', 'allLocations');
-          locationLi.innerHTML = '<a href="#">All Locations</a>';
-          locationMenu.appendChild(locationLi);
-          $("li.allLocations").click(function(){
-            map.setView([ 43.078307,-89.377041],zoomPOI-3)
-          });
-        }  
+  function updateLocationMenu(){
+    console.log("site id: "+siteID);
+    for (var i in PointsofInterest.features){
+      var poi = PointsofInterest.features[i];
+      if (siteID===poi.properties.id){
+        $("#locationMenu").append(
+          '<li class='+poi.properties.classname+
+          '><a href="#"><img src="'+poi.properties.icon.iconUrl+
+          '"/> '+poi.properties.title+
+          '</a></li>'
+        );
+        var coords = [poi.geometry.coordinates[1],poi.geometry.coordinates[0]];
+        $("#locationMenu li."+poi.properties.classname).click(function(){
+          map.setView(coords,zoomPOI);
+        });
       }
+    }
+    if (siteID===4){
+      $("#locationMenu").append(
+        '<li class="all_locations"><a href="#"><img src="images/allLocations24.png"/> View All Locations</a></li>'
+      );
+      $("#locationMenu li.all_locations").click(function(){
+        var boundslist = [];
+        for (var lyr in POIlayers){
+          boundslist.push(POIlayers[lyr].getBounds())
+        }
+        map.fitBounds(L.latLngBounds(boundslist));
+        fixZoom();
+      });
     }
   }
 
   /***RESPONSIVE***/
-  var midBreakPoint =640;
+  var midBreakPoint = 640;
   var largeBreakPoint = 1024;
   var zoomPOI = 18;
   var smallWindow = true;
   var winDims = setLayout();
   var adjustedBubble = false;
+  var sid = 4;
 
   $(window).on("resize", setLayout);
     
@@ -229,28 +296,29 @@ function callback(error, routes, PointsofInterest, POI){
 
   //desktop next step user direction bubble shown when text modal closes
   $(document).on('close.fndtn.reveal', '[data-reveal]', function (){ 
-    triggerIconBubble();
-    console.log("reveal close--siteID=="+siteID);
+    //hide audio and set user prompt on first modal close if desktop
+    if (getWinDimensions()[1] > midBreakPoint){
+      hideAudio();
+      triggerIconBubble();
+    };
+
     //after last slideshow closed, remove highlighted route
-    if (siteID===4 || siteID===5){
-      siteID++
-    } else if (siteID===6){
-      if (highlightLayer){
-        map.removeLayer(highlightLayer);
-      }
-    }
+    sid += siteID===4 ? 1 : 0;
+    if (sid===6){ highlightLayer ? map.removeLayer(highlightLayer) : null };
   });
 
-  $(window).click(function(){
+  $("#container").click(function(){
     //mobile play direction bubble closed on next click after it is in place and next step direction bubble opened
     if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
       $('#playBubble').fadeOut();
       triggerIconBubble();
     };
+    $('.reveal-modal').foundation('reveal', 'close');
   });
 
   function triggerIconBubble(){
     if ($('#iconClickBubble span').html().length < 1){
+      //if statement ensures all of this only happens once
       $('#iconClickBubble span').html("When ready, click icon<br/>for site information");
       var iconOffset = $(".leaflet-marker-icon").offset();
       var bubbleWidth = $("#iconClickBubble").width();
@@ -259,7 +327,7 @@ function callback(error, routes, PointsofInterest, POI){
       var leftOffset = iconOffset.left-bubbleWidth+28;
       $('#iconClickBubble').offset({top: 10, left: 10});
       $("#iconClickBubble").animate({opacity: 1, top: topOffset, left: leftOffset}, 1000);
-
+      //events only get set once because of if statement
       $(window).click(function(){
         //next step direction bubble closed on next click after it is in place
         if (Math.round($('#iconClickBubble').offset().top) === Math.round(topOffset)){
@@ -267,6 +335,7 @@ function callback(error, routes, PointsofInterest, POI){
         };
       });
       $(".leaflet-clickable").click(function(){ $('#iconClickBubble').fadeOut() });
+      map.on("move", function(){ adjustIconBubble() });
     };
   }
 
@@ -279,7 +348,7 @@ function callback(error, routes, PointsofInterest, POI){
       var leftOffset = iconOffset.left-bubbleWidth+28;
       $('#iconClickBubble').offset({top: topOffset, left: leftOffset});
 
-      if (adjustedBubble==false){
+      if (adjustedBubble==false){ //only set event listener once
         $(window).click(function(){
             $('#iconClickBubble').fadeOut();
         });
@@ -307,6 +376,7 @@ function callback(error, routes, PointsofInterest, POI){
         readAloud();
       };
       $('#playBubble').css({display: "none"});
+      $(".leaflet-buttons-control-img").hide();
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
@@ -318,8 +388,8 @@ function callback(error, routes, PointsofInterest, POI){
       $('#playBubble span').html("Play Audio Here");
       var oheight = height-90;
       $('#playBubble').offset({top: oheight, left: 10});
+      $(".leaflet-buttons-control-img").show();
     };
-    adjustIconBubble();
   };
 
   function setLayout() {
@@ -327,7 +397,13 @@ function callback(error, routes, PointsofInterest, POI){
       var winHeight = winDims[0], winWidth = winDims[1];
       zoomPOI = winWidth > midBreakPoint ? 18 : 19;
       switchElements(winWidth, winHeight);
+      adjustIconBubble();
       return winDims;
+  }
+
+  function fixZoom(){
+    var z = map.getZoom() > 18 ? 18 : map.getZoom(); //don't go beyond max zoom!
+    map.setZoom(z);
   }
 
   $(".audioText").click(function(){
@@ -342,68 +418,51 @@ function callback(error, routes, PointsofInterest, POI){
     });
   });
 
-  /***MARKERS--NEEDS ORGANIZING***/
-  var POIlayer;
-  var POIlayer_gray = [];
-  var POIlayer_red;
+  /***MARKERS***/
+  
   //this function adds custom icons to the map, drawing the path to the image from the geojson 
-  function addMarkers (map, i) {
-    console.log("marker index: "+i);
+  function addMarkers(map, i, itype) {
+    //select whether regular or highlighted marker
+    itype = itype == "red" ? "icon_red_larger" : "icon_larger";
+    
     POIlayer = L.geoJson(PointsofInterest.features[i], {
-          //some options
       pointToLayer: function(feature, latlng){
-        //in each clause, first case is for updateMarkers, second case is for highlightMarkers
-        if ((i!==siteID && i!==currentFeature) || (i===siteID && i!==currentFeature)){
-          return L.marker(latlng, {icon: L.icon(feature.properties.icon_larger)}); //gray icon
-        } else if ((i===siteID && i===currentFeature) || (i!==siteID && i===currentFeature)){
-          return L.marker(latlng, {icon: L.icon(feature.properties.icon_red_larger)}); //red icon
-        }
-      }, //end pointToLayer
+        return L.marker(latlng, {icon: L.icon(feature.properties[itype])}); //gray icon
+      },
       
       onEachFeature: function (feature, layer){
         var imageSet = feature.properties.imageSet; // imageSet from PointsofIntest.js
         imageSets[feature.properties.id] = imageSet;
 
-        //listener for click event 
-        layer.on("click", function() {    
-          viewed[siteID] = true;
-          
+        layer.on("click", function() {
           highlightMarkers(feature);
           openInfoScreen(feature, imageSet);
-          //siteID = feature.properties.id;
-        });
-        
-      } //end onEachFeature
-      }); 
+        });  
+      }
+    }); 
     
-    if((i!==siteID && i!==currentFeature) || (i===siteID && i!==currentFeature)){
-      console.log(POIlayer_gray.indexOf(POIlayer));
-      POIlayer_gray.push(POIlayer);
-      map.addLayer(POIlayer);
-    } else if ((i===siteID && i===currentFeature) || (i!==siteID && i===currentFeature)){   
+    if (itype==="icon_larger"){
+      POIlayers.push(POIlayer);
+    } else {   
       if (POIlayer_red){
         map.removeLayer(POIlayer_red);
       }
       POIlayer_red = POIlayer;
-      map.addLayer(POIlayer_red);
-    }
-    
-  } //ends addMarkers function 
+    };
+    map.addLayer(POIlayer);
+  }
 
-  function updateMarkers () {
-    addMarkers(map, siteID-1); //add the gray marker to the last feature
-      addMarkers(map, siteID); //add red marker for the new feature
+  function updateMarkers() {
+    addMarkers(map, siteID, "gray"); //add the gray marker to the last feature
+    addMarkers(map, siteID, "red"); //add red marker for the new feature
   }
 
   function highlightMarkers(feature) {
     currentFeature = feature.properties.id;
-    addMarkers(map, siteID); //add gray site marker
-    addMarkers(map, currentFeature); //add red highlighted marker
+    addMarkers(map, currentFeature, "red"); //add red highlighted marker
   } 
 
   function openInfoScreen(feature, imageSet){
-    console.log("open info screen for ", feature.properties.title);
-    
     // set show title
     showTitle.innerHTML = feature.properties.title;
     
@@ -427,20 +486,18 @@ function callback(error, routes, PointsofInterest, POI){
       
       // this is the <img> to hold historic image
       var imgHistorical = document.createElement('img');    
-      if(cwinWidth > midBreakPoint){
+      if (cwinWidth > midBreakPoint){
         imgHistorical.setAttribute('src', imageSet[i].historic_large);
-      }else
-      {
+      } else {
         imgHistorical.setAttribute('src', imageSet[i].historic_small);
       }
       div.appendChild(imgHistorical);
       
       // this is the <img> to hold curent image
       var imgCurrent = document.createElement('img');
-      if(cwinWidth > midBreakPoint){
+      if (cwinWidth > midBreakPoint){
         imgCurrent.setAttribute('src', imageSet[i].current_large);
-      }else
-      {
+      } else {
         imgCurrent.setAttribute('src', imageSet[i].current_small);
       }
       div.appendChild(imgCurrent);
@@ -468,7 +525,7 @@ function callback(error, routes, PointsofInterest, POI){
       li.appendChild(div);
       showImagesList.appendChild(li); 
       
-  //adding button functionality to the ready_next div: 
+      //adding button functionality to the ready_next div: 
       div.addEventListener("click", function () {
         //for ready_next div class  
         siteID++;
@@ -477,8 +534,6 @@ function callback(error, routes, PointsofInterest, POI){
         updateLocationMenu();
         updateMarkers();
         updateRoute();
-        
-        if(siteID==3) { viewed[4]=true }; //why is this here?
       
         highlightRoute();
         addScript();

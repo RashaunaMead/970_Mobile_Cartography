@@ -360,6 +360,15 @@
         self.update_active_link(0);
         slides_container.trigger('ready.fndtn.orbit');
       });
+
+      /*****CUSTOM BUG FIX*****/
+      $('#slideshowModal').on('open.fndtn.reveal', function() {
+        idx = 0;
+        self.update_slide_number(idx);
+        self.update_active_link(idx);
+        slides_container.trigger('ready.fndtn.orbit');
+      });
+      /***********************/
     };
 
     self.init();
