@@ -1,7 +1,4 @@
 WISHLIST
--Pre-load and cache entire app(!)
-	-may need to create client database for images, icons, audio, tiles
-	-give user feedback once all data and files are in cache
 -Custom historical tiles served with TileStache?
 -Mobile device back button should close windows rather than activating browser back button
 -Fit map bounds to show location when find me button is activated
@@ -17,6 +14,8 @@ BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
 -View all locations doesn't recenter map on second click
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
+-CHROME: Second slideshow modal won't change slides
+-CHROME: First map view is often map paradox; fixed on reload
 
 
 RESOLVED
@@ -47,6 +46,9 @@ RESOLVED
 -All highlighted icons have white outlines
 -Dynamically size pictures so they don't go beyond screen
 -Always start slideshow on Pair 1
+-Pre-load and cache entire app
+	-HTML5 caching: http://diveintohtml5.info/offline.html
+	-give user feedback once all data and files are in cache
 
 
 PHOTOS TO RE-TAKE

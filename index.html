@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html manifest="cache.manifest">
   <head>
     <title>MobileMap</title>
     
@@ -20,8 +20,6 @@
   </head>
 
   <body>
-    <div id="preload" style="display: none"><img/></div>
-
     <div id="splash">
       <h1>Madison's East Isthmus: Paths To Change</h1>
       
@@ -72,64 +70,22 @@
           <ul class="left">
             <li class="has-dropdown ">
               <a href="#" data-options="align:left">  
-                <img class="locations"src="images/img/icon_13378/icon_13378.png" width="44" height="38" alt="Locations"/>
+                <img class="locations"src="images/locations.png" width="44" height="38" alt="Locations"/>
                 Locations
               </a>
-              
-              <ul class="dropdown" id="locationMenu">
-                <!--removed to main.js> 
-                <li class="Shoe_Factory">
-                  <a href="#">
-                    <img src="images/labor24design2.png" alt="Locations"/>
-                    Shoe Factory
-                  </a>
-                </li>
-	  
-  			        <li class="Railroad">
-                  <a href="#">
-                    <img src="images/transportation24design1.png" alt="Locations"/>
-                    Railroad Station
-                  </a>
-                </li>
-  			   
-                <li class="Power_Plant">
-                  <a href="#">
-                    <img src="images/energy24design2.png" alt="Locations"/>
-                    Power Plant
-                  </a>
-                </li>
-
-                <li class="Wil_Mar">
-                  <a href="#">
-                    <img src="images/housing24design2.png" alt="Locations"/>
-                    Community Center
-                  </a>
-                </li>
-                
-                <li class="candy">
-                  <a href="#">
-                    <img src="images/production24design2.png" alt="Locations"/>
-                    Candy Company
-                  </a>
-                </li>
-                
-                <li class="allLocations">
-                  <a href="#">All Locations</a>
-                </li>
-                <-->
-              </ul>
+              <ul class="dropdown" id="locationMenu"></ul>
             </li>
 
             <li>
               <a href="#" data-reveal-id="helpModal" data-reveal>
-                <img src="images/img/icon_18734/icon_18734.png" width="34" height="34" alt="Help"/>
+                <img src="images/help.png" alt="Help"/>
                 Help
               </a>
             </li>
                
             <li>
               <a href="#" data-reveal-id="infoModal" data-reveal>
-                <img src="images/img/icon_2824/icon_2824.png" width="34" height="34" alt="Infomation"/>
+                <img src="images/information.png" alt="Infomation"/>
                 Information
               </a>
             </li>
@@ -137,7 +93,7 @@
             <!--audio section-->
             <li class="audioText">
               <a href="#" data-reveal-id="textModal" data-reveal>
-                <img src="images/img/icon_10607/icon_10607.png" width="34" height="34" alt="Text"/>
+                <img src="images/text.png" alt="Text"/>
                 <span>Text</span>
               </a>
             </li>
@@ -229,7 +185,6 @@
     <!--project scripts-->
     <script type="text/javascript" src="js/findMeButton.js"></script> 
     <script type="text/javascript" src="js/getLocation.js"></script>
-    <script type="text/javascript" src="js/markers.js"></script>
     <script type="text/javascript" src="js/main.js"></script> 
   </body>
 </html>

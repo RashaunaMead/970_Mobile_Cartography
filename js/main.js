@@ -4,13 +4,14 @@ var map;
 var siteID = 0; //latest site available to user
 var currentFeature = 0; //feature currently highlighted
 var imageSets = {};
-var modernTileset = L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
-//var historicTiles = L.tileLayer ('https://{s}.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
+var modernTileset = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
+//var historicTiles = L.tileLayer ('https://a.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var currentTiles = 'modern';
 
 window.onload = initialize();
 
 function initialize(){
+  cacheloading();
   loadmap(); //load the map
 
   $(document).foundation({
@@ -376,12 +377,14 @@ function callback(error, routes, PointsofInterest, alerts){
       //historic image
       var imgHistorical = document.createElement('img');    
       var histImg = setting == "desktop" ? "historic_large" : "historic_small";
+      imgHistorical.setAttribute('onerror', 'imgError(this, "'+imageSet[i]["historic_small"]+'")');
       imgHistorical.setAttribute('src', imageSet[i][histImg]);
       div.appendChild(imgHistorical);
       
       //current image
       var imgCurrent = document.createElement('img');
       var currentImg = setting == "desktop" ? "current_large" : "current_small";
+      imgCurrent.setAttribute('onerror', 'imgError(this, "'+imageSet[i]["current_small"]+'")');
       imgCurrent.setAttribute('src', imageSet[i][currentImg]);
       div.appendChild(imgCurrent);
 
@@ -527,7 +530,7 @@ function callback(error, routes, PointsofInterest, alerts){
       $("#audioText").show();
       $('.leaflet-control-zoom').show();
       if ($('#readAloud').length == 0){
-        $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/img/icon_26460/icon_26460.png" width="34" height="34" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+        $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
         readAloud();
       };
       $('#playBubble').css({display: "none"});
@@ -548,13 +551,51 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 }; //end of data callback
 
+function cacheloading(){
+  //create loading icon
+  $("#splash").append('<div id="loading">'+
+    '<img src="images/loading.gif"/>'+
+    '<span>Loading Offline Cache</span>'+
+    '</div>');
+
+  //remove loading icon when appcache is finished loading
+  var timeout = window.setTimeout(cacheloaded, 2000);
+  $(window.applicationCache).on("cached", function(){
+    window.clearTimeout(timeout);
+    cacheloaded();
+  });
+  //workaround for Firefox failing to fire cached event
+  $(window.applicationCache).on("progress", function(){
+    window.clearTimeout(timeout);
+    timeout = window.setTimeout(cacheloaded, 2000);
+  });
+  $(window.applicationCache).on("error", function(){
+    window.clearTimeout(timeout);
+    cacheerror();
+  });
+};
+
+function cacheloaded(){
+  $("#loading").html('<span id="loaded">You may now use this application offline. Without an internet connection, your map range will be more limited, but adequate for module use.</span>');
+};
+
+function cacheerror(){
+  $("#loading").html('<span id="error">There was a problem loading the offline cache. If you might lose internet connection while using this application, please hit your browser\'s "reload" button now.</span>');
+};
+
 function loadmap(){
-  map = L.map('map', { zoomControl:true});
-  // tiles can change once we know our basemap 
-  L.tileLayer('http://{s}.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
+  map = L.map('map', { 
+    zoomControl: true,
     maxZoom: 18,
-    minzoom: 5
+    minZoom: 14,
+    maxBounds: [
+      [43.0371,-89.452674],
+      [43.129626,-89.306419]
+    ]
+  });
+  // tiles can change once we know our basemap 
+  L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>'
   }).addTo(map);
       
   //addTileToggle();
@@ -562,7 +603,7 @@ function loadmap(){
   map.setView([43.076364, -89.384336], 14);
 
   var findMeOptions = {
-      'iconUrl': './images/img/icon_12638/icon_12638_24r.png',  // string
+      'iconUrl': './images/findme.png',  // string
       'onClick': my_button_onClick,  // callback function
       'hideText': true,  // bool
       'maxWidth': 30,  // number
@@ -602,4 +643,9 @@ function toggleTiles(){
 		//reset variable 
 		currentTiles = 'modern';
 	};
+};
+
+function imgError(image, alturl){
+  //fall back to small slideshow images if offline
+  image.src = alturl;
 };
