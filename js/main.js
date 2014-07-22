@@ -505,6 +505,10 @@ function callback(error, routes, PointsofInterest, alerts){
     }
   });
 
+  $(".reveal-modal").on("open.fndtn.reveal", function(){
+    if (setting == "desktop"){ resizeModal($(this)); };
+  });
+
   /***RESPONSIVE LAYOUT***/
 
   function getWinDimensions(){
@@ -513,11 +517,11 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function setLayout() {
     winDims = getWinDimensions();
-    var winHeight = winDims[0], winWidth = winDims[1];
+    var cHeight = winDims[0], winWidth = winDims[1];
     setting = winWidth > 640 ? "desktop" : "mobile";
-    aspectRatio = winWidth/winHeight;
+    aspectRatio = winWidth/cHeight;
     zoomPOI = setting == "desktop" ? 18 : 19;
-    switchElements(winWidth, winHeight);
+    switchElements(winWidth, cHeight);
     adjustIconBubble();
   };
 
@@ -648,4 +652,13 @@ function toggleTiles(){
 function imgError(image, alturl){
   //fall back to small slideshow images if offline
   image.src = alturl;
+};
+
+function resizeModal(modal){
+  var cHeight = $("#container").height();
+  var rmTop = parseInt(modal.css("top"));
+  var rmHeight = modal.height();
+  if (rmHeight > cHeight){
+    modal.height(cHeight - (rmTop * 2));
+  };
 };

@@ -16,6 +16,7 @@ BUGS
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
 -CHROME: Second slideshow modal won't change slides
 -CHROME: First map view is often map paradox; fixed on reload
+-Caption text not replaced on slideshow reopen until arrow clicked
 
 
 RESOLVED
@@ -52,7 +53,6 @@ RESOLVED
 
 
 PHOTOS TO RE-TAKE
-Wil-Mar Center (crappy)
+Wil-Mar Center mural (crappy)
 Co-Op (proprietary [Cap Times] & privacy issue)
-5_1 (candy company plaque)
 5_2 (candy factory photo)

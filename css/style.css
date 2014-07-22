@@ -126,11 +126,19 @@ h2{
  font-size: 1em;    
 }
 h3{
-    font-size: 1em;
-    text-align: center;
+  font-size: 1em;
+  text-align: center;
 }
+
+.modalTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
 .reveal-modal{
   z-index: 999;
+  overflow: auto;
 }
 
 #readAloud {
