@@ -7,6 +7,7 @@ var imageSets = {};
 var modernTileset = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
 //var historicTiles = L.tileLayer ('https://a.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var currentTiles = 'modern';
+var siteCoords = [];
 
 window.onload = initialize();
 
@@ -232,9 +233,6 @@ function callback(error, routes, PointsofInterest, alerts){
     if (siteID < 5){
       var newroute = L.geoJson(routes.features[siteID], routeStyle).addTo(map); //visited style route underlays highlight
 
-      map.fitBounds(L.latLngBounds(newroute.getBounds().getSouthWest(),newroute.getBounds().getNorthEast()));
-      fixZoom();
-
       //remove old alerts and add any new alerts to map
       alertlayer ? map.removeLayer(alertlayer) : null;
       for (var alert in alerts.features){
@@ -269,8 +267,8 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 
   function fixZoom(){
-    var z = map.getZoom()
-    z = z > 19 ? 19 : z; //don't go beyond max zoom!
+    var z = map.getZoom();
+    z = z > 18 ? 18 : z; //don't go beyond max zoom!
     map.setZoom(z);
   };
 
@@ -280,6 +278,7 @@ function callback(error, routes, PointsofInterest, alerts){
     for (var i in PointsofInterest.features){
       var poi = PointsofInterest.features[i];
       if (siteID===poi.properties.id){
+        console.log(poi);
         $("#locationMenu").append(
           '<li class='+poi.properties.classname+
           '><a href="#"><img src="'+poi.properties.icon.iconUrl+
@@ -290,6 +289,23 @@ function callback(error, routes, PointsofInterest, alerts){
         $("#locationMenu li."+poi.properties.classname).click(function(){
           map.setView(coords,zoomPOI);
         });
+
+        siteCoords.push(coords);
+        if (siteCoords.length > 1){
+          var i = siteCoords.length-1;
+          var coordLats = [siteCoords[i-1][0], siteCoords[i][0]], 
+          coordLons = [siteCoords[i-1][1], siteCoords[i][1]];
+        } else {
+          var coordLats = [43.0749355058668, siteCoords[0][0]], 
+          coordLons = [-89.39899991725407, siteCoords[0][1]];
+        };
+
+        coordLats.sort(function(a, b){return a-b});
+        coordLons.sort(function(a, b){return a-b});
+
+        var bounds = L.latLngBounds([coordLats[0], coordLons[0]], [coordLats[1], coordLons[1]]);
+        map.fitBounds(bounds);
+        fixZoom();
       };
     };
 

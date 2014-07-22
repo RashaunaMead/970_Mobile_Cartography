@@ -366,6 +366,9 @@
         idx = 0;
         self.update_slide_number(idx);
         self.update_active_link(idx);
+
+        self.cache.animating = false; //this is somehow reset automatically in FF but not Chrome
+        
         slides_container.trigger('ready.fndtn.orbit');
       });
       /***********************/
