@@ -111,7 +111,9 @@ function callback(error, routes, PointsofInterest, alerts){
     if ($('#iconClickBubble span').html().length < 1){
       //if statement ensures all of this only happens once
       $('#iconClickBubble span').html("When ready, click icon<br/>for site information");
-      var iconOffset = $(".leaflet-marker-icon").offset();
+      
+      var firstIcon = $(".leaflet-marker-pane").find("img:last");
+      var iconOffset = firstIcon.offset();
       var bubbleWidth = $("#iconClickBubble").width();
       var bubbleHeight = $("#iconClickBubble").height();
       var topOffset = iconOffset.top-bubbleHeight-32;
@@ -534,7 +536,7 @@ function callback(error, routes, PointsofInterest, alerts){
       $("#audioText").show();
       $('.leaflet-control-zoom').show();
       if ($('#readAloud').length == 0){
-        $("#textModal div").append('<div id="readAloud"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+        $("#textModal div").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
         readAloud();
       };
       $('#playBubble').css({display: "none"});
@@ -556,12 +558,6 @@ function callback(error, routes, PointsofInterest, alerts){
 }; //end of data callback
 
 function cacheloading(){
-  //create loading icon
-  $("#splash").append('<div id="loading">'+
-    '<img src="images/loading.gif"/>'+
-    '<span>Loading Offline Cache</span>'+
-    '</div>');
-
   //remove loading icon when appcache is finished loading
   var timeout = window.setTimeout(cacheloaded, 2000);
   $(window.applicationCache).on("cached", function(){
@@ -580,11 +576,15 @@ function cacheloading(){
 };
 
 function cacheloaded(){
-  $("#loading").html('<span id="loaded">You may now use this application offline. Without an internet connection, your map range will be more limited, but adequate for module use.</span>');
+  $("#loading img").attr("src","images/globe.png");
+  $("#loading span").attr("id","loaded");
+  $("#loading span").text('You may now use this application offline. Without an internet connection, your map range will be more limited, but adequate for module use.');
 };
 
 function cacheerror(){
-  $("#loading").html('<span id="error">There was a problem loading the offline cache. If you might lose internet connection while using this application, please hit your browser\'s "reload" button now.</span>');
+  $("#loading img").attr("src","images/globeerror.png");
+  $("#loading span").attr("id","error");
+  $("#loading span").text('There was a problem loading the offline cache. If you might lose internet connection while using this application, please hit your browser\'s "reload" button now.');
 };
 
 function loadmap(){

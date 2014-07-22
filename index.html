@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html> <!--manifest="cache.manifest"-->
   <head>
     <title>MobileMap</title>
     
@@ -23,19 +23,34 @@
     <div id="splash">
       <h1>Madison's East Isthmus: Paths To Change</h1>
       
-      <h2>Welcome to our page! This is a project about globalization. Bacon ipsum dolor sit amet andouille tail pancetta hamburger bresaola biltong. Short ribs swine kielbasa short loin strip steak cow ribeye tongue andouille pig shoulder jerky. Doner biltong rump ham hock drumstick sausage beef ribs landjaeger tail short loin sirloin short ribs swine capicola. Brisket chicken spare ribs pork chop beef ribs frankfurter doner chuck, prosciutto kevin salami shank hamburger andouille fatback. Kielbasa tongue swine drumstick andouille biltong beef ribs. Andouille tri-tip hamburger beef. Hamburger beef tail drumstick ribeye shoulder leberkas short loin pork belly tongue turkey shankle, boudin capicola corned beef.</h2>
-      
-      <h3>
-        <a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">
-          Get directions to starting location
-        </a>
-      </h3>
+      <p>Welcome to our page! This is a project about economic globalization.</p>
 
-      <h2>If you are already prepared and at the first stop, please select the link below. This is also the moment to plug in your headphones</h2>
-        
-      <h3>
-        <a href="#">Go To The Map</a>
-      </h3>
+      <p>On wide screens, some photos may appear cropped at the bottom. In this situation, reduce your browser's width for better viewing.</p>
+
+      <p>The second button below will take you to the map to begin your journey, showing the route from the UW campus to the first site. If you are not starting from campus, you can click the first button to get Google Maps directions from your current location to the first site.</p>
+      
+      <div class="redButtonContainer">
+        <div class="redButton inln">
+          <a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">
+            <div><span>
+              Google Maps Directions
+            </div></span>
+          </a>
+        </div>
+
+        <div class="redButton inln">
+          <a href="#">
+            <div><span style="font-weight: bold">
+              Go to the Map!
+            </div></span>
+          </a>
+        </div>
+
+        <div id="loading">
+          <img src="images/loading.gif"/>
+          <span>Loading Offline Cache. Please wait about 30 seconds if you plan to use the module offline...</span>
+        </div>
+      </div>
     </div><!--end splash screen div-->
    
     <div id="container">
@@ -190,14 +205,15 @@
         <li><em>Coffee</em>: Jacob Halton</li>
         <li><em>Information</em>: P.J. Onori</li>
         <li><em>Findme</em>: Ricardo Moreira</li>
+        <li><em>Lightning</em>: Ryan Oksenhorn</li>
+        <li><em>Globe</em>: Edward Boatman</li>
       </ul>
 
       <a class="close-reveal-modal">&#215;</a>
     </div>
 
     <div id="helpModal" class="reveal-modal" data-reveal>
-      <h2>Info</h2>
-      <p class="lead">Attribution</p>
+      <p class="lead">Help</p>
       <p>list of noun project images, tiles, sources, etc.</p>
       <a class="close-reveal-modal">&#215;</a>
     </div>
