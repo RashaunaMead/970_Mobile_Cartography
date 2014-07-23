@@ -7,9 +7,7 @@ var GetLocation = function(map){
  	map.locate({setView:false, watch:true, enableHighAccuracy: true} );
 
  	function onLocationFound(e){
-         
-
-      var radius = e.accuracy / 2;
+            var radius = e.accuracy / 2;
 
       	// removes marker and circle before adding a new one
       	if(firstTime===false){
@@ -20,7 +18,7 @@ var GetLocation = function(map){
       	if(e.accuracy<90){
       	//adds location and accuracy information to the map
 	 		circle = L.circle(e.latlng, radius).addTo(map);
-	 		locationMarker = L.marker(e.latlng).addTo(map).bindPopup("You are within " + radius + " meters from this point");
+	 		locationMarker = L.marker(e.latlng).addTo(map).bindPopup("You are within " + Math.round(radius) + " meters of this point");
 	 		firstTime = false;
  		}
  		//if accuracy is less than 60m then stop calling locate function

@@ -36,6 +36,8 @@ nav {
   -webkit-border-radius: 6px;
   border-radius: 6px;
   box-shadow: 0px 0px 2px;
+  -webkit-box-shadow: 0px 0px 2px;
+  -moz-box-shadow: 0px 0px 2px;
 }
 
 .callout span {
@@ -95,24 +97,13 @@ body::-webkit-scrollbar {
     display: none; 
 }
 body::-webkit-scrollbar { width: 0 !important }
-/*--------------- Audio ----------------*/
-  audio {
-      position: relative;
-      width: 200px;
-      top: 8px;
-      right: 8px;
-      left: 5px;
-      margin-top: 0px;
-      background: #6d6d6d;
-  }
 
+audio {
+    position: relative;
+    top: 8px;
+    background: #6d6d6d;
+}
 
-/*  audio {
-      top: 8px;
-      left: 8px;
-      position: relative;
-      width: 65%;
-    } */
 /*--------------- Splash Page ----------------*/
 
 #splash{   
@@ -162,7 +153,11 @@ p{
   display: inline-block;
   padding: 5px;
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   box-shadow: #000 0px 0px 2px;
+  -webkit-box-shadow: #000 0px 0px 2px;
+  -moz-box-shadow: #000 0px 0px 2px;
 }
 
 .redButton span {
@@ -185,6 +180,8 @@ p{
   font-weight: normal;
   text-transform: none;
   box-shadow: #000;
+  -webkit-box-shadow: #000;
+  -moz-box-shadow: #000;
 }
 
 #next {
@@ -210,8 +207,69 @@ p{
   text-align: left;
 }
 
+.ready_next {
+  text-align: center;
+  background-color: #C41E3A;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  box-shadow: #000 0px 0px 0.5vw;
+  -webkit-box-shadow: #000 0px 0px 0.5vw;
+  -moz-box-shadow: #000 0px 0px 0.5vw;
+  margin: 0 45px;
+  margin-top: 15%;
+}
+
+.ready_next:hover {
+  cursor: pointer;
+}
+
+.ready_next_text {
+  padding-top: 50%;
+  color: #FFF;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+}
+
+.close-reveal-modal {
+  font-weight: bold;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+#slideshow_texts {
+  width: 100%;
+  height: auto;
+  overflow-y:auto;
+}
+
+.twentytwenty-overlay{
+  pointer-events: none;
+}
+
+.orbit-container {
+  margin-bottom: 10px;
+}
+
+.orbit-container .orbit-prev:hover,
+.orbit-container .orbit-next:hover {
+      background-color: rgba(196, 30, 58, .8);
+}
+
+.orbit-container .orbit-prev,
+.orbit-container .orbit-next {
+      background-color: rgba(0, 0, 0, 0.3);
+}
+
+.orbit-slide-number {
+  text-shadow: 1px 1px 1px #000;
+}
+
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
+  .title-area {
+    float: right;
+    margin-right: 20px;
+  }
 
   .ready_next {
     font-size: 4vw;
@@ -243,11 +301,6 @@ p{
     z-index: 2;
     height: calc(100% - 45px);
     top:45px;
-  }
-
-  .ready_next:hover {
-  	opacity: 0.8;
-  	cursor: pointer;
   }
 
   .reveal-modal .script {
@@ -298,6 +351,8 @@ p{
   color: white; /*text color*/
   background-color: #6D6D6D; /*dark grey*/
   border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
  }
   #tileToggle b {
   padding: 5px
@@ -351,6 +406,7 @@ p{
 #audioText p {
   font-size: 1rem;
 }
+
 
 @media only screen and (min-width: 0em) and (max-width: 40em) {
   .ready_next {

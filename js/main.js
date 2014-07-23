@@ -8,6 +8,7 @@ var modernTileset = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}
 //var historicTiles = L.tileLayer ('https://a.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var currentTiles = 'modern';
 var siteCoords = [];
+var mapTileLayer;
 
 window.onload = initialize();
 
@@ -426,7 +427,7 @@ function callback(error, routes, PointsofInterest, alerts){
       
       var div = document.createElement('div');
       div.setAttribute('class', 'ready_next');
-      div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site.</span>";
+      div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site</span>";
       li.appendChild(div);
       showImagesList.appendChild(li); 
       
@@ -446,6 +447,16 @@ function callback(error, routes, PointsofInterest, alerts){
         setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(function(){
           playAudio(true, siteID) }, 1000);
       });
+    } else {
+      //final note for the last site
+      var li = document.createElement('li');
+      li.setAttribute('data-orbit-slide','li_2');
+
+      var div = document.createElement('div');
+      div.setAttribute('class', 'lastSlide');
+      div.innerHTML = "<span>This is a final note about the assignment. It is a very informative note. You will be quite edified after reading it, I promise.</span>"
+      li.appendChild(div);
+      showImagesList.appendChild(li);
     };
  
     $('#closeSlideshow').html("&#215;"); //close button 
@@ -462,6 +473,7 @@ function callback(error, routes, PointsofInterest, alerts){
     //sets slideshow container dimensions on initiation or window resize
     if (setting == "desktop"){
       if (aspectRatio <= 1.5) {
+
         $(".orbit-container").height("38vw");
         $('#slideshowModal').offset({top: 80})
       } else if (aspectRatio > 1.5 && aspectRatio <= 1.85){
@@ -501,8 +513,7 @@ function callback(error, routes, PointsofInterest, alerts){
     var firstSlide = $("#imagesList").find("li:first");
     firstSlide.attr("class","active");
     var ofSlides = $(".orbit-slide-number").find("span:last");
-    var numberOfSlides = PointsofInterest.features[siteID].properties.imageSet.length;
-    numberOfSlides += siteID === 4 ? 0 : 1;
+    var numberOfSlides = PointsofInterest.features[siteID].properties.imageSet.length + 1;
     ofSlides.text(numberOfSlides);
 
     orbitHeight();
@@ -525,10 +536,12 @@ function callback(error, routes, PointsofInterest, alerts){
     imageSet = imageSets[currentFeature];
     // description texts change as slide goes
     if (orbit.slide_number < orbit.total_slides-1){ //if we're not on the final slide of current window
-      $("#slideshow_texts").html(imageSet[orbit.slide_number].image_texts);  
+      $("#slideshow_texts").html(imageSet[orbit.slide_number].image_texts);
+      if (siteID === 4){ $(".orbit-slide-number").css("opacity",1); };
     } else if (orbit.slide_number === orbit.total_slides-1){ //if we are on the final slide
       if (siteID === 4){
-        $("#slideshow_texts").html(imageSet[orbit.slide_number].image_texts);
+        $("#slideshow_texts").html("");
+        $(".orbit-slide-number").css("opacity",0);
       } else if (siteID < 4){ //if we're not on the final slideshow, show this message
         $("#slideshow_texts").html("After closing this slide show window, you will be guided by the highted route to the next site. If you want to explore more on this site, take the chance to navigate through images using previous or next buttons.");
       }
@@ -563,8 +576,8 @@ function callback(error, routes, PointsofInterest, alerts){
       $("audio").hide();
       $("#audioText").show();
       $('.leaflet-control-zoom').show();
-      if ($('#readAloud').length == 0){
-        $("#textModal div").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+      if ($('#readAloud').length === 0){
+        $("#textModal").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
         readAloud();
       };
       $('#playBubble').css({display: "none"});
@@ -623,16 +636,16 @@ function loadmap(){
     maxBounds: [
       [43.0371,-89.452674],
       [43.129626,-89.306419]
-    ]
+    ],
+    center: [43.076364, -89.384336],
+    zoom: 14
   });
   // tiles can change once we know our basemap 
-  L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+  mapTileLayer = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>'
   }).addTo(map);
       
   //addTileToggle();
-
-  map.setView([43.076364, -89.384336], 14);
 
   var findMeOptions = {
       'iconUrl': './images/findme.png',  // string
@@ -647,7 +660,6 @@ function loadmap(){
 };
 
 function my_button_onClick() { //where is this accessed?
-  console.log("find me clicked");
   GetLocation(map);
 };
 

@@ -1139,7 +1139,8 @@ meta.foundation-mq-topbar {
   margin-bottom: 0; }
   .top-bar ul {
     margin-bottom: 0;
-    list-style: none; }
+    list-style: none;
+    margin-left: 5px; }
   .top-bar .row {
     max-width: none; }
   .top-bar form,
@@ -1156,8 +1157,7 @@ meta.foundation-mq-topbar {
     margin-bottom: 0;
     font-size: 0.75rem; }
   .top-bar .title-area {
-    position: relative;
-    margin: 0; }
+    position: relative; }
   .top-bar .name {
     height: 45px;
     margin: 0;
@@ -1361,7 +1361,7 @@ meta.foundation-mq-topbar {
     .top-bar .toggle-topbar {
       display: none; }
     .top-bar .title-area {
-      float: left; }
+      float: right; }
     .top-bar .name h1 a {
       width: auto; }
     .top-bar input,

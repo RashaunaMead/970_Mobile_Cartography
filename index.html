@@ -13,7 +13,6 @@
     <!--for slideshow-->
     <link type="text/css" rel="stylesheet" href="libraries/twentytwenty.css" />
     <link type="text/css" rel="stylesheet" href="libraries/foundation/css/normalize.css" />
-  	<link type="text/css" rel="stylesheet" href="css/slideshow.css" />
 
     <!--custom css-->
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -100,16 +99,22 @@
                
             <li>
               <a href="#" data-reveal-id="infoModal" data-reveal>
-                <img src="images/information.png" alt="Infomation"/>
-                Information
+                <img src="images/information.png" alt="About"/>
+                About
               </a>
             </li>
               
-            <!--audio section-->
             <li class="audioText">
               <a href="#" data-reveal-id="textModal" data-reveal>
                 <img src="images/text.png" alt="Text"/>
                 <span>Text</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" data-reveal-id="assignmentModal" data-reveal>
+                <img src="images/assignment.png" alt="Text"/>
+                <span>Assignment</span>
               </a>
             </li>
           </ul><!--end left nav section-->
@@ -207,6 +212,7 @@
         <li><em>Findme</em>: Ricardo Moreira</li>
         <li><em>Lightning</em>: Ryan Oksenhorn</li>
         <li><em>Globe</em>: Edward Boatman</li>
+        <li><em>Document</em>: Thomas Le Bas</li>
       </ul>
 
       <a class="close-reveal-modal">&#215;</a>
@@ -221,6 +227,15 @@
     <div id="textModal" class="reveal-modal" data-reveal>
       <div class="">
         <p class="script">Text for audio</p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    </div>
+
+    <div id="assignmentModal" class="reveal-modal" data-reveal>
+      <div class="">
+        <p class="modalTitle">Assignment Worksheet</p>
+        <p>Your assignment, should you choose to accept it, is to infiltrate the Williamson-Marquette Neighborhood. Good luck.</p>
+        <p>Message will self-destruct in 30 seconds</p>
         <a class="close-reveal-modal">&#215;</a>
       </div>
     </div>

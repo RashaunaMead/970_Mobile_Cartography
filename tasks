@@ -11,16 +11,17 @@ WISHLIST
 
 REQUESTS FROM ROB AND STEPHEN
 -Did we decide to delete the "Find me" feature? It seemed to be disabled on the version we viewed.
--Redesign the "click to proceed" so that the text is not so large and the button is has the same style as the rest of the application. Perhaps fill the entire div with red using white text, so that a click anywhere but the arrows proceeds them to the next site?
+	--This is working for me; I'm not sure why some devices would be different.
 -On the non-mobile version, close the text when clicking "Read text aloud". Then when closed, keep the audio active in the interface. In other words, the map should have one or the other.
--When adding the audio to the non-mobile version, add it to the far right of the menu options, rather than the far left, as this will keep the other menu items in their place.
--The Madison zoning map legend gets cut off in the non-mobile version. Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
--Adjust slider UI so that: (1) the arrows are not just white (perhaps add a grey background to the asset), making them disappear when sliding off the image and (2) they don't overlap the arrows to change images (reposition one or the other, or offset both).
--Change "information" to "about" and use an "a" rather than an "i".
--Add assignment tab that will have an html version of the worksheet.
--Add a final note as 3/3 to Ground Zero page about the assignment. Stephen will provide text for this, but please add a placeholder now.
+	--Why?
+-The Madison zoning map legend gets cut off in the non-mobile version.
+	--I asked Caroline to move the legend up.
+-Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
+	--I'd like to see this in action; so far I have not seen it on my mobile tests so I'm not sure what's happening.
+-use an "a" rather than an "i".
+	--the "i" appears to be convention as an "About" symbol
 -In the end, rather than de-highlighting the route to Ground Zero, highlight then entire route as one.
-
+	--why?
 
 BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
@@ -70,6 +71,14 @@ RESOLVED
 -Caption text not replaced on slideshow reopen until arrow clicked
 -Audio muted if paused and restarted
 -Audio does not reset to current site
+-Redesign the "click to proceed" so that the text is not so large and the button is has the same style as the rest of the application. Perhaps fill the entire div with red using white text, so that a click anywhere but the arrows proceeds them to the next site?
+-When adding the audio to the non-mobile version, add it to the far right of the menu options, rather than the far left, as this will keep the other menu items in their place.
+-Change "information" to "about"
+-Add assignment tab that will have an html version of the worksheet.
+-Add a final note as 3/3 to Ground Zero page about the assignment. Stephen will provide text for this, but please add a placeholder now.
+-Adjust slider UI so that: 
+	-the arrows are not just white (perhaps add a grey background to the asset), making them disappear when sliding off the image
+	-they don't overlap the arrows to change images (reposition one or the other, or offset both).
 
 
 PHOTOS TO RE-TAKE
