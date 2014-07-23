@@ -94,10 +94,13 @@ function callback(error, routes, PointsofInterest, alerts){
 
   $("#container").click(function(){
     //mobile play direction bubble closed on next click after it is in place and next step direction bubble opened
-    if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
+    if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90) && setting == "mobile"){
       $('#playBubble').fadeOut();
       triggerIconBubble();
     };
+  });
+
+  $("reveal-modal-bg").click(function(){
     $('.reveal-modal').foundation('reveal', 'close');
   });
 
@@ -153,9 +156,9 @@ function callback(error, routes, PointsofInterest, alerts){
 
   /***NARRATION AUDIO***/
 
-  function playAudio(isdesktop){  
+  function playAudio(isdesktop, site){ 
     $("audio").prop('autoplay', true);
-    $("audio").attr('src', PointsofInterest.features[siteID].properties.audio);
+    $("audio").attr('src', PointsofInterest.features[site].properties.audio);
 
     if (isdesktop){
       $("audio").prop('muted', false);
@@ -171,17 +174,17 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function readAloud(){
     $("#readAloud").click(function(){
-      updateScript(0);
-      var scripts = PointsofInterest.features[siteID].properties.Scripts;
+      updateScript(0, currentFeature);
+      var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
 
       var delay = 0;
       for (var i=0; i<scripts.length-1; i++){                      
         delay = delay + (scripts[i].length*68.2);
         timeouts[i] = window.setTimeout(function(){
-          forwardScript();
+          forwardScript(currentFeature);
         }, delay);
       }
-      playAudio(true);
+      playAudio(true, currentFeature);
     })
   };
 
@@ -190,40 +193,45 @@ function callback(error, routes, PointsofInterest, alerts){
   //add script and next/back buttons to textModal
   if (siteID===0){
     $('.script').html(PointsofInterest.features[0].properties.Scripts[0]);
-    $('.script').before( "<b><a href='#' class='previous' style='color:#C41E3A; padding-left:20px' >< previous</a></b>" );
-    $('.script').before( "<b><a href='#' class='next' style='color:#C41E3A; float:right; padding-right:20px' >next ></a></b>" );
+    addScriptButtons(0);
   };
 
-  $('.next').click(function(){
-    for (var i in timeouts){
-      window.clearTimeout(timeouts[i]);
-    };
-    forwardScript();
-  });
+  function addScriptButtons(site){
+    s = 0;
+    $('.script').before("<div class='redButtonContainer scriptButtonContainer'><div class='redButton scriptButtons' id='next'><a href='#'><div>next ></div></a></div><div class='redButton scriptButtons' id='previous'><a href='#'><div>< previous</div></a></div></div>");
 
-  $('.previous').click(function(){
-      s--;
-      s = s == -1 ? PointsofInterest.features[siteID].properties.Scripts.length-1 : s;
-      updateScript(s); 
-
+    $('#next').click(function(){
       for (var i in timeouts){
         window.clearTimeout(timeouts[i]);
       };
-  });
+      forwardScript(site);
+    });
 
-  function forwardScript(){
-    s++;
-    s = s == PointsofInterest.features[siteID].properties.Scripts.length ? 0 : s;
-    updateScript(s);
+    $('#previous').click(function(){
+        s--;
+        s = s == -1 ? PointsofInterest.features[site].properties.Scripts.length-1 : s;
+        updateScript(s, site); 
+
+        for (var i in timeouts){
+          window.clearTimeout(timeouts[i]);
+        };
+    });
   };
 
-  function updateScript(scr){
-    $('.script').html(PointsofInterest.features[siteID].properties.Scripts[scr]);
+  function forwardScript(site){
+    s++;
+    s = s == PointsofInterest.features[site].properties.Scripts.length ? 0 : s;
+    updateScript(s, site);
+  };
+
+  function updateScript(scr, site){
+    $('.script').html(PointsofInterest.features[site].properties.Scripts[scr]);
+    if (site == 0 && $('#next').length === 0){ addScriptButtons(0); };
   };
 
   function addScript(){
-    $('.next').remove();
-    $('.previous').remove();
+    $('#next').remove();
+    $('#previous').remove();
     $('.script').html(PointsofInterest.features[siteID].properties.Scripts[0])
   };
 
@@ -363,6 +371,7 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function highlightMarkers(feature) {
     currentFeature = feature.properties.id;
+    updateScript(0, currentFeature);
     addMarkers(map, currentFeature, "red"); //add red highlighted marker
   };
 
@@ -434,7 +443,8 @@ function callback(error, routes, PointsofInterest, alerts){
         //close the slideshow
         $("#slideshowModal").foundation('reveal', 'close');
         //open next textModal or play next audio
-        setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(playAudio, 1000);
+        setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(function(){
+          playAudio(true, siteID) }, 1000);
       });
     };
  
@@ -482,6 +492,8 @@ function callback(error, routes, PointsofInterest, alerts){
 
   $('#slideshowModal').on('open.fndtn.reveal', function (){
     $(".leaflet-buttons-control-img").hide(); //hide findme button
+    var imageSet = imageSets[currentFeature];
+    $("#slideshow_texts").html(imageSet[0].image_texts);
   });
 
   $('#slideshowModal').on('opened.fndtn.reveal', function (){
@@ -523,7 +535,7 @@ function callback(error, routes, PointsofInterest, alerts){
     }
   });
 
-  $(".reveal-modal").on("open.fndtn.reveal", function(){
+  $("#infoModal").on("open.fndtn.reveal", function(){
     if (setting == "desktop"){ resizeModal($(this)); };
   });
 

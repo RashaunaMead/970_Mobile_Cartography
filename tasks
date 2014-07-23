@@ -26,11 +26,11 @@ BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
 -View all locations doesn't recenter map on second click
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
--CHROME: First map view is often map paradox; fixed on reload
--Caption text not replaced on slideshow reopen until arrow clicked
+-CHROME: First map view is sometimes map paradox; fixed on reload
 
 BUGS FROM ROB
 -There was an issue on my phone with the tap interaction to scroll through the three pictures and the "proceed" button. Several times I was unable to proceed to a picture using either a tap or a swipe. This was not an issue on the non-mobile version. Perhaps leave the arrows on the mobile version as one work around, as minimally users will be able to click on these to advance the slideshow.
+-There were several instances where the zooming and recentering upon selecting a new site used a zoom level where the route was visible, but the two sites were offscreen (this was on mobile). Perhaps zoom out one level by default (or is this a function provided by Leaflet)?
 
 
 RESOLVED
@@ -66,8 +66,10 @@ RESOLVED
 	-give user feedback once all data and files are in cache
 -Put popup tooltip with the initial instructions on how to access photos on the first location, not the warning.
 -Revise the wording on the URL to Google Maps to say something like "I'm not starting from campus. Use Google Maps to map my route to the first site", perhaps containing this text and the "I'm ready to begin the tour" text in a button, rather than just using text.
--There were several instances where the zooming and recentering upon selecting a new site used a zoom level where the route was visible, but the two sites were offscreen (this was on mobile). Perhaps zoom out one level by default (or is this a function provided by Leaflet)?
 -CHROME: Second slideshow modal won't change slides
+-Caption text not replaced on slideshow reopen until arrow clicked
+-Audio muted if paused and restarted
+-Audio does not reset to current site
 
 
 PHOTOS TO RE-TAKE

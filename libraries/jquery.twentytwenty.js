@@ -30,6 +30,7 @@
       var calcOffset = function(dimensionPct) {
         var w = beforeImg.width();
         var h = beforeImg.height();
+        h = h > 200 && h <= $(".orbit-container").height() ? h : $(".orbit-container").height();
         return {
           w: w+"px",
           h: h+"px",
