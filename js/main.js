@@ -9,6 +9,7 @@ var modernTileset = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}
 var currentTiles = 'modern';
 var siteCoords = [];
 var mapTileLayer;
+var firstLocate = true;
 
 window.onload = initialize();
 
@@ -86,9 +87,8 @@ function callback(error, routes, PointsofInterest, alerts){
   /***USER PROMPTS***/
 
   $("#textModal").on('close.fndtn.reveal', function (){ 
-    //hide audio and set user prompt on first modal close if desktop
+    //set user prompt on first modal close if desktop
     if (setting == "desktop"){
-      hideAudio();
       triggerIconBubble();
     };
   });
@@ -169,6 +169,7 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function hideAudio(){
     $("audio").prop('muted', true);
+    $("audio")[0].pause();
     $("audio").prop('autoplay', false);
     $("audio").hide();
   };
@@ -275,12 +276,6 @@ function callback(error, routes, PointsofInterest, alerts){
     }
   };
 
-  function fixZoom(){
-    var z = map.getZoom();
-    z = z > 18 ? 18 : z; //don't go beyond max zoom!
-    map.setZoom(z);
-  };
-
   /***LOCATION MENU***/
 
   function updateLocationMenu(){
@@ -314,7 +309,6 @@ function callback(error, routes, PointsofInterest, alerts){
 
         var bounds = L.latLngBounds([coordLats[0], coordLons[0]], [coordLats[1], coordLons[1]]);
         map.fitBounds(bounds);
-        fixZoom();
       };
     };
 
@@ -328,7 +322,6 @@ function callback(error, routes, PointsofInterest, alerts){
           boundslist.push(POIlayers[lyr].getBounds());
         };
         map.fitBounds(L.latLngBounds(boundslist));
-        fixZoom();
       });
     };
   };
@@ -464,7 +457,8 @@ function callback(error, routes, PointsofInterest, alerts){
   }; //end openInfoScreen()
 
   function triggerTextModal(){
-    $('.audioText a').trigger('click')
+    hideAudio(); //cancel any audio playing from previous site
+    $('.audioText a').trigger('click');
   };
 
   function orbitHeight(){
@@ -582,6 +576,7 @@ function callback(error, routes, PointsofInterest, alerts){
       };
       $('#playBubble').css({display: "none"});
       $(".leaflet-buttons-control-img").hide();
+      $("body").css("overflow","hidden");
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
@@ -593,6 +588,7 @@ function callback(error, routes, PointsofInterest, alerts){
       var oheight = height-90;
       $('#playBubble').offset({top: oheight, left: 10});
       $(".leaflet-buttons-control-img").show();
+      $("body").css("overflow","auto");
     };
     orbitHeight();
   };
@@ -642,7 +638,8 @@ function loadmap(){
   });
   // tiles can change once we know our basemap 
   mapTileLayer = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>'
+    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18
   }).addTo(map);
       
   //addTileToggle();
@@ -660,7 +657,7 @@ function loadmap(){
 };
 
 function my_button_onClick() { //where is this accessed?
-  GetLocation(map);
+  getLocation(map);
 };
 
 function addTileToggle() { //called at the end of loadmap function
@@ -701,4 +698,46 @@ function resizeModal(modal){
   if (rmHeight > cHeight){
     modal.height(cHeight - (rmTop * 2));
   };
+};
+
+function getLocation(map){
+  map.locate({setView:false, watch:true, enableHighAccuracy: true} );
+
+  function onLocationFound(e){
+    var radius = e.accuracy / 2;
+
+    // removes marker and circle before adding a new one
+    if(firstLocate===false){
+      map.removeLayer(circle);
+      map.removeLayer(locationMarker);
+    };
+
+    //adds location and accuracy information to the map
+    if(e.accuracy<90){
+      circle = L.circle(e.latlng, radius).addTo(map);
+      locationMarker = L.marker(e.latlng).addTo(map).bindPopup("You are within " + Math.round(radius) + " meters of this point");
+      firstLocate = false;
+    };
+
+    //if accuracy is less than 60m then stop calling locate function
+    if(e.accuracy<40){
+      var count = 0;
+      console.log("accuracy is less than 30m" + count);
+      map.stopLocate();
+      count++;
+    };
+
+    var cZoom = map.getZoom();
+    map.setView(e.latlng, cZoom);
+    removeFoundMarker(circle, locationMarker);
+  };
+
+  map.on('locationfound', onLocationFound);
+};
+
+function removeFoundMarker(circle, marker){
+  setTimeout(function() {
+    map.removeLayer(circle);
+    map.removeLayer(marker);
+  }, 10000);
 };

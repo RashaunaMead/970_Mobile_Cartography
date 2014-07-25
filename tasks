@@ -1,37 +1,28 @@
 WISHLIST
 -Custom historical tiles served with TileStache?
 -Mobile device back button should close windows rather than activating browser back button
--Fit map bounds to show location when find me button is activated
--Add note to splash screen for desktop to reduce width for best viewing if low aspect ratio
 -Get rid of slideshow modal size and offset jump after open
 -Set up Tilestache on Geography server
 -Splash screen content
 -Help content
--Information content
+-Make Play Audio bubble go away on reorientation
+-Slideshow headings give site number
+-Mobile-sized photos have lower aspect ratio
+-Turn down volume of first mp3
+-Give slideshow modal same max width as 2020 container
+-Max width of 2em for proceed button text
+-Increase opacity of the route (hard to see outside), maybe just at the end
 
-REQUESTS FROM ROB AND STEPHEN
--Did we decide to delete the "Find me" feature? It seemed to be disabled on the version we viewed.
-	--This is working for me; I'm not sure why some devices would be different.
--On the non-mobile version, close the text when clicking "Read text aloud". Then when closed, keep the audio active in the interface. In other words, the map should have one or the other.
-	--Why?
--The Madison zoning map legend gets cut off in the non-mobile version.
-	--I asked Caroline to move the legend up.
--Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
-	--I'd like to see this in action; so far I have not seen it on my mobile tests so I'm not sure what's happening.
--use an "a" rather than an "i".
-	--the "i" appears to be convention as an "About" symbol
--In the end, rather than de-highlighting the route to Ground Zero, highlight then entire route as one.
-	--why?
 
 BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
--View all locations doesn't recenter map on second click
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
 -CHROME: First map view is sometimes map paradox; fixed on reload
-
-BUGS FROM ROB
--There was an issue on my phone with the tap interaction to scroll through the three pictures and the "proceed" button. Several times I was unable to proceed to a picture using either a tap or a swipe. This was not an issue on the non-mobile version. Perhaps leave the arrows on the mobile version as one work around, as minimally users will be able to click on these to advance the slideshow.
--There were several instances where the zooming and recentering upon selecting a new site used a zoom level where the route was visible, but the two sites were offscreen (this was on mobile). Perhaps zoom out one level by default (or is this a function provided by Leaflet)?
+-Leaflet fitBounds doesn't always work right--see description below
+-Slideshow arrows do not show up on Android Chrome
+-No swipe interaction
+-Audio stops and disappears on resize
+-Modal freezes if opened before previous modal closes
 
 
 RESOLVED
@@ -79,7 +70,18 @@ RESOLVED
 -Adjust slider UI so that: 
 	-the arrows are not just white (perhaps add a grey background to the asset), making them disappear when sliding off the image
 	-they don't overlap the arrows to change images (reposition one or the other, or offset both).
-
+-The Madison zoning map legend gets cut off in the non-mobile version.
+-View all locations doesn't recenter map on second click
+-Add note to splash screen for desktop to reduce width for best viewing if low aspect ratio
+-Information content
+-On the non-mobile version, close the text when clicking "Read text aloud". Then when closed, keep the audio active in the interface. In other words, the map should have one or the other.
+	--Audio stays active until next site; user can close text modal manually if desired
+-Body overflow hidden on desktop
+-Fit map bounds to show location when find me button is activated
+-There were several instances where the zooming and recentering upon selecting a new site used a zoom level where the route was visible, but the two sites were offscreen (this was on mobile). Perhaps zoom out one level by default (or is this a function provided by Leaflet)?
+-Several times I was unable to proceed to a picture using either a tap or a swipe.
+-Did we decide to delete the "Find me" feature? It seemed to be disabled on the version we viewed.
+-Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
 
 PHOTOS TO RE-TAKE
 Wil-Mar Center mural (crappy)
