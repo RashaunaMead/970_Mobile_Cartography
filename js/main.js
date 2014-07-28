@@ -11,6 +11,7 @@ var siteCoords = [];
 var mapTileLayer;
 var firstLocate = true;
 var iOS = false;
+var mobileOS = false;
 
 window.onload = initialize();
 
@@ -38,6 +39,10 @@ function initialize(){
     $(".has-dropdown a").mouseenter(function(){
       $(this).css("background-color", "#C41E3A");
     });
+  };
+
+  if (/iPhone|iPad|iPod|Android|BlackBerry/i.test(navigator.userAgent)){
+    mobileOS = true;
   };
 
   //use queue.js to parallelize asynchronous data loading for cpu efficiency
@@ -80,11 +85,13 @@ function callback(error, routes, PointsofInterest, alerts){
   updateLocationMenu(); //add first site to locations menu
 
   //UI changes after splash page link clicked
-  $("#splash a").click(function(){
+  $("#splash a div").click(function(){
     $("#container").css("visibility", "visible");
     $(".ontop").css("visibility", "visible");
     $("nav").css("visibility", "visible");
     $("#splash").hide(); //sets display property to none
+    $("body").css("overflow", "hidden");
+    setLayout();
 
     //user direction to click on play for mobile
     $('#playBubble').offset({top: 0, left: 10});
@@ -173,7 +180,6 @@ function callback(error, routes, PointsofInterest, alerts){
     $("audio").prop('autoplay', true);
     $("audio").attr('src', PointsofInterest.features[site].properties.audio);
     if (isdesktop){
-      $("audio").prop('muted', false);
       showAudio();
     };
     $("audio").get(0).play();
@@ -187,8 +193,7 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 
   function hideAudio(){
-    $("audio").prop('muted', true);
-    $("audio")[0].pause();
+    $("audio").get(0).pause();
     $("audio").prop('autoplay', false);
     $("audio").hide();
     if (iOS){
@@ -197,23 +202,50 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 
   function readAloud(){
+    var firstClick = true;
+    $("#readAloud span").html("&nbsp;&nbsp;Read Text Aloud");
+    $("#readAloud div").unbind("click");
     $("#readAloud div").click(function(){
-      updateScript(0, currentFeature);
-      var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
-
-      var delay = 0;
-      for (var t in timeouts){
-        clearTimeout(timeouts[t]);
+      if ($("audio").get(0).paused){
+        var firstClick = false;
       };
-      for (var i=0; i<scripts.length-1; i++){                      
-        delay = delay + (scripts[i].length*68.2);
-        timeouts[i] = window.setTimeout(function(){
-          forwardScript(currentFeature);
-        }, delay);
-      }
-      playAudio(true, currentFeature);
-    })
+      if (firstClick){
+        updateScript(0, currentFeature);
+        var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
+
+        var delay = 0;
+        for (var t in timeouts){
+          clearTimeout(timeouts[t]);
+        };
+        for (var i=0; i<scripts.length-1; i++){                      
+          delay = delay + (scripts[i].length*68.2);
+          timeouts[i] = window.setTimeout(function(){
+            forwardScript(currentFeature);
+          }, delay);
+        }
+        playAudio(true, currentFeature);
+      };
+      playPause(firstClick);
+      firstClick = false;
+    });
   };
+
+  function playPause(firstPlay){
+    if (!firstPlay && !$("audio").get(0).paused){
+      $("audio").get(0).pause();
+      clearTimeouts();
+    } else {
+      if (!firstPlay){ $("audio").get(0).play(); };
+    };
+  };
+
+  //match play audio button to audio state
+  $("audio").on("pause", function(){
+    $("#readAloud span").html("&nbsp;&nbsp;Play Reading");
+  });
+  $("audio").on("play", function(){
+    $("#readAloud span").html("&nbsp;&nbsp;Pause Reading");
+  });
 
   /***NARRATION TEXT***/
 
@@ -223,14 +255,18 @@ function callback(error, routes, PointsofInterest, alerts){
     addScriptButtons(0);
   };
 
+  function clearTimeouts(){
+    for (var i in timeouts){
+      window.clearTimeout(timeouts[i]);
+    };
+  };
+
   function addScriptButtons(site){
     s = 0;
     $('.script').before("<div class='redButtonContainer scriptButtonContainer'><div class='redButton scriptButtons' id='next'><a href='#'><div>next ></div></a></div><div class='redButton scriptButtons' id='previous'><a href='#'><div>< previous</div></a></div></div>");
 
     $('#next').click(function(){
-      for (var i in timeouts){
-        window.clearTimeout(timeouts[i]);
-      };
+      clearTimeouts();
       forwardScript(site);
     });
 
@@ -465,6 +501,7 @@ function callback(error, routes, PointsofInterest, alerts){
         updateRoute();
         highlightRoute();
         addScript();
+        readAloud();
         
         //close the slideshow
         $("#slideshowModal").foundation('reveal', 'close');
@@ -499,8 +536,6 @@ function callback(error, routes, PointsofInterest, alerts){
     //sets slideshow container dimensions on initiation or window resize
     if (setting == "desktop"){
       if (aspectRatio <= 1.5) {
-        var imgHt = $(".twentytwenty-container").height();
-        console.log(imgHt);
         $(".orbit-container").height("38vw");
         $('#slideshowModal').data("css-top", 80); //sets correct animation end on open
         $('#slideshowModal').css("top", "80px"); //sets correct offset on window resize
@@ -516,7 +551,6 @@ function callback(error, routes, PointsofInterest, alerts){
       imageSize = "large";
     } else {
       $(".orbit-container").height("44vw");
-      $('.reveal-modal').css("top", ""); //no top offset on mobile setting
       imageSize = "small";
     };
 
@@ -582,9 +616,11 @@ function callback(error, routes, PointsofInterest, alerts){
     $(".leaflet-buttons-control-img").hide(); //hide findme button
   });
 
-  $(".reveal-modal").on('closed.fndtn.reveal', function(){
-    if (setting == "mobile"){
-      $(".leaflet-buttons-control-img").show(); //show findme button
+  $(".reveal-modal").on('close.fndtn.reveal', function(){
+    if (setting == "mobile" || mobileOS == true){
+      setTimeout(function(){
+        $(".leaflet-buttons-control-img").show(); //show findme button
+      }, 500);
     };
   });
 
@@ -610,14 +646,26 @@ function callback(error, routes, PointsofInterest, alerts){
       $(".reveal-modal").removeClass("full");
       $(".reveal-modal").addClass("large");
       $("#audioText").show();
-      hideAudio();
+      //hideAudio();
       $('.leaflet-control-zoom').show();
       if ($('#readAloud').length === 0){
-        $("#textModal").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
+        $("#textModal").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span></span></div></a></div>');
         readAloud();
       };
+
+      //prevent audio element overflow
+      if (winDims[1]-$(".left").width() > 140){
+        $("audio").css("width", winDims[1] - $(".left").width()-10);
+      } else {
+        $("audio").css("width",0);
+      };
+
       $('#playBubble').css({display: "none"});
-      $(".leaflet-buttons-control-img").hide();
+      if (!mobileOS){
+        $(".leaflet-buttons-control-img").hide();
+      } else {
+        $(".leaflet-buttons-control-img").show();
+      };
       $("body").css("overflow","hidden");
 
     } else { 
@@ -631,6 +679,7 @@ function callback(error, routes, PointsofInterest, alerts){
       $('#playBubble span').html("Play Audio Here");
       var oheight = height-90;
       $('#playBubble').offset({top: oheight, left: 10});
+      $("audio").css("width","");
 
       //show find me button only if no modal is open
       var showFindMe = true;
