@@ -256,7 +256,7 @@ p{
   display: block; }
 
 /*--------------- reveal for help, info and text overlays ----------------*/
-@media only screen and (min-width: 40em) and (max-width: 600em) {
+@media only screen and (min-width: 40em) and (max-width: 640em) {
   .title-area {
     float: right;
     margin-right: 20px;

@@ -67,6 +67,7 @@ function callback(error, routes, PointsofInterest, alerts){
   var aspectRatio = winDims[1]/winDims[0];
   var setting = winDims[1] > 640 ? "desktop" : "mobile";
   var adjustedBubble = false;
+  var firstIcon;
   var sid = 4;
   var s=0;
 
@@ -102,10 +103,6 @@ function callback(error, routes, PointsofInterest, alerts){
     };
   });
 
-  $(".reveal-modal").on("open.fndtn.reveal", function(){
-    //console.log($(this));
-  })
-
   $("#container").click(function(){
     if (setting == "mobile"){ removePlayBubble() };
   });
@@ -125,7 +122,14 @@ function callback(error, routes, PointsofInterest, alerts){
       //if statement ensures all of this only happens once
       $('#iconClickBubble span').html("When ready, click icon<br/>for site information");
       
-      var firstIcon = $(".leaflet-marker-pane").find("img:last");
+      //find the right icon
+      $(".leaflet-marker-icon").each(function(){
+        if ($(this).attr("src") == "images/labor40_red.png"){ firstIcon = $(this); }
+      });
+      if (!firstIcon){
+        firstIcon = $(".leaflet-marker-pane").find("img:last");
+      };
+
       var iconOffset = firstIcon.offset();
       var bubbleWidth = $("#iconClickBubble").width();
       var bubbleHeight = $("#iconClickBubble").height();
@@ -147,7 +151,7 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function adjustIconBubble(){
     if ($('#iconClickBubble span').html().length > 1){
-      var iconOffset = $(".leaflet-marker-icon").offset();
+      var iconOffset = firstIcon.offset();
       var bubbleWidth = $("#iconClickBubble").width();
       var bubbleHeight = $("#iconClickBubble").height();
       var topOffset = iconOffset.top-bubbleHeight-32;
@@ -170,12 +174,16 @@ function callback(error, routes, PointsofInterest, alerts){
     $("audio").attr('src', PointsofInterest.features[site].properties.audio);
     if (isdesktop){
       $("audio").prop('muted', false);
-      $("audio").show();
-      if (iOS){
-        $("audio").css({"width":"60px", "height":"10px", "margin-right": "20px", "margin-top": "10px"})
-      };
+      showAudio();
     };
     $("audio").get(0).play();
+  };
+
+  function showAudio(){
+    $("audio").show();
+    if (iOS){
+      $("audio").css({"width":"60px", "height":"10px", "margin-right": "20px", "margin-top": "10px"})
+    };
   };
 
   function hideAudio(){
@@ -363,7 +371,7 @@ function callback(error, routes, PointsofInterest, alerts){
         layer.on("click", function() {
           highlightMarkers(feature);
           openInfoScreen(feature, imageSet);
-        });  
+        }); 
       }
     }); 
     
@@ -485,38 +493,30 @@ function callback(error, routes, PointsofInterest, alerts){
     $("#textModal").foundation("reveal","open");
   };
 
-  //HOW TO PREVENT TWO CLICKS ON MENU FROM CAUSING STICKING???
-  // $(".reveal-modal").on('open.fndtn.reveal', function(){
-  //   console.log($(this));
-
-  //   $(".top-bar").eachon("click", function(){
-  //     $(this).foundation("reveal","close");
-  //   })
-  // });
-
-  // $("#textModal").on('closed.fndtn.reveal', function(){
-  //   $(".audioText a").unbind("click");
-  // });
-
   function orbitHeight(){
     var imageSize;
 
     //sets slideshow container dimensions on initiation or window resize
     if (setting == "desktop"){
       if (aspectRatio <= 1.5) {
+        var imgHt = $(".twentytwenty-container").height();
+        console.log(imgHt);
         $(".orbit-container").height("38vw");
-        $('#slideshowModal').data("css-top", 80);
+        $('#slideshowModal').data("css-top", 80); //sets correct animation end on open
+        $('#slideshowModal').css("top", "80px"); //sets correct offset on window resize
       } else if (aspectRatio > 1.5 && aspectRatio <= 1.85){
         $(".orbit-container").height("32vw");
         $('#slideshowModal').data("css-top", 70);
+        $('#slideshowModal').css("top", "70px");
       } else if (aspectRatio > 1.85){
         $(".orbit-container").height("26vw");
         $('#slideshowModal').data("css-top", 60);
+        $('#slideshowModal').css("top", "60px");
       };
       imageSize = "large";
     } else {
       $(".orbit-container").height("44vw");
-      $('#slideshowModal').offset({top: 0})
+      $('.reveal-modal').css("top", ""); //no top offset on mobile setting
       imageSize = "small";
     };
 
@@ -552,10 +552,6 @@ function callback(error, routes, PointsofInterest, alerts){
   });
 
   $('#slideshowModal').on('close.fndtn.reveal', function (){
-    if (setting == "mobile"){
-      $(".leaflet-buttons-control-img").show(); //show findme button
-    };
-
     //when last slideshow closes, remove highlighted route
     sid += siteID===4 ? 1 : 0;
     if (sid===6){ highlightLayer ? map.removeLayer(highlightLayer) : null };
@@ -582,6 +578,16 @@ function callback(error, routes, PointsofInterest, alerts){
     if (setting == "desktop"){ resizeModal($(this)); };
   });
 
+  $(".reveal-modal").on('open.fndtn.reveal', function(){
+    $(".leaflet-buttons-control-img").hide(); //hide findme button
+  });
+
+  $(".reveal-modal").on('closed.fndtn.reveal', function(){
+    if (setting == "mobile"){
+      $(".leaflet-buttons-control-img").show(); //show findme button
+    };
+  });
+
   /***RESPONSIVE LAYOUT***/
 
   function getWinDimensions(){
@@ -601,7 +607,10 @@ function callback(error, routes, PointsofInterest, alerts){
     if(setting == "desktop"){ 
       //@large screen
       map.attributionControl.setPosition('bottomright');
+      $(".reveal-modal").removeClass("full");
+      $(".reveal-modal").addClass("large");
       $("#audioText").show();
+      hideAudio();
       $('.leaflet-control-zoom').show();
       if ($('#readAloud').length === 0){
         $("#textModal").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span>&nbsp;&nbsp;Read Text Aloud</span></div></a></div>');
@@ -610,17 +619,33 @@ function callback(error, routes, PointsofInterest, alerts){
       $('#playBubble').css({display: "none"});
       $(".leaflet-buttons-control-img").hide();
       $("body").css("overflow","hidden");
+
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
+      $(".reveal-modal").removeClass("large");
+      $(".reveal-modal").addClass("full");
       $("#audioText").hide();
+      showAudio();
       $('.leaflet-control-zoom').hide();
       $('#playBubble span').html("Play Audio Here");
       var oheight = height-90;
       $('#playBubble').offset({top: oheight, left: 10});
-      $(".leaflet-buttons-control-img").show();
+
+      //show find me button only if no modal is open
+      var showFindMe = true;
+      $(".reveal-modal").each(function(){
+        if ($(this).hasClass("open")){
+          showFindMe = false;
+        };
+      });
+      if (showFindMe){
+        $(".leaflet-buttons-control-img").show();
+      };
+
       $("body").css("overflow","auto");
     };
+
     orbitHeight();
   };
 }; //end of data callback
@@ -674,22 +699,19 @@ function loadmap(){
     attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
   }).addTo(map);
-      
-  //addTileToggle();
 
   var findMeOptions = {
       'iconUrl': './images/findme.png',  // string
-      'onClick': my_button_onClick,  // callback function
-      'hideText': true,  // bool
+      'onClick': findme_button_onClick,  // callback function
       'maxWidth': 30,  // number
       'doToggle': false,  // bool
       'toggleStatus': false  // bool
   };  
 
-  var myButton = new L.Control.Button(findMeOptions).addTo(map);
+  var findMeButton = new L.Control.Button(findMeOptions).addTo(map);
 };
 
-function my_button_onClick() { //where is this accessed?
+function findme_button_onClick() { //where is this accessed?
   getLocation(map);
 };
 
