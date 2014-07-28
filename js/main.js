@@ -206,9 +206,6 @@ function callback(error, routes, PointsofInterest, alerts){
     $("#readAloud span").html("&nbsp;&nbsp;Read Text Aloud");
     $("#readAloud div").unbind("click");
     $("#readAloud div").click(function(){
-      if ($("audio").get(0).paused){
-        var firstClick = false;
-      };
       if (firstClick){
         updateScript(0, currentFeature);
         var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
@@ -654,8 +651,8 @@ function callback(error, routes, PointsofInterest, alerts){
       };
 
       //prevent audio element overflow
-      if (winDims[1]-$(".left").width() > 140){
-        $("audio").css("width", winDims[1] - $(".left").width()-10);
+      if (winDims[1]-$(".left").width() > 120 && !iOS){
+        $("audio").css("width", winDims[1] - $(".left").width()-20);
       } else {
         $("audio").css("width",0);
       };

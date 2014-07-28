@@ -3,9 +3,7 @@ libraries/leaflet.css
 libraries/foundation/css/foundation.css
 libraries/twentytwenty.css
 libraries/foundation/css/normalize.css
-css/slideshow.css
 css/style.css
-js/main.js
 libraries/foundation/js/vendor/jquery.js
 libraries/foundation/js/foundation.min.js
 libraries/foundation/js/foundation/foundation.joyride.js
@@ -20,9 +18,8 @@ libraries/jquery.twentytwenty.js
 libraries/queue.js
 libraries/d3.v3.js
 libraries/leaflet.0.7.3.js
-js/findMeButton.js
-js/getLocation.js
 js/main.js
+js/findMeButton.js
 data/routes.geojson
 data/PointsofInterest.geojson
 data/alerts.geojson
