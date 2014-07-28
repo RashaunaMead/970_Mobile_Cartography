@@ -198,6 +198,8 @@
           $.ajax(ajax_settings);
         }
       }
+      /*****CUSTOM FIX FOR STICKY MODALS******/
+      this.locked = false;
     },
 
     close : function (modal) {

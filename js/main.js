@@ -10,6 +10,7 @@ var currentTiles = 'modern';
 var siteCoords = [];
 var mapTileLayer;
 var firstLocate = true;
+var iOS = false;
 
 window.onload = initialize();
 
@@ -23,12 +24,21 @@ function initialize(){
           navigation_arrows: true,
           circular: true,
           timer: false,
-          swipe: false,
+          swipe: false, //twentytwenty slider conflicts with swipe
           next_class: 'orbit-next',
           prev_class: 'orbit-prev',
           timer_show_progress_bar: false
       }
   });
+
+  //hacky fix for iOS automatic dropdown hover state on load
+  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+    iOS = true;
+    $(".has-dropdown a").css("background-color", "#C41E3A");
+    $(".has-dropdown a").mouseenter(function(){
+      $(this).css("background-color", "#C41E3A");
+    });
+  };
 
   //use queue.js to parallelize asynchronous data loading for cpu efficiency
   queue()
@@ -46,7 +56,7 @@ function callback(error, routes, PointsofInterest, alerts){
   var routeStyle = {
     "color": "#CE3234",
     "weight": 5,
-    "opacity": 0.4
+    "opacity": 0.6
   };
   var highlightStyle = {
       "color": "#CE3234",
@@ -56,7 +66,6 @@ function callback(error, routes, PointsofInterest, alerts){
   var winDims = getWinDimensions();
   var aspectRatio = winDims[1]/winDims[0];
   var setting = winDims[1] > 640 ? "desktop" : "mobile";
-  var zoomPOI = setting == "desktop" ? 18 : 19;
   var adjustedBubble = false;
   var sid = 4;
   var s=0;
@@ -79,7 +88,7 @@ function callback(error, routes, PointsofInterest, alerts){
     //user direction to click on play for mobile
     $('#playBubble').offset({top: 0, left: 10});
     $("#playBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
-    setting == "desktop" ? $('.audioText a').trigger('click') : null;
+    if(setting == "desktop"){ triggerTextModal() };
   });
 
   $(window).on("resize", setLayout); //respond to changes in window size
@@ -93,24 +102,23 @@ function callback(error, routes, PointsofInterest, alerts){
     };
   });
 
+  $(".reveal-modal").on("open.fndtn.reveal", function(){
+    //console.log($(this));
+  })
+
   $("#container").click(function(){
+    if (setting == "mobile"){ removePlayBubble() };
+  });
+
+  $(".leaflet-clickable").click(removePlayBubble);
+
+  function removePlayBubble(){
     //mobile play direction bubble closed on next click after it is in place and next step direction bubble opened
-    if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90) && setting == "mobile"){
-      $('#playBubble').fadeOut();
-      triggerIconBubble();
-    };
-  });
-
-  $("reveal-modal-bg").click(function(){
-    $('.reveal-modal').foundation('reveal', 'close');
-  });
-
-  $(".leaflet-clickable").click(function(){
     if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
       $('#playBubble').fadeOut();
       $('#iconClickBubble').fadeOut();
     };
-  });
+  };
 
   function triggerIconBubble(){
     if ($('#iconClickBubble span').html().length < 1){
@@ -160,11 +168,14 @@ function callback(error, routes, PointsofInterest, alerts){
   function playAudio(isdesktop, site){ 
     $("audio").prop('autoplay', true);
     $("audio").attr('src', PointsofInterest.features[site].properties.audio);
-
     if (isdesktop){
       $("audio").prop('muted', false);
       $("audio").show();
-    } 
+      if (iOS){
+        $("audio").css({"width":"60px", "height":"10px", "margin-right": "20px", "margin-top": "10px"})
+      };
+    };
+    $("audio").get(0).play();
   };
 
   function hideAudio(){
@@ -172,14 +183,20 @@ function callback(error, routes, PointsofInterest, alerts){
     $("audio")[0].pause();
     $("audio").prop('autoplay', false);
     $("audio").hide();
+    if (iOS){
+      $("audio").css({"width":0, "height":0, "margin-right": 0})
+    };
   };
 
   function readAloud(){
-    $("#readAloud").click(function(){
+    $("#readAloud div").click(function(){
       updateScript(0, currentFeature);
       var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
 
       var delay = 0;
+      for (var t in timeouts){
+        clearTimeout(timeouts[t]);
+      };
       for (var i=0; i<scripts.length-1; i++){                      
         delay = delay + (scripts[i].length*68.2);
         timeouts[i] = window.setTimeout(function(){
@@ -276,13 +293,29 @@ function callback(error, routes, PointsofInterest, alerts){
     }
   };
 
+  function moveMap(){
+    if (siteCoords.length > 1){
+      var i = siteCoords.length-1;
+      var coordLats = [siteCoords[i-1][0], siteCoords[i][0]], 
+      coordLons = [siteCoords[i-1][1], siteCoords[i][1]];
+    } else {
+      var coordLats = [43.0749355058668, siteCoords[0][0]], 
+      coordLons = [-89.39899991725407, siteCoords[0][1]];
+    };
+
+    coordLats.sort(function(a, b){return a-b});
+    coordLons.sort(function(a, b){return a-b});
+
+    var bounds = L.latLngBounds([coordLats[0], coordLons[0]], [coordLats[1], coordLons[1]]);
+    map.fitBounds(bounds);
+  };
+
   /***LOCATION MENU***/
 
   function updateLocationMenu(){
     for (var i in PointsofInterest.features){
       var poi = PointsofInterest.features[i];
       if (siteID===poi.properties.id){
-        console.log(poi);
         $("#locationMenu").append(
           '<li class='+poi.properties.classname+
           '><a href="#"><img src="'+poi.properties.icon.iconUrl+
@@ -291,24 +324,11 @@ function callback(error, routes, PointsofInterest, alerts){
         );
         var coords = [poi.geometry.coordinates[1],poi.geometry.coordinates[0]];
         $("#locationMenu li."+poi.properties.classname).click(function(){
-          map.setView(coords,zoomPOI);
+          map.setView(coords,18);
         });
 
         siteCoords.push(coords);
-        if (siteCoords.length > 1){
-          var i = siteCoords.length-1;
-          var coordLats = [siteCoords[i-1][0], siteCoords[i][0]], 
-          coordLons = [siteCoords[i-1][1], siteCoords[i][1]];
-        } else {
-          var coordLats = [43.0749355058668, siteCoords[0][0]], 
-          coordLons = [-89.39899991725407, siteCoords[0][1]];
-        };
-
-        coordLats.sort(function(a, b){return a-b});
-        coordLons.sort(function(a, b){return a-b});
-
-        var bounds = L.latLngBounds([coordLats[0], coordLons[0]], [coordLats[1], coordLons[1]]);
-        map.fitBounds(bounds);
+        moveMap();
       };
     };
 
@@ -372,7 +392,10 @@ function callback(error, routes, PointsofInterest, alerts){
   /***SLIDESHOW***/
 
   function openInfoScreen(feature, imageSet){
-    $("#show_title").html(feature.properties.title);
+    $("#show_title").html(feature.properties.title+
+      " - Site "+
+      (feature.properties.id+1)+
+      " of 5");
     
     // set description texts for the first slide
     if ($("#slideshow_texts").html().length < 1){
@@ -419,8 +442,9 @@ function callback(error, routes, PointsofInterest, alerts){
       li.setAttribute('data-orbit-slide','li_3');
       
       var div = document.createElement('div');
-      div.setAttribute('class', 'ready_next');
-      div.innerHTML = "<span class='ready_next_text'>I am ready to proceed to the next site</span>";
+      div.setAttribute('class', 'redButton');
+      div.setAttribute('id', 'ready_next')
+      div.innerHTML = "<a href='#'><div><span>Proceed to Next Site</span></div></a>";
       li.appendChild(div);
       showImagesList.appendChild(li); 
       
@@ -438,7 +462,7 @@ function callback(error, routes, PointsofInterest, alerts){
         $("#slideshowModal").foundation('reveal', 'close');
         //open next textModal or play next audio
         setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(function(){
-          playAudio(true, siteID) }, 1000);
+          playAudio(false, siteID) }, 1000);
       });
     } else {
       //final note for the last site
@@ -458,8 +482,21 @@ function callback(error, routes, PointsofInterest, alerts){
 
   function triggerTextModal(){
     hideAudio(); //cancel any audio playing from previous site
-    $('.audioText a').trigger('click');
+    $("#textModal").foundation("reveal","open");
   };
+
+  //HOW TO PREVENT TWO CLICKS ON MENU FROM CAUSING STICKING???
+  // $(".reveal-modal").on('open.fndtn.reveal', function(){
+  //   console.log($(this));
+
+  //   $(".top-bar").eachon("click", function(){
+  //     $(this).foundation("reveal","close");
+  //   })
+  // });
+
+  // $("#textModal").on('closed.fndtn.reveal', function(){
+  //   $(".audioText a").unbind("click");
+  // });
 
   function orbitHeight(){
     var imageSize;
@@ -467,15 +504,14 @@ function callback(error, routes, PointsofInterest, alerts){
     //sets slideshow container dimensions on initiation or window resize
     if (setting == "desktop"){
       if (aspectRatio <= 1.5) {
-
         $(".orbit-container").height("38vw");
-        $('#slideshowModal').offset({top: 80})
+        $('#slideshowModal').data("css-top", 80);
       } else if (aspectRatio > 1.5 && aspectRatio <= 1.85){
         $(".orbit-container").height("32vw");
-        $('#slideshowModal').offset({top: 70})
+        $('#slideshowModal').data("css-top", 70);
       } else if (aspectRatio > 1.85){
         $(".orbit-container").height("26vw");
-        $('#slideshowModal').offset({top: 60})
+        $('#slideshowModal').data("css-top", 60);
       };
       imageSize = "large";
     } else {
@@ -557,7 +593,6 @@ function callback(error, routes, PointsofInterest, alerts){
     var cHeight = winDims[0], winWidth = winDims[1];
     setting = winWidth > 640 ? "desktop" : "mobile";
     aspectRatio = winWidth/cHeight;
-    zoomPOI = setting == "desktop" ? 18 : 19;
     switchElements(winWidth, cHeight);
     adjustIconBubble();
   };
@@ -566,8 +601,6 @@ function callback(error, routes, PointsofInterest, alerts){
     if(setting == "desktop"){ 
       //@large screen
       map.attributionControl.setPosition('bottomright');
-      $("audio").prop('muted', true);
-      $("audio").hide();
       $("#audioText").show();
       $('.leaflet-control-zoom').show();
       if ($('#readAloud').length === 0){
@@ -580,8 +613,6 @@ function callback(error, routes, PointsofInterest, alerts){
     } else { 
       // @small screen
       map.attributionControl.setPosition('topright');
-      $("audio").prop('muted', false);
-      $("audio").show();
       $("#audioText").hide();
       $('.leaflet-control-zoom').hide();
       $('#playBubble span').html("Play Audio Here");
@@ -626,7 +657,7 @@ function cacheerror(){
 
 function loadmap(){
   map = L.map('map', { 
-    zoomControl: true,
+    zoomControl: false,
     maxZoom: 18,
     minZoom: 14,
     maxBounds: [
@@ -636,6 +667,8 @@ function loadmap(){
     center: [43.076364, -89.384336],
     zoom: 14
   });
+  L.control.zoom({position: "topleft"}).addTo(map); //in case we want to switch its position
+
   // tiles can change once we know our basemap 
   mapTileLayer = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
@@ -658,32 +691,6 @@ function loadmap(){
 
 function my_button_onClick() { //where is this accessed?
   getLocation(map);
-};
-
-function addTileToggle() { //called at the end of loadmap function
-  //could not get the default layer control to work. Substituted my own using the toggleTiles function. 
-  //L.control.layers(baseMaps, null, {position: 'bottomleft', collapsed: false}).addTo(map);
-	document.getElementById("tileToggle").addEventListener("click", toggleTiles);	
-};
-
-function toggleTiles(){
-	if (currentTiles == 'modern'){
-		console.log("switch to historic basemap"); 
-		//this just adds the historic basemap on top of the existing tiles
-		historicTileset.addTo(map);
-		//change the button text
-		document.getElementById("tileToggle").innerHTML = "<b>Hide Historic Basemap</b>"; 
-		//reset variable 
-		currentTiles = 'historic';
-	} else if (currentTiles == 'historic') {
-		console.log("switch to modern basemap"); 
-		//this removes the historic basemap tile layer 
-		map.removeLayer (historicTileset);
-		//change the button text
-		document.getElementById("tileToggle").innerHTML = "<b>Show Historic Basemap</b>"; 
-		//reset variable 
-		currentTiles = 'modern';
-	};
 };
 
 function imgError(image, alturl){
@@ -722,7 +729,6 @@ function getLocation(map){
     //if accuracy is less than 60m then stop calling locate function
     if(e.accuracy<40){
       var count = 0;
-      console.log("accuracy is less than 30m" + count);
       map.stopLocate();
       count++;
     };

@@ -56,7 +56,6 @@
       }
 
       $(window).on("resize.twentytwenty", function(e) {
-        console.log("resize");
         adjustSlider(sliderPct);
       });
 

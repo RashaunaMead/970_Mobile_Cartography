@@ -1,28 +1,29 @@
 WISHLIST
--Custom historical tiles served with TileStache?
 -Mobile device back button should close windows rather than activating browser back button
 -Get rid of slideshow modal size and offset jump after open
 -Set up Tilestache on Geography server
 -Splash screen content
 -Help content
--Make Play Audio bubble go away on reorientation
--Slideshow headings give site number
 -Mobile-sized photos have lower aspect ratio
 -Turn down volume of first mp3
 -Give slideshow modal same max width as 2020 container
--Max width of 2em for proceed button text
--Increase opacity of the route (hard to see outside), maybe just at the end
-
+-Better audio player skin for iOS Safari?
 
 BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
 -CHROME: First map view is sometimes map paradox; fixed on reload
--Leaflet fitBounds doesn't always work right--see description below
--Slideshow arrows do not show up on Android Chrome
--No swipe interaction
--Audio stops and disappears on resize
--Modal freezes if opened before previous modal closes
+-Modal freezes if opened before previous modal closes or same topbar button clicked twice
+-Modal retains top offset if orientation changes
+
+iOS SAFARI BUGS
+-No box shadow on "Ready to Proceed" button
+-Sometimes twentytwenty slider starts all the way to the left
+-Map icons are hard to activate with tap (increase transparent edge width?)
+
+GENERAL MOBILE BUGS (iOS and Android)
+-Arrows remain in highlighted state after tap until elsewhere is tapped (probably due to hover state)
+-No FindMe button if width above desktop breakpoint (change to test something other than screen dimensions?)
 
 
 RESOLVED
@@ -82,6 +83,19 @@ RESOLVED
 -Several times I was unable to proceed to a picture using either a tap or a swipe.
 -Did we decide to delete the "Find me" feature? It seemed to be disabled on the version we viewed.
 -Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
+-Leaflet fitBounds doesn't always work right--see description below
+-No swipe interaction on slideshows
+	--intentional--avoids conflict with twentytwenty
+-Slideshow arrows do not show up on Android Chrome
+-Audio does not begin play when "Read Aloud" button pressed in iOS Safari
+-Add note not to use Safari <6 and IE<10
+-Icon bar is double-height on vertical orientation (probably due to audio element showing)
+-Audio element always shows
+-Slideshow headings give site number
+-Increase opacity of the route (hard to see outside)
+-Max width of 2em for proceed button text
+-Audio stops and disappears on resize
+-Some text overflows Locations menu (desktop-style menu tabs)
 
 PHOTOS TO RE-TAKE
 Wil-Mar Center mural (crappy)

@@ -207,27 +207,14 @@ p{
   text-align: left;
 }
 
-.ready_next {
-  text-align: center;
-  background-color: #C41E3A;
-  border-radius: 25px;
-  -webkit-border-radius: 25px;
-  -moz-border-radius: 25px;
-  box-shadow: #000 0px 0px 0.5vw;
-  -webkit-box-shadow: #000 0px 0px 0.5vw;
-  -moz-box-shadow: #000 0px 0px 0.5vw;
-  margin: 0 45px;
-  margin-top: 15%;
+#ready_next {
+  margin-top: 10%;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
-.ready_next:hover {
-  cursor: pointer;
-}
-
-.ready_next_text {
-  padding-top: 50%;
-  color: #FFF;
-  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+#ready_next span {
+  font-size: 1.5em;
 }
 
 .close-reveal-modal {
@@ -264,15 +251,15 @@ p{
   text-shadow: 1px 1px 1px #000;
 }
 
+.touch .orbit-container .orbit-next,
+.touch .orbit-container .orbit-prev {
+  display: block; }
+
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40em) and (max-width: 600em) {
   .title-area {
     float: right;
     margin-right: 20px;
-  }
-
-  .ready_next {
-    font-size: 4vw;
   }
 
   #container {
@@ -389,7 +376,8 @@ p{
 }
 
 .top-bar-section .dropdown a /*li:not(.has-form) a:not(.button)*/ {
-  background: none repeat scroll 0 0 #fff; 
+  background: none repeat scroll 0 0 #fff;
+  padding-right: 34px !important;
 }
 
 .top-bar-section li:not(.has-form) a:hover:not(.button) {
@@ -409,10 +397,6 @@ p{
 
 
 @media only screen and (min-width: 0em) and (max-width: 40em) {
-  .ready_next {
-    font-size: 6vw;
-  }
-
   #map{
     z-index: 800;
     height: 100%;

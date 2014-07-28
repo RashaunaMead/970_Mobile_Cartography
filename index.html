@@ -3,7 +3,7 @@
   <head>
     <title>MobileMap</title>
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
      
     <!--library stylesheets-->
@@ -24,7 +24,7 @@
       
       <p>Welcome to our page! This is a project about economic globalization.</p>
 
-      <p>On wide screens, some photos may appear cropped at the bottom. In this situation, reduce your browser's width for better viewing.</p>
+      <p>On wide screens, some photos may appear cropped at the bottom. In this situation, reduce your browser's width for better viewing. This website was designed for modern mobile and desktop browsers; you may encounter significant problems on older browsers that do not fully support HTML5 (e.g. IE&lt;10, Safari&lt;6).</p>
 
       <p>The second button below will take you to the map to begin your journey, showing the route from the UW campus to the first site. If you are not starting from campus, you can click the first button to get Google Maps directions from your current location to the first site.</p>
       
@@ -66,11 +66,11 @@
         <b class="notch"></b>
       </div>
 
-      <nav class="top-bar" data-topbar>
+      <nav class="top-bar" data-topbar data-options="is_hover: false">
         <ul class="title-area">  
           <li class="name">
-            <audio controls> 
-              <source src="audio/intro_site1.mp3" type="audio/mp3">Your browser does not support the audio element.
+            <audio controls src="audio/intro_site1.mp3" type="audio/mp3">
+              Your browser does not support the audio element.
             </audio>
           </li>
       
@@ -82,9 +82,9 @@
         <section class="top-bar-section">
           <!--left nav section -->
           <ul class="left">
-            <li class="has-dropdown ">
+            <li class="has-dropdown">
               <a href="#" data-options="align:left">  
-                <img class="locations"src="images/locations.png" width="44" height="38" alt="Locations"/>
+                <img class="locations"src="images/locations.png" alt="Locations"/>
                 Locations
               </a>
               <ul class="dropdown" id="locationMenu"></ul>
