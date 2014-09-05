@@ -15,6 +15,7 @@ body {
   padding: 0;
   font: 100% Helvetica, sans-serif;
   background-size: 100%;
+  position: fixed;
   overflow-x: hidden;
   overflow: hidden;
 }

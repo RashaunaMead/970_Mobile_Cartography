@@ -91,6 +91,7 @@ function callback(error, routes, PointsofInterest, alerts){
     $("nav").css("visibility", "visible");
     $("#splash, #splashContainer").hide(); //sets display property to none
     $("body").css("overflow", "hidden");
+    $("body").css("position", "relative");
     setLayout();
 
     //user direction to click on play for mobile
