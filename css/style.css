@@ -14,6 +14,9 @@ body {
   margin: 0;
   padding: 0;
   font: 100% Helvetica, sans-serif;
+  background-size: 100%;
+  overflow-x: hidden;
+  overflow: hidden;
 }
 
 nav {
@@ -106,8 +109,15 @@ audio {
 
 /*--------------- Splash Page ----------------*/
 
+#splashContainer {
+  width: 100%;
+  overflow-y: auto;
+}
+
 #splash{   
-    margin:25px 7.5% 25px 7.5%;
+    margin: 25px 6.5% 25px 6.5%;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);
 }
 
 h1{
@@ -257,13 +267,17 @@ p{
 
 /*--------------- reveal for help, info and text overlays ----------------*/
 @media only screen and (min-width: 40.06em) and (max-width: 600em) {
+  body {
+    background-image: url("../images/splashbackground_desktop.jpg");
+  }
+
   .title-area {
     float: right;
     margin-right: 5px;
   }
 
   #container {
-      margin-bottom: -250px;
+    margin-bottom: -250px;
     padding-bottom: -250px;
     overflow: hidden;
   }
@@ -396,6 +410,10 @@ p{
 
 
 @media only screen and (min-width: 0em) and (max-width: 40.06em) {
+  body {
+    background-image: url("../images/splashbackground.jpg");
+  }
+
   #map{
     z-index: 800;
     height: 100%;

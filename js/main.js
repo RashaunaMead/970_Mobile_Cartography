@@ -89,7 +89,7 @@ function callback(error, routes, PointsofInterest, alerts){
     $("#container").css("visibility", "visible");
     $(".ontop").css("visibility", "visible");
     $("nav").css("visibility", "visible");
-    $("#splash").hide(); //sets display property to none
+    $("#splash, #splashContainer").hide(); //sets display property to none
     $("body").css("overflow", "hidden");
     setLayout();
 
@@ -637,6 +637,7 @@ function callback(error, routes, PointsofInterest, alerts){
   };
 
   function switchElements(width,height,screen,pos){
+    $("#splashContainer").height($("body").height());
     if(setting == "desktop"){ 
       //@large screen
       map.attributionControl.setPosition('bottomright');
@@ -663,7 +664,7 @@ function callback(error, routes, PointsofInterest, alerts){
       } else {
         $(".leaflet-buttons-control-img").show();
       };
-      $("body").css("overflow","hidden");
+      $("html").scrollTop(0);
 
     } else { 
       // @small screen
@@ -688,8 +689,6 @@ function callback(error, routes, PointsofInterest, alerts){
       if (showFindMe){
         $(".leaflet-buttons-control-img").show();
       };
-
-      $("body").css("overflow","auto");
     };
 
     orbitHeight();
