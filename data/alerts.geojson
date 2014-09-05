@@ -6,13 +6,13 @@
       "properties": {
         "id": "e_johnson_at_blair",
         "routeid": 0,
-        "alert": "Use extreme caution crossing Blair Street. Heavy traffic turning right has no stop."
+        "alert": "Heavy traffic on Blair Street. Use caution when crossing."
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -89.38155233860014,
-          43.08067072989788
+          -89.37964797019958,
+          43.07919357632618
         ]
       }
     },
