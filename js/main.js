@@ -177,13 +177,53 @@ function callback(error, routes, PointsofInterest, alerts){
 
   /***NARRATION AUDIO***/
 
-  function playAudio(isdesktop, site){ 
+  function decodeAudio(sound, isdesktop, site){
+
     $("audio").prop('autoplay', true);
-    $("audio").attr('src', PointsofInterest.features[site].properties.audio);
+    $("audio").attr('src', "data:audio/mp3;base64,"+sound);
     if (isdesktop){
       showAudio();
     };
     $("audio").get(0).play();
+
+    // var audioContext, source, buffer;
+
+    // if ('AudioContext' in window) {
+    //   audioContext = new AudioContext();
+    // } else if ('webkitAudioContext' in window) {
+    //   audioContext = new webkitAudioContext();
+    // } else {
+    //   alert('Your browser does not support yet Web Audio API');
+    // };
+
+    // var arrayBuff = Base64Binary.decodeArrayBuffer(sound);
+    // audioContext.decodeAudioData(arrayBuff, function(audioData) {
+    //   buffer = audioData;
+    // });
+
+    // source = audioContext.createBufferSource();
+    // source.buffer = buffer;
+    // source.connect(audioContext.destination);
+
+    // if ('AudioContext' in window) {
+    //   source.start(0);
+    // } else if ('webkitAudioContext' in window) {
+    //   source.noteOn(0);
+    // }; 
+  };
+
+  function playAudio(isdesktop, site){
+    $.ajax(PointsofInterest.features[site].properties.audio, {
+      dataType: "text",
+      success: function(data){ decodeAudio(data, isdesktop, site) }
+    });
+
+    // $("audio").prop('autoplay', true);
+    // $("audio").attr('src', PointsofInterest.features[site].properties.audio);
+    // if (isdesktop){
+    //   showAudio();
+    // };
+    // $("audio").get(0).play();
   };
 
   function showAudio(){

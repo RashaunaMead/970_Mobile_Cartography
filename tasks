@@ -1,3 +1,10 @@
+URGENT
+-Mobile browsers do not respect cached audio! Must rework audio to Base64 string
+	-Example: http://alxgbsn.co.uk/offlinewebaudio/
+-Move all audio except intro to autoplay with first slideshow open for site
+-Pics of E Washington crossing in alert box
+-New alert on Willy St crossing from Wil-Mar to Ground Zero
+
 WISHLIST
 -Mobile device back button should close windows rather than activating browser back button
 -Set up Tilestache on Geography server
@@ -11,7 +18,6 @@ WISHLIST
 BUGS
 -Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
 -Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
--CHROME: First map view is sometimes map paradox; fixed on reload
 
 iOS SAFARI BUGS
 -Sometimes twentytwenty slider starts all the way to the left
@@ -96,6 +102,7 @@ RESOLVED
 -Modal retains top offset if orientation changes
 -No box shadow on "Ready to Proceed" button
 -No FindMe button if width above desktop breakpoint (change to test something other than screen dimensions?)
+-CHROME: First map view is sometimes map paradox; fixed on reload
 
 PHOTOS TO RE-TAKE
 Wil-Mar Center mural (crappy)

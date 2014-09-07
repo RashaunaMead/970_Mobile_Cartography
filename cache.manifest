@@ -23,11 +23,11 @@ js/findMeButton.js
 data/routes.geojson
 data/PointsofInterest.geojson
 data/alerts.geojson
-audio/intro_site1.mp3
-audio/site2.mp3
-audio/site3.mp3
-audio/site4.mp3
-audio/site5.mp3
+audio/intro_site1.base64
+audio/site2.base64
+audio/site3.base64
+audio/site4.base64
+audio/site5.base64
 images/locations.png
 images/help.png
 images/information.png
