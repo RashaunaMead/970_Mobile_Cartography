@@ -178,38 +178,12 @@ function callback(error, routes, PointsofInterest, alerts){
   /***NARRATION AUDIO***/
 
   function decodeAudio(sound, isdesktop, site){
-
     $("audio").prop('autoplay', true);
     $("audio").attr('src', "data:audio/mp3;base64,"+sound);
     if (isdesktop){
       showAudio();
     };
     $("audio").get(0).play();
-
-    // var audioContext, source, buffer;
-
-    // if ('AudioContext' in window) {
-    //   audioContext = new AudioContext();
-    // } else if ('webkitAudioContext' in window) {
-    //   audioContext = new webkitAudioContext();
-    // } else {
-    //   alert('Your browser does not support yet Web Audio API');
-    // };
-
-    // var arrayBuff = Base64Binary.decodeArrayBuffer(sound);
-    // audioContext.decodeAudioData(arrayBuff, function(audioData) {
-    //   buffer = audioData;
-    // });
-
-    // source = audioContext.createBufferSource();
-    // source.buffer = buffer;
-    // source.connect(audioContext.destination);
-
-    // if ('AudioContext' in window) {
-    //   source.start(0);
-    // } else if ('webkitAudioContext' in window) {
-    //   source.noteOn(0);
-    // }; 
   };
 
   function playAudio(isdesktop, site){
@@ -217,13 +191,6 @@ function callback(error, routes, PointsofInterest, alerts){
       dataType: "text",
       success: function(data){ decodeAudio(data, isdesktop, site) }
     });
-
-    // $("audio").prop('autoplay', true);
-    // $("audio").attr('src', PointsofInterest.features[site].properties.audio);
-    // if (isdesktop){
-    //   showAudio();
-    // };
-    // $("audio").get(0).play();
   };
 
   function showAudio(){
@@ -737,19 +704,12 @@ function callback(error, routes, PointsofInterest, alerts){
 }; //end of data callback
 
 function cacheloading(){
-  //remove loading icon when appcache is finished loading
-  var timeout = window.setTimeout(cacheloaded, 2000);
-  $(window.applicationCache).on("cached", function(){
-    window.clearTimeout(timeout);
-    cacheloaded();
-  });
-  //workaround for Firefox failing to fire cached event
+  var i = 0;
   $(window.applicationCache).on("progress", function(){
-    window.clearTimeout(timeout);
-    timeout = window.setTimeout(cacheloaded, 2000);
+    if (i === 450){ cacheloaded() }; //i must equal number of files to be cached in manifest
+    i++;
   });
   $(window.applicationCache).on("error", function(){
-    window.clearTimeout(timeout);
     cacheerror();
   });
 };

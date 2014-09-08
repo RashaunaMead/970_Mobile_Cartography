@@ -1,9 +1,6 @@
 URGENT
--Mobile browsers do not respect cached audio! Must rework audio to Base64 string
-	-Example: http://alxgbsn.co.uk/offlinewebaudio/
 -Move all audio except intro to autoplay with first slideshow open for site
 -Pics of E Washington crossing in alert box
--New alert on Willy St crossing from Wil-Mar to Ground Zero
 
 WISHLIST
 -Mobile device back button should close windows rather than activating browser back button
@@ -103,8 +100,10 @@ RESOLVED
 -No box shadow on "Ready to Proceed" button
 -No FindMe button if width above desktop breakpoint (change to test something other than screen dimensions?)
 -CHROME: First map view is sometimes map paradox; fixed on reload
+-Mobile browsers do not respect cached audio! Must rework audio to Base64 string
+	-Example: http://alxgbsn.co.uk/offlinewebaudio/
+-New alert on Willy St crossing from Wil-Mar to Ground Zero
+-Globe icon showing prematurely on Android Chrome
 
 PHOTOS TO RE-TAKE
-Wil-Mar Center mural (crappy)
-Co-Op (proprietary [Cap Times] & privacy issue)
 5_2 (candy factory photo)
