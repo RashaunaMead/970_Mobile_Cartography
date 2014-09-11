@@ -704,11 +704,24 @@ function callback(error, routes, PointsofInterest, alerts){
 }; //end of data callback
 
 function cacheloading(){
+  var loadingTimeout = setTimeout(cacheloaded, 30000);
+  
   var i = 0;
   $(window.applicationCache).on("progress", function(){
+	clearTimeout(loadingTimeout);
+	loadingTimeout = setTimeout(cacheloaded, 10000);
     if (i === 450){ cacheloaded() }; //i must equal number of files to be cached in manifest
     i++;
   });
+  
+  $(window.applicationCache).on("cached", function(){
+    cacheloaded();
+  });
+  
+  $(window.applicationCache).on("noupdate", function(){
+    cacheloaded();
+  });
+  
   $(window.applicationCache).on("error", function(){
     cacheerror();
   });
@@ -735,7 +748,7 @@ function loadmap(){
       [43.0371,-89.452674],
       [43.129626,-89.306419]
     ],
-    center: [43.076364, -89.384336],
+    //center: [43.076364, -89.384336], //this might be causing the Chrome freeze bug?
     zoom: 14
   });
   L.control.zoom({position: "topleft"}).addTo(map); //in case we want to switch its position
