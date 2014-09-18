@@ -4,7 +4,7 @@ var map;
 var siteID = 0; //latest site available to user
 var currentFeature = 0; //feature currently highlighted
 var imageSets = {};
-var modernTileset = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png');
+var modernTileset = L.tileLayer('http://a.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png');
 //var historicTiles = L.tileLayer ('https://a.tiles.mapbox.com/v3/carolinerose.71spds4i/{z}/{x}/{y}.png');
 var currentTiles = 'modern';
 var siteCoords = [];
@@ -708,10 +708,10 @@ function cacheloading(){
   
   var i = 0;
   $(window.applicationCache).on("progress", function(){
-	clearTimeout(loadingTimeout);
-	loadingTimeout = setTimeout(cacheloaded, 10000);
+	  clearTimeout(loadingTimeout);
     if (i === 450){ cacheloaded() }; //i must equal number of files to be cached in manifest
     i++;
+    loadingTimeout = setTimeout(cacheloaded, 30000 - (i * 66)); //reduce timespan on each progress event
   });
   
   $(window.applicationCache).on("cached", function(){
@@ -754,7 +754,7 @@ function loadmap(){
   L.control.zoom({position: "topleft"}).addTo(map); //in case we want to switch its position
 
   // tiles can change once we know our basemap 
-  mapTileLayer = L.tileLayer('http://a.www.toolserver.org/tiles/bw-mapnik/{z}/{x}/{y}.png', {
+  mapTileLayer = L.tileLayer('http://a.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
   }).addTo(map);
