@@ -1,35 +1,23 @@
 {
-	"pages": [
-		{
-			"title": "1. Landing Page",
-			"image": "images/help1.jpg",
-			"text": "Welcome to the “Global Madison” guided tour, a mobile website that explains how the city of Madison is connected to the globalizing economy. Upon landing on the Global Madison mobile website, you have the option to get directions to the first location on the guided tour using Google Maps (use if not starting from campus; Figure 1a) or proceed directly to the mobile map (Figure 1b). If you do not have a data plan on your mobile device, please connect to wifi and cache the entirety of the website before embarking on the tour. The landing page will indicate when the website is cached in full (this will take approximately 30 seconds; Figure 1c)."
-		},
-		{
-			"title": "2. Overview of Controls",
-			"image": "images/help2.jpg",
-			"text": "When you enter the map, you will be presented with textual introduction to guided tour and a brief overview of the global history of Madison, WI (Figure 2a). Each location on the guided tour has a similar background description providing important context for understanding the place and responding to the prompts. You also have the option to ‘Read Text Aloud’ in order to listen to an audio recording of the background description while walking to the location itself (Figure 2b)."
-		},
-		{
-			"title": "3. Select a Site",
-			"image": "images/help3.jpg",
-			"text": "Follow the red route line to navigate to the next location on the guided tour (Figure 3a). The next location on the tour will be marked with an interactive red icon (Figure 3b), with prior locations deactivated in gray. Be careful near locations on the route marked with the ‘Warning’ exclamation symbols, as these are portions of the guided tour where there is heavy automobile traffic or otherwise unsafe street crossings (Figure 3c). You can reactivate the route to a prior location using the ‘Locations’ menu bar (Figure 3d)."
-		},
-		{
-			"title": "4. Respond to Prompts",
-			"image": "images/help4.jpg",
-			"text": "When you reach a new location, click on the red icon (Figure 3b) to activate the images and prompts for the location (Figure 4a). Following themes from the International Studies 101 course, the location material is organized around themes of global interdependencies, inequalities, and alternatives. Each prompt includes a pair of images comparing Fordist and post-Fordist economic practices. Use the image ‘Swipe’ tool to compare the pair of images (Figure 4b) and the ‘Back’ and ‘Forward’ buttons to change the current prompt (Figure 4c and 4d). As you think about the prompts, capture notes and take pictures to support your visual essay. The final prompt for each location is a button allowing you to ‘Proceed to the Next Site’, which then maps your route to the next location on the guided tour."
-		},
-		{
-			"title": "5. Lost?",
-			"image": null,
-			"text": "If at any time you get disoriented navigating the Isthmus, click on one of the following links to navigate to the next location using Google Maps:<ul><li><a href="">Location #1: Badger State Shoe Factory</a></li><li><a href="">
-•	Location #2: Chicago and Northwestern Railroad Station
-•	Location #3: Power Plant Transformers
-•	Location #4: Wil-Mar Community Center
-•	Location #5: Madison Candy Company / Ground Zero cafe
-•	Memorial Union
-"
-		}
+	"texts": [
+		"Welcome to the “Global Madison” guided tour, a mobile website that explains how the city of Madison is connected to the globalizing economy. Upon landing on the Global Madison mobile website, you have the option to get directions to the first location on the guided tour using Google Maps (use if not starting from campus; Figure 1a) or proceed directly to the mobile map (Figure 1b). If you do not have a data plan on your mobile device, please connect to wifi and cache the entirety of the website before embarking on the tour. The landing page will indicate when the website is cached in full (this will take approximately 30 seconds; Figure 1c).",
+		"When you enter the map, you will be presented with textual introduction to guided tour and a brief overview of the global history of Madison, WI (Figure 2a). Each location on the guided tour has a similar background description providing important context for understanding the place and responding to the prompts. You also have the option to ‘Read Text Aloud’ in order to listen to an audio recording of the background description while walking to the location itself (Figure 2b).",
+		"Follow the red route line to navigate to the next location on the guided tour (Figure 3a). The next location on the tour will be marked with an interactive red icon (Figure 3b), with prior locations deactivated in gray. Be careful near locations on the route marked with the ‘Warning’ exclamation symbols, as these are portions of the guided tour where there is heavy automobile traffic or otherwise unsafe street crossings (Figure 3c). You can reactivate the route to a prior location using the ‘Locations’ menu bar (Figure 3d).",
+		"When you reach a new location, click on the red icon (Figure 3b) to activate the images and prompts for the location (Figure 4a). Following themes from the International Studies 101 course, the location material is organized around themes of global interdependencies, inequalities, and alternatives. Each prompt includes a pair of images comparing Fordist and post-Fordist economic practices. Use the image ‘Swipe’ tool to compare the pair of images (Figure 4b) and the ‘Back’ and ‘Forward’ buttons to change the current prompt (Figure 4c and 4d). As you think about the prompts, capture notes and take pictures to support your visual essay. The final prompt for each location is a button allowing you to ‘Proceed to the Next Site’, which then maps your route to the next location on the guided tour.",
+		"If at any time you get disoriented navigating the Isthmus, click on one of the following links to navigate to the next location using Google Maps:<ul><li><a href='https://www.google.com/maps/place/Das+Kronenberg+Condominiums/@43.081319,-89.378198,17z/data=!3m1!4b1!4m2!3m1!1s0x88065369f3819705:0x63bf0580f44bbad0' target='_blank'>Location #1: Badger State Shoe Factory</a></li><li><a href='https://www.google.com/maps/place/200+S+Blair+St,+Madison,+WI+53703/@43.0774133,-89.3767288,17z/data=!4m2!3m1!1s0x8806536b4a2bb4e1:0x7618028ec4564f9' target='_blank'>Location #2: Chicago and Northwestern Railroad Station</a></li><li><a href='https://www.google.com/maps/place/720+E+Main+St,+Madison,+WI+53703/@43.0795854,-89.3749423,17z/data=!3m1!4b1!4m2!3m1!1s0x8806536b8b80f493:0xc93999dc8755ff94' target='_blank'>Location #3: Power Plant Transformers</a></li><li><a href='https://www.google.com/maps/place/Wil-Mar+Neighborhood+Center/@43.079812,-89.367033,17z/data=!4m2!3m1!1s0x88065373c65357af:0x5b5a679d861f0fb2' target='_blank'>Location #4: Wil-Mar Community Center</a></li><li><a href='https://www.google.com/maps/place/Ground+Zero+Coffee/@43.078019,-89.372148,17z/data=!3m1!4b1!4m2!3m1!1s0x8806536d04099895:0x2d3a628946391424' target='_blank'>Location #5: Madison Candy Company / Ground Zero cafe</a></li><li><a href='https://www.google.com/maps/place/Memorial+Union/@43.076251,-89.399754,17z/data=!3m1!4b1!4m2!3m1!1s0x8807accaa0165ae1:0x4001e911ad143b35' target='_blank'>Memorial Union</a></li></ul>"
+	],
+	"titles": [
+		"1. Landing Page",
+		"2. Overview of Controls",
+		"3. Select a Site",
+		"4. Respond to Prompts",
+		"5. Lost?"
+	],
+	"images": [
+		"images/help1.jpg",
+		"images/help2.jpg",
+		"images/help1.jpg",
+		"images/help1.jpg",
+		null
 	]
 }

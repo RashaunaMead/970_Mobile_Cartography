@@ -23,7 +23,9 @@ js/findMeButton.js
 data/routes.geojson
 data/PointsofInterest.geojson
 data/alerts.geojson
-audio/intro_site1.base64
+audio/intro_1.base64
+audio/intro_2.base64
+audio/site1.base64
 audio/site2.base64
 audio/site3.base64
 audio/site4.base64

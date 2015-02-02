@@ -76,7 +76,6 @@ function callback(error, routes, PointsofInterest, alerts, help){
   var firstIcon;
   var sid = 4;
   var s=0;
-  var audioIndex = 0;
 
   /***INITIALIZE LAYOUT & FIRST SITE***/
 
@@ -180,34 +179,6 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   /***NARRATION AUDIO***/
 
-  function decodeAudioBase64Binary(sound, isdesktop, site){
-    var myAudioContext, mySource, myBuffer;
-
-    if ('AudioContext' in window) {
-      myAudioContext = new AudioContext();
-    } else if ('webkitAudioContext' in window) {
-      myAudioContext = new webkitAudioContext();
-    } else {
-      alert('Your browser does not support yet Web Audio API');
-    }
-
-    var arrayBuff = Base64Binary.decodeArrayBuffer(sound);
-
-    myAudioContext.decodeAudioData(arrayBuff, function(audioData) {
-      myBuffer = audioData;
-
-      mySource = myAudioContext.createBufferSource();
-      mySource.buffer = myBuffer;
-      mySource.connect(myAudioContext.destination);
-
-      if ('AudioContext' in window) {
-        mySource.start(0);
-      } else if ('webkitAudioContext' in window) {
-        mySource.noteOn(0);
-      } 
-    });
-  };
-
   function decodeAudio(sound, isdesktop, site){
     $("audio").prop('autoplay', true);
     $("audio").attr('src', "data:audio/mp3;base64,"+sound);
@@ -218,7 +189,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
   };
 
   function playAudio(isdesktop, site){
-    $.ajax(PointsofInterest.features[site].properties.audio[audioIndex], {
+    $.ajax(PointsofInterest.features[site].properties.audio, {
       dataType: "text",
       success: function(data){ decodeAudio(data, isdesktop, site) }
     });
@@ -259,15 +230,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
             forwardText('#textModal', scripts);
           }, delay);
         }
-        audioIndex = 0;
-        var audioListLength = PointsofInterest.features[currentFeature].properties.audio.length;
         playAudio(true, currentFeature);
-        $("audio").on('ended', function(){
-          audioIndex++;
-          if (audioIndex < audioListLength){
-            playAudio(true, currentFeature);
-          }
-        })
       };
       playPause(firstClick);
       firstClick = false;
