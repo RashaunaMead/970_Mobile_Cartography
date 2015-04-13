@@ -1,6 +1,21 @@
 {
   "type": "FeatureCollection",
   "features": [
+  {
+      "type": "Feature",
+      "properties": {
+        "id": "childrens_museum",
+        "routeid": 0,
+        "alert": "The large cluster of street signs here is part of the Madison Children's Museum. Ignore it."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.38424527645111,
+          43.07656830835514
+        ]
+      }
+    },
     {
       "type": "Feature",
       "properties": {

@@ -108,6 +108,41 @@ audio {
     background: #6d6d6d;
 }
 
+.lead a {
+  color: black;
+  cursor: default;
+}
+
+.menudemo {
+  color: white;
+  background-color: #C41E3A;
+  padding: 4px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-size: 0.8125rem;
+}
+
+.menudemo img {
+  width: 20px;
+  height: 20px;
+  margin: 4px 4px 4px 0;
+}
+
+.fakeButton {
+  background: #C41E3A;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: #000 0px 0px 2px;
+  -webkit-box-shadow: #000 0px 0px 2px;
+  -moz-box-shadow: #000 0px 0px 2px;
+  color: #FFF;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  text-transform: none;
+}
+
 /*--------------- Splash Page ----------------*/
 
 #splashContainer {
@@ -131,6 +166,10 @@ p{
   text-align: justify;
 }
 
+#massey {
+  margin-left: 50%;
+}
+
 .modalTitle {
   font-size: 2em;
   font-weight: bold;
@@ -141,7 +180,7 @@ p{
   z-index: 999;
 }
 
-#infoModal {
+#infoModal, #helpModal {
   overflow: auto;
 }
 
@@ -195,14 +234,39 @@ p{
   -moz-box-shadow: #000;
 }
 
+.scriptButtons.inactive div {
+  color: #ccc;
+  background-color: #C46273;
+  cursor: default;
+}
+
 #next {
-  display: inline;
+  float: right;
   padding-right: 20px;
 }
 
 #previous {
   float: left;
   padding-left: 20px;
+}
+
+#readAloud {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#readAloud div {
+	padding-bottom: 4px;
+	padding-top: 2px;	
+}
+
+#readAloud span {
+  line-height: 0;
+}
+
+#readAloud img {
+	width: 18px;
+	height: 18px;
 }
 
 #loading {
@@ -317,6 +381,10 @@ p{
       height: 200%;
       z-index: 991;
   }
+  
+  #readAloud {
+	  top: 50px;
+  }
 }
  
 #audioText{
@@ -381,8 +449,13 @@ p{
   position: fixed;
   background: none repeat scroll 0 0 #C41E3A;
   /*  this will change with screen size*/
-  width: 100%; 
+  /*width: 100%; */
+  right: 0;
   height: 48px;
+}
+
+.top-bar.expanded {
+	width: 50%;	
 }
 
 .top-bar-section li:not(.has-form) a:not(.button) {
@@ -419,6 +492,11 @@ p{
     z-index: 800;
     height: 100%;
   }
+  
+  #readAloud {
+	  top: 40px;
+  }
+  
   .top-bar, .top-bar-section {
     bottom: 0px;
     height: 45px; }

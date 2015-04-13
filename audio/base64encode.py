@@ -1,5 +1,5 @@
 import base64
-filename = "intro_2"
+filename = raw_input("Enter the filename without extension: ")
 sound_file = filename+".mp3"
 # use mode = "rb" to read binary file
 fin = open(sound_file, "rb")

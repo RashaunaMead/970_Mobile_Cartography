@@ -1140,7 +1140,7 @@ meta.foundation-mq-topbar {
   .top-bar ul {
     margin-bottom: 0;
     list-style: none;
-    margin-left: 5px; }
+    margin-left: 0px; }
   .top-bar .row {
     max-width: none; }
   .top-bar form,
@@ -1210,6 +1210,7 @@ meta.foundation-mq-topbar {
           box-shadow: 0 10px 0 1px white, 0 16px 0 1px white, 0 22px 0 1px white; }
   .top-bar.expanded {
     height: auto;
+	max-height: 100%;
     background: transparent; }
     .top-bar.expanded .title-area {
       background: #333333; }
@@ -1243,7 +1244,7 @@ meta.foundation-mq-topbar {
     display: block;
     width: 100%;
     color: white;
-    padding: 12px 0 12px 0;
+    padding: 12px 12px 12px 0;
     padding-left: 15px;
     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-size: 0.8125rem;

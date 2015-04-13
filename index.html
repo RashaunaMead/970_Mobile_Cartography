@@ -23,26 +23,25 @@
       <div id="splash">
         <h1>Global Madison: Paths To Change</h1>
         
-        <p>Welcome to our page! This is a project about economic globalization.</p>
+        <p><em>"It is a sense of place, an understanding of 'its character', which can only be constructed by linking that place to places beyond... What we need, it seems to me, is a global sense of the local, a global sense of place."</em><br><span id="massey">&mdash;Doreen Massey</span></p>
 
         <p>On wide screens, some photos may appear cropped at the bottom. In this situation, reduce your browser's width for better viewing. This website was designed for modern mobile and desktop browsers; you may encounter significant problems on older browsers that do not fully support HTML5 (e.g. IE&lt;10, Safari&lt;6).</p>
 
-        <p>The second button below will take you to the map to begin your journey, showing the route from the UW campus to the first site. If you are not starting from campus, you can click the first button to get Google Maps directions from your current location to the first site.</p>
+        <p>The second button below will take you to the map to begin your journey, showing the route from the UW campus to the first landmark. If you are not starting from campus, you can click the first button to get Google Maps directions from your current location to the first landmark.</p>
         
         <div class="redButtonContainer">
           <div class="redButton inln">
-            <a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">
-              <div><span>
-                Google Maps Directions
-              </div></span>
-            </a>
-          </div>
-
-          <div class="redButton inln">
-            <a href="#">
+            <a class="goToMap" href="#">
               <div><span style="font-weight: bold">
                 Go to the Map!
-              </div></span>
+              </span></div>
+            </a>
+          </div>
+          <div class="redButton inln">
+            <a class="goToMap" href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">
+              <div><span>
+                Directions
+              </span></div>
             </a>
           </div>
 
@@ -56,11 +55,11 @@
    
     <div id="container">
       <!--popup for user interface prompts-->
-      <div id="playBubble" class="callout border-callout">
+      <!--<div id="playBubble" class="callout border-callout">
         <span></span>
         <b class="border-notch notch"></b>
         <b class="notch"></b>
-      </div>
+      </div>-->
 
       <div id="iconClickBubble" class="callout border-callout">
         <span></span>
@@ -86,8 +85,8 @@
           <ul class="left">
             <li class="has-dropdown">
               <a href="#" data-options="align:left">  
-                <img class="locations"src="images/locations.png" alt="Locations"/>
-                Locations
+                <img class="landmarks"src="images/landmarks.png" alt="Landmarks"/>
+                Landmarks
               </a>
               <ul class="dropdown" id="locationMenu"></ul>
             </li>
@@ -205,7 +204,7 @@
         <li><em>Headphones</em>: Mourad Mokrane</li>
         <li><em>Help</em>: Tommy Kuntze</li>
         <li><em>Alert</em>: Juergen Bauer</li>
-        <li><em>Locations</em>: Q. Li</li>
+        <li><em>Landmarks</em>: Q. Li</li>
         <li><em>Help</em>: Tommy Kuntze</li>
         <li><em>Findme</em>: Ricardo Moreira</li>
         <li><em>Text</em>: Alex Fuller</li>
@@ -220,9 +219,49 @@
     </div>
 
     <div id="helpModal" class="reveal-modal" data-reveal>
-      <p class="lead">Help</p>
-      <p class="script">For instructions on how to use this application, <a href="GlobalMadison_Help.pdf" target="_blank">click here</a></p>
       <a class="close-reveal-modal">&#215;</a>
+      <p class="modalTitle">Help</p>
+      <p><em>For PDF instructions, <a href="GlobalMadison_Help.pdf" target="_blank">click here</a>.</em></p>
+      <ol>
+        <li><a class="toc" href="#controls">Tour narration</a></li>
+        <li><a class="toc" href="#landmarks">Navigating to landmarks</a></li>
+        <li><a class="toc" href="#slideshows">Slideshow prompts</a></li>
+        <li><a class="toc" href="#lost">Lost?</a></li>
+        <li><a class="toc" href="#contact">Report a problem</a></li>
+      </ol>
+      <p class="lead">
+        <a class="toc" name="controls">Tour narration</a>
+      </p><p>
+        When you enter the map, you are presented with text box containing a brief overview of the global history of Madison, WI. Each landmark on the guided tour has a similar background description providing important context for understanding the place and responding to the slideshow prompts. Click <span class="fakeButton">Read Text Aloud</span> to listen to an audio recording of the background description. If there are <span class="fakeButton">next &gt;</span> and <span class="fakeButton">&lt; previous</span> buttons in the window, click these to advance or review the text.
+      </p>
+      <p class="lead">
+        <a class="toc" name="landmarks">Navigating to landmarks</a>
+      </p><p>
+        Follow the red route line to navigate to the next landmark. To see your current location on a mobile device, tap the <img src="images/findme.png" alt="findme"> icon (not visible on desktop view). This will activate a blue GPS dot at your location the map. To save your battery, the GPS dot will disappear after ten seconds, but you may reactivate it at any time. <b>Pay attention to your surroundings and use caution in locations marked with the <img src="images/alert40_red.png" style="width: 28px; height: 28px" alt="alert"> icon</b>, which you may click or tap to see a description of the hazard. Your next destination is marked with a square red icon, with prior landmarks deactivated in gray. You can reactivate the route to a prior landmark by choosing that landmark in the <span class="menudemo"><img src="images/landmarks.png">Landmarks</span> menu in the menu bar. Only landmarks you visited previously will appear in the <span class="menudemo"><img src="images/landmarks.png">Landmarks</span> menu. To register your visit to a landmark, once you get there, click or tap the landmark's icon. This will open that landmark's slideshow prompts.
+      </p>
+      <p class="lead">
+        <a class="toc" name="slideshows">Slideshow prompts</a>
+      </p><p>
+        When you reach a new landmark, click on the red square icon to activate the slideshow with images and prompts for the location. For each landmark, there are three thematic slides: Interdependencies, Inequalities, and Alternatives. Each prompt includes a pair of images comparing the landmark 'then' and 'now.' Use the slider between the images to compare the pair of images by swiping the slider back and forth. Use the white arrow buttons to change the slide. As you think about each prompt, take notes and photographs to support your visual essay. The final slide for each landmark is a button allowing you to <span class="fakeButton">Proceed to the Next Site</span>, which then maps your route to the next location on the guided tour.
+      </p>
+      <p class="lead">
+        <a class="toc" name="lost">Lost?</a>
+      </p><p>
+        On a mobile device, you can always see your location by clicking the <img src="images/findme.png" alt="findme"> icon. If at any time you get disoriented navigating the Isthmus, click on one of the following links to navigate to the landmark using Google Maps:
+        <ul>
+          <li><a href="https://www.google.com/maps/place/Das+Kronenberg+Condominiums/@43.081319,-89.378198,17z/data=!3m1!4b1!4m2!3m1!1s0x88065369f3819705:0x63bf0580f44bbad0" target="_blank">Landmark #1: Badger State Shoe Factory</a></li>
+          <li><a href="https://www.google.com/maps/place/200+S+Blair+St,+Madison,+WI+53703/@43.0774133,-89.3767288,17z/data=!4m2!3m1!1s0x8806536b4a2bb4e1:0x7618028ec4564f9" target="_blank">Landmark #2: Chicago and Northwestern Railroad Station</a></li>
+          <li><a href="https://www.google.com/maps/place/720+E+Main+St,+Madison,+WI+53703/@43.0795854,-89.3749423,17z/data=!3m1!4b1!4m2!3m1!1s0x8806536b8b80f493:0xc93999dc8755ff94" target="_blank">Landmark #3: Power Plant Transformers</a></li>
+          <li><a href="https://www.google.com/maps/place/Wil-Mar+Neighborhood+Center/@43.079812,-89.367033,17z/data=!4m2!3m1!1s0x88065373c65357af:0x5b5a679d861f0fb2" target="_blank">Landmark #4: Wil-Mar Community Center</a></li>
+          <li><a href="https://www.google.com/maps/place/Ground+Zero+Coffee/@43.078019,-89.372148,17z/data=!3m1!4b1!4m2!3m1!1s0x8806536d04099895:0x2d3a628946391424" target="_blank">Landmark #5: Ground Zero Cafe</a></li>
+          <li><a href="https://www.google.com/maps/place/Memorial+Union/@43.076251,-89.399754,17z/data=!3m1!4b1!4m2!3m1!1s0x8807accaa0165ae1:0x4001e911ad143b35" target="_blank">UW Memorial Union</a></li>
+        </ul>
+      </p>
+      <p class="lead">
+        <a class="toc" name="contact">Report a problem</a>
+      </p><p>
+        If you notice a bug or other issue, please e-mail a brief description to <a href="mailto:reroth@wisc.edu">reroth@wisc.edu</a>.
+      </p>
     </div>
 
     <div id="textModal" class="reveal-modal" data-reveal>
