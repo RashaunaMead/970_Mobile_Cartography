@@ -656,7 +656,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
     }
   });
 
-  $("#infoModal, #helpModal").on("open.fndtn.reveal", function(){
+  $("#infoModal, #helpModal, #assignmentModal").on("open.fndtn.reveal", function(){
     if (setting == "desktop"){ resizeModal($(this)); };
   });
 
@@ -790,7 +790,7 @@ function loadmap(){
   L.control.zoom({position: "topleft"}).addTo(map); //in case we want to switch its position
 
   //tiles from Mapbox; can alter in Mapbox Studio if desired  
-  mapTileLayer = L.mapbox.tileLayer("northlandiguana.lni7i40a", {
+  mapTileLayer = L.tileLayer("http://a.tiles.mapbox.com/v3/northlandiguana.lni7i40a/{z}/{x}/{y}.png", {
 	  accessToken: "pk.eyJ1Ijoibm9ydGhsYW5kaWd1YW5hIiwiYSI6IldJU1N4Y0UifQ.wpNgLPfnWQOBDWCgynJRiw",
   }).addTo(map);
 
@@ -815,11 +815,9 @@ function imgError(image, alturl){
 };
 
 function resizeModal(modal){
-  console.log("resize", modal);
   var cHeight = $("#container").height();
   var rmTop = parseInt(modal.css("top"));
   var rmHeight = modal.height();
-  console.log(rmHeight, cHeight);
   if (rmHeight > cHeight){
     modal.height(cHeight - (rmTop * 2));
   };

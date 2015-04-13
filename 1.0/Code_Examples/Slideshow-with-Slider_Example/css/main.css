@@ -1,0 +1,28 @@
+#myModal {
+    top:5%;	
+}
+
+.close-reveal-modal {
+    font-weight: bold;
+    padding-right: 0;
+    padding-top: 0;
+}
+
+.orbit-caption {
+	font-weight:bold;
+}
+
+#slideshow_texts {
+	width: 100%;
+	height: 200px;
+	overflow-y:scroll;
+}
+
+#slideshow_images{
+	width: 100%;
+	height: auto;
+}
+
+.twentytwenty-overlay{
+	pointer-events: none;
+}

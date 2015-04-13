@@ -1,0 +1,468 @@
+/* Small-range 0, 640px */
+/* Medium-range 641px, 1024px */
+/* Large-range 1025px, 1440px */
+/* 1441px, 1920px */
+/* 1921px */
+html, body, #container {
+  height: 100%;
+ }
+#container{
+  background-color: #858585;
+  visibility: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font: 100% Helvetica, sans-serif;
+  background-size: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  overflow: hidden;
+}
+
+nav {
+  visibility: hidden;
+}
+
+#map{
+/*  height: 100%;*/
+  width: 100%;
+}
+
+.callout {
+  position: absolute;
+  z-index: 1000;
+  /*margin: 18px 0;*/
+  padding: .6rem;
+  background-color: #C41E3A;
+  /* easy rounded corners for modern browsers */
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 2px;
+  -webkit-box-shadow: 0px 0px 2px;
+  -moz-box-shadow: 0px 0px 2px;
+}
+
+.callout span {
+  color: #fff;
+  font-weight: bold;
+}
+
+.callout .notch {
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  margin: 0;
+  border-bottom: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid #C41E3A;
+  padding: 0;
+  width: 0;
+  height: 0;
+  /* ie6 height fix */
+  font-size: 0;
+  line-height: 0;
+  /* ie6 transparent fix */
+  _border-right-color: pink;
+  _border-left-color: pink;
+  _filter: chroma(color=pink);
+}
+
+.border-callout { 
+  border: 1px solid #fff;
+  padding: .6rem; 
+}
+
+.border-callout .border-notch {
+  border-top-color: #fff;
+  bottom: -11px;
+}
+
+#playBubble, #iconClickBubble {
+  opacity: 0;
+}
+
+#iconClickBubble .notch  {
+  left: auto;
+  right: 20px;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: #CE3234;
+  color: #FFF;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/*does this work for scrollbars?  */
+body::-webkit-scrollbar { 
+    display: none; 
+}
+body::-webkit-scrollbar { width: 0 !important }
+
+audio {
+    position: relative;
+    top: 8px;
+    background: #6d6d6d;
+}
+
+/*--------------- Splash Page ----------------*/
+
+#splashContainer {
+  width: 100%;
+  overflow-y: auto;
+}
+
+#splash{   
+    margin: 25px 6.5% 25px 6.5%;
+    padding: 20px;
+    background-color: rgba(255,255,255,0.9);
+}
+
+h1{
+ font-size: 3em;
+ text-align: center;
+}
+
+p{
+  line-height: 1.5em;
+  text-align: justify;
+}
+
+.modalTitle {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.reveal-modal{
+  z-index: 999;
+}
+
+#infoModal {
+  overflow: auto;
+}
+
+.redButtonContainer {
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+.inln {
+  display: inline-block;
+  margin: 0 20px 20px 20px;
+}
+
+.redButton {
+  text-align: center;
+}
+
+.redButton div {
+  background: #C41E3A;
+  display: inline-block;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  box-shadow: #000 0px 0px 2px;
+  -webkit-box-shadow: #000 0px 0px 2px;
+  -moz-box-shadow: #000 0px 0px 2px;
+}
+
+.redButton span {
+  color: #FFF;
+  line-height: 45px;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.scriptButtonContainer {
+  text-align: right;
+}
+
+.scriptButtons div {
+  color: #FFF;
+  font-family: "Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;
+  font-size: 0.8125rem;
+  font-weight: normal;
+  text-transform: none;
+  box-shadow: #000;
+  -webkit-box-shadow: #000;
+  -moz-box-shadow: #000;
+}
+
+#next {
+  display: inline;
+  padding-right: 20px;
+}
+
+#previous {
+  float: left;
+  padding-left: 20px;
+}
+
+#loading {
+  color: #C41E3A;
+  font-size: 0.8125rem;
+  line-height: 32px;
+}
+
+#show_title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-right: 20px;
+  text-align: left;
+}
+
+#ready_next {
+  margin-top: 10%;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+#ready_next span {
+  font-size: 1.5em;
+}
+
+.close-reveal-modal {
+  font-weight: bold;
+  padding-right: 0;
+  padding-top: 0;
+}
+
+#slideshow_texts {
+  width: 100%;
+  height: auto;
+  overflow-y:auto;
+}
+
+.twentytwenty-overlay{
+  pointer-events: none;
+}
+
+.orbit-container {
+  margin-bottom: 10px;
+}
+
+.orbit-container .orbit-prev:hover,
+.orbit-container .orbit-next:hover {
+      background-color: rgba(196, 30, 58, .8);
+}
+
+.orbit-container .orbit-prev,
+.orbit-container .orbit-next {
+      background-color: rgba(0, 0, 0, 0.3);
+}
+
+.orbit-slide-number {
+  text-shadow: 1px 1px 1px #000;
+}
+
+.touch .orbit-container .orbit-next,
+.touch .orbit-container .orbit-prev {
+  display: block; }
+
+/*--------------- reveal for help, info and text overlays ----------------*/
+@media only screen and (min-width: 40.06em) and (max-width: 600em) {
+  body {
+    background-image: url("../images/splashbackground_desktop.jpg");
+  }
+
+  .title-area {
+    float: right;
+    margin-right: 5px;
+  }
+
+  #container {
+    margin-bottom: -250px;
+    padding-bottom: -250px;
+    overflow: hidden;
+  }
+
+  .top-bar {
+    z-index: 800;
+    position: fixed;
+    top:0px;
+    background: none repeat scroll 0 0 #C41E3A;
+    /*  this will change with screen size*/
+    width: 100%;
+    height: 0px;
+  }
+
+  .script {
+    margin: 2rem 0rem;
+  }
+
+  #map {
+    position: absolute;
+    z-index: 2;
+    height: calc(100% - 45px);
+    top:45px;
+  }
+
+  .reveal-modal .script {
+    color: #000;
+  }
+
+  .reveal-modal {
+      z-index: 999;
+  }
+
+  .reveal-modal-bg {
+      width: 200%;
+      height: 200%;
+      z-index: 991;
+  }
+}
+ 
+#audioText{
+  z-index: 900;
+}
+
+#infoScreen{
+  background-color: gray;
+  opacity: 0.7;
+  color: white;
+  position: fixed;
+  bottom: 10px;
+  right: 50%;
+  left: auto;
+  z-index: 1;
+}
+  
+#infoScreen p {
+  padding: 5px;
+}
+  
+#leaflet-control-button{
+  z-index: 1;
+}
+  
+/*------------------ Styles for tileToggle ----------------- */
+  
+ #tileToggle{
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 10px;
+  color: white; /*text color*/
+  background-color: #6D6D6D; /*dark grey*/
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+ }
+  #tileToggle b {
+  padding: 5px
+  }
+  
+  #tileToggle:hover {
+  background-color: #BEBEBE; /*light grey*/
+  cursor: pointer;
+ }
+
+ 
+
+ /*---------------- end Styles for tileToggle ----------------- */
+ 
+.ontop {
+  z-index: 5;
+  position: fixed;
+  width: 100%;
+  visibility: hidden;
+}
+
+
+.top-bar {
+  z-index: 999;
+  position: fixed;
+  background: none repeat scroll 0 0 #C41E3A;
+  /*  this will change with screen size*/
+  width: 100%; 
+  height: 48px;
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: none repeat scroll 0 0 #C41E3A; 
+}
+
+.top-bar-section .dropdown a /*li:not(.has-form) a:not(.button)*/ {
+  background: none repeat scroll 0 0 #fff;
+  padding-right: 34px !important;
+}
+
+.top-bar-section li:not(.has-form) a:hover:not(.button) {
+  background: #BEBEBE; 
+}
+
+
+#audioText h1, #audioText h2, #audioText h3, #audioText p, #audioText ul,  {
+  margin-right: 10px;
+  padding: 5px 5px 5px 5px;
+  color: #fff;
+}
+
+#audioText p {
+  font-size: 1rem;
+}
+
+
+@media only screen and (min-width: 0em) and (max-width: 40.06em) {
+  body {
+    background-image: url("../images/splashbackground.jpg");
+  }
+
+  #map{
+    z-index: 800;
+    height: 100%;
+  }
+  .top-bar, .top-bar-section {
+    bottom: 0px;
+    height: 45px; }
+  audio {
+      top: 8px;
+      left: 8px;
+      position: relative;
+      width: 65%;
+    } 
+  #tileToggle{
+  top: 10px;
+  height: 21px;
+ }
+.script {
+  margin: 15px 0 0 0;
+  color: #000;
+  height: 100%;
+  background-color: #fff;
+  width: 100%;
+  
+}
+#textModal{
+ /* width: 100%;
+  height: 100%;*/
+}
+.reveal-modal.open{
+  top: 0px !important;
+}
+.reveal-modal-bg {
+  background: #fff;
+}
+
+ }}
+  /*---------------- mid range / for tablet ----------------- */
+
+  /*---------------- Large range / for Desktop & Laptop ----------------- */
+
+  /*---------------- Extra Large range / for Desktop ----------------- */
+
+
+/* sccs$joyride-tip-position-offset: 22px; */
+
+
+ 
+
+
+

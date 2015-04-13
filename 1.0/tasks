@@ -1,0 +1,109 @@
+URGENT
+-Move all audio except intro to autoplay with first slideshow open for site
+-Pics of E Washington crossing in alert box
+
+WISHLIST
+-Mobile device back button should close windows rather than activating browser back button
+-Set up Tilestache on Geography server
+-Splash screen content
+-Help content
+-Mobile-sized photos have lower aspect ratio
+-Turn down volume of first mp3
+-Give slideshow modal same max width as 2020 container
+-Better audio player skin for iOS Safari?
+
+BUGS
+-Initial slippy map tiles sometimes don't load (need to migrate off of toolserver)
+-Reveal modal temporarily fails to open after two clicks on reveal modal link in quick succession (minor)
+
+iOS SAFARI BUGS
+-Sometimes twentytwenty slider starts all the way to the left
+-Map icons are hard to activate with tap (increase transparent edge width?)
+
+GENERAL MOBILE BUGS (iOS and Android)
+-Arrows remain in highlighted state after tap until elsewhere is tapped (probably due to hover state)
+
+
+RESOLVED
+-Dual audio play
+-Text readaloud with button
+-Same site added to menu multiple times?
+-Need to tell mobile Chrome users to click for audio
+-Lines: Brign current to fore with right red (same hex as UI tools), dark red for past visited (fade to ground)
+-Add silence to start of audio tracks; give animated visual cue that audio is playing
+-Locations selection does not change siteID
+-Icons don't highlight when selected
+-orbit.slide_number is undefined upon opening info screen for Wil-Mar after all other info modals have been viewed
+-Pop-up window after audio finishes or on end of text with instruction to click icon to proceed
+-iconClickBubble should not show up until textModal closed by user or audio stops
+-Load data asynchronously (use AJAX to load json data)
+-desktop map zoomed to fit visible routes
+-recenter map on route to next site
+-prompt user to click on icon after audio finished
+-icon prompt doesn't move with map
+-Coffee shop not added to list of locations
+-Shoe factory location button won't recenter map
+-Broken image symbol flashes on icon click
+-remove last highlighted route after coffeeshop slidshow closed
+-Reveal modal won't close after two clicks on reveal button
+-Remove findme button from desktop map
+-Photos don't always load fully the first time a slideshow modal is opened
+-Safety alerts at Blair&Johnson, Blair&Washington, Willy&Livingston; indicator to walk along bike trail
+-All highlighted icons have white outlines
+-Dynamically size pictures so they don't go beyond screen
+-Always start slideshow on Pair 1
+-Pre-load and cache entire app
+	-HTML5 caching: http://diveintohtml5.info/offline.html
+	-give user feedback once all data and files are in cache
+-Put popup tooltip with the initial instructions on how to access photos on the first location, not the warning.
+-Revise the wording on the URL to Google Maps to say something like "I'm not starting from campus. Use Google Maps to map my route to the first site", perhaps containing this text and the "I'm ready to begin the tour" text in a button, rather than just using text.
+-CHROME: Second slideshow modal won't change slides
+-Caption text not replaced on slideshow reopen until arrow clicked
+-Audio muted if paused and restarted
+-Audio does not reset to current site
+-Redesign the "click to proceed" so that the text is not so large and the button is has the same style as the rest of the application. Perhaps fill the entire div with red using white text, so that a click anywhere but the arrows proceeds them to the next site?
+-When adding the audio to the non-mobile version, add it to the far right of the menu options, rather than the far left, as this will keep the other menu items in their place.
+-Change "information" to "about"
+-Add assignment tab that will have an html version of the worksheet.
+-Add a final note as 3/3 to Ground Zero page about the assignment. Stephen will provide text for this, but please add a placeholder now.
+-Adjust slider UI so that: 
+	-the arrows are not just white (perhaps add a grey background to the asset), making them disappear when sliding off the image
+	-they don't overlap the arrows to change images (reposition one or the other, or offset both).
+-The Madison zoning map legend gets cut off in the non-mobile version.
+-View all locations doesn't recenter map on second click
+-Add note to splash screen for desktop to reduce width for best viewing if low aspect ratio
+-Information content
+-On the non-mobile version, close the text when clicking "Read text aloud". Then when closed, keep the audio active in the interface. In other words, the map should have one or the other.
+	--Audio stays active until next site; user can close text modal manually if desired
+-Body overflow hidden on desktop
+-Fit map bounds to show location when find me button is activated
+-There were several instances where the zooming and recentering upon selecting a new site used a zoom level where the route was visible, but the two sites were offscreen (this was on mobile). Perhaps zoom out one level by default (or is this a function provided by Leaflet)?
+-Several times I was unable to proceed to a picture using either a tap or a swipe.
+-Did we decide to delete the "Find me" feature? It seemed to be disabled on the version we viewed.
+-Overall, we noticed a few issues with cutting off images in the mobile version (e.g., the div was on only the top 50-100 pixels, rather than the entire size of the screen.
+-Leaflet fitBounds doesn't always work right--see description below
+-No swipe interaction on slideshows
+	--intentional--avoids conflict with twentytwenty
+-Slideshow arrows do not show up on Android Chrome
+-Audio does not begin play when "Read Aloud" button pressed in iOS Safari
+-Add note not to use Safari <6 and IE<10
+-Icon bar is double-height on vertical orientation (probably due to audio element showing)
+-Audio element always shows
+-Slideshow headings give site number
+-Increase opacity of the route (hard to see outside)
+-Max width of 2em for proceed button text
+-Audio stops and disappears on resize
+-Some text overflows Locations menu (desktop-style menu tabs)
+-Get rid of slideshow modal size and offset jump after open
+-Modal freezes if opened before previous modal closes or same topbar button clicked twice
+-Modal retains top offset if orientation changes
+-No box shadow on "Ready to Proceed" button
+-No FindMe button if width above desktop breakpoint (change to test something other than screen dimensions?)
+-CHROME: First map view is sometimes map paradox; fixed on reload
+-Mobile browsers do not respect cached audio! Must rework audio to Base64 string
+	-Example: http://alxgbsn.co.uk/offlinewebaudio/
+-New alert on Willy St crossing from Wil-Mar to Ground Zero
+-Globe icon showing prematurely on Android Chrome
+
+PHOTOS TO RE-TAKE
+5_2 (candy factory photo)

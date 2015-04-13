@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html manifest="cache.manifest">
+  <head>
+    <title>Global Madison</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+     
+    <!--library stylesheets-->
+    <link rel="stylesheet" type="text/css" href="libraries/leaflet.css" />
+    <link rel="stylesheet" href="libraries/foundation/css/foundation.css" />
+      
+    <!--for slideshow-->
+    <link type="text/css" rel="stylesheet" href="libraries/twentytwenty.css" />
+    <link type="text/css" rel="stylesheet" href="libraries/foundation/css/normalize.css" />
+
+    <!--custom css-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+    <div id="splashContainer">
+      <div id="splash">
+        <h1>Global Madison: Paths To Change</h1>
+        
+        <p>Welcome to our page! This is a project about economic globalization.</p>
+
+        <p>On wide screens, some photos may appear cropped at the bottom. In this situation, reduce your browser's width for better viewing. This website was designed for modern mobile and desktop browsers; you may encounter significant problems on older browsers that do not fully support HTML5 (e.g. IE&lt;10, Safari&lt;6).</p>
+
+        <p>The second button below will take you to the map to begin your journey, showing the route from the UW campus to the first site. If you are not starting from campus, you can click the first button to get Google Maps directions from your current location to the first site.</p>
+        
+        <div class="redButtonContainer">
+          <div class="redButton inln">
+            <a href="https://www.google.com/maps/place/43%C2%B004'52.5%22N+89%C2%B022'42.8%22W/@43.081258,-89.378567,15z/data=!3m1!4b1!4m2!3m1!1s0x0:0x0" target="_blank" title="Get directions from Google Maps">
+              <div><span>
+                Google Maps Directions
+              </div></span>
+            </a>
+          </div>
+
+          <div class="redButton inln">
+            <a href="#">
+              <div><span style="font-weight: bold">
+                Go to the Map!
+              </div></span>
+            </a>
+          </div>
+
+          <div id="loading">
+            <img src="images/loading.gif"/>
+            <span>Loading Offline Cache. Please wait about 30 seconds if you plan to use the module offline...</span>
+          </div>
+        </div>
+      </div><!--end splash screen div-->
+    </div>
+   
+    <div id="container">
+      <!--popup for user interface prompts-->
+      <div id="playBubble" class="callout border-callout">
+        <span></span>
+        <b class="border-notch notch"></b>
+        <b class="notch"></b>
+      </div>
+
+      <div id="iconClickBubble" class="callout border-callout">
+        <span></span>
+        <b class="border-notch notch"></b>
+        <b class="notch"></b>
+      </div>
+
+      <nav class="top-bar" data-topbar data-options="is_hover: false">
+        <ul class="title-area">  
+          <li class="name">
+            <audio controls src="audio/intro_site1.mp3" type="audio/mp3">
+              Your browser does not support the audio element.
+            </audio>
+          </li>
+      
+          <li class="toggle-topbar menu-icon">
+            <a href="#">Menu</a>
+          </li>
+        </ul>
+
+        <section class="top-bar-section">
+          <!--left nav section -->
+          <ul class="left">
+            <li class="has-dropdown">
+              <a href="#" data-options="align:left">  
+                <img class="locations"src="images/locations.png" alt="Locations"/>
+                Locations
+              </a>
+              <ul class="dropdown" id="locationMenu"></ul>
+            </li>
+
+            <li>
+              <a href="#" data-reveal-id="helpModal" data-reveal>
+                <img src="images/help.png" alt="Help"/>
+                Help
+              </a>
+            </li>
+               
+            <li>
+              <a href="#" data-reveal-id="infoModal" data-reveal>
+                <img src="images/information.png" alt="About"/>
+                About
+              </a>
+            </li>
+              
+            <li class="audioText">
+              <a href="#" data-reveal-id="textModal" data-reveal>
+                <img src="images/text.png" alt="Text"/>
+                <span>Text</span>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" data-reveal-id="assignmentModal" data-reveal>
+                <img src="images/assignment.png" alt="Text"/>
+                <span>Assignment</span>
+              </a>
+            </li>
+          </ul><!--end left nav section-->
+        </section>
+      </nav>
+
+      <div id="map"> 
+        <!--switch from osm tiles to historic tiles>
+        <div id="tileToggle"><b>Show Historic Basemap</b></div>
+        <-->    
+      </div><!--end map div-->
+    </div><!--end container div-->
+    
+    <!--slideshow for marker div-->
+    <div id="slideshowModal" class="reveal-modal" data-reveal>
+      <p id="show_title"></p>
+      
+      <!--more work need to do to change image links dynamically in markers.js. Will come later-->
+      <div id="slideshow_images"> 
+        <ul  id="imagesList" class="orbit-slideshow" data-orbit></ul>
+      </div>
+      
+      <div id="slideshow_texts"></div>
+      
+      <a id="closeSlideshow" class="close-reveal-modal"></a>
+    </div><!--end slideshow for marker div-->
+
+    <!--Get Info Reveal-->
+    <div id="infoModal" class="reveal-modal" data-reveal>
+      <p class="modalTitle">About This Project</p>
+
+      <p><em>Madison's East Isthmus: Paths to Change</em> mobile learning module was created for the Introduction to International Studies (IS101) course at the University of Wisconsin-Madison by Spring 2014 Mobile Cartography Seminar participants Brian Davidson, Julia Janicki, Vanessa Knoppe-Wetzel, Fei Ma, Rashauna Mead, Chelsea Nestel, Caroline Rose, Carl Sack, and Guiming Zhang under the direction of Professor Robert Roth, with the cooperation of International Studies Professor Stephen Young and Teaching Assistant Mario Bruzzone. Narration was written and performed by Stephen Young. Questions or suggestions about the project should be directed to Stephen Young (<a href="mailto:sjyoung3@wisc.edu">sjyoung3@wisc.edu</a>) and Rob Roth (<a href="mailto:reroth@wisc.edu">reroth@wisc.edu</a>).</p>
+      
+      <hr/>
+      
+      <p class="lead">Slideshow Images</p>
+      <p>Wisconsin Historical Society Archive (copyrighted, used with permission):
+        <ul>
+          <li>Badger State Shoe Co. Building (ca.1899, Milwaukee)</li>
+          <li>Crowded Market (ca.1910)</li>
+          <li>Fight Madison Gas and Electric Rate Increase (ca.1974)</li>
+        </ul>
+      </p>
+      <p>Carl Sack (2014, Creative Commons licensed):
+        <ul>
+          <li>Former Badger State Shoe Company Building (now Das Kronenberg Condominiums)</li>
+          <li>Former City Market Building (Now City Market Apartments)</li>
+          <li>Former Chicago and NorthWestern Railroad Station (Now Madison Gas &amp; Electric offices)</li>
+          <li>Madison Gas &amp; Electric Company Blount Station sign</li>
+          <li>Power Plant Transformers</li>
+          <li>Wil-Mar Community Center</li>
+          <li>Willy Street Co-Op</li>
+          <li>Madison Candy Company plaque</li>
+          <li>Madison Candy Company building</li>
+        </ul>
+      </p>
+      <p>Others:
+        <ul>
+          <li>Friends of Historic Third Lake Ridge: <a href="http://www.thirdlakeridge.org/results.asp?category=Buildings">Chicago and Northwestern Depot</a> (ca.1920)</li>
+          <li>Zero-Drop.com: <a href="http://zero-drop.com/?p=1614">Nike Shoe Factory Floor</a> (2013, no license listed)</li>
+          <li>Katie Kowalski: Nike Factories Worldwide (map). No longer included, but a good site for further information on Nike and other garment factories, is Anna Flagg, Stephanie May, Jasmine Du, and Chad Smith: <a href="http://www.annaflagg.com/work/garmentmapping/">Where do major garment companies manufacture their clothes?</a> map (2013, Creative Commons)</li>
+          <li>redjar (Flickr): <a href="https://www.flickr.com/photos/redjar/133802648/in/photolist-5bBW89-4enno-dDYBzV-sNFTL-f8MXFi-5yZ9st-edtQmA-fcxzJH-5JU3VA-d7NqV1-bsXaiF-cUgTwC-83Afko-gQgtd-4YatU4-acNiog-8EEsuB-cPLSd-65D5Q1-hDiNW-9KUm6p-489VR8-iq7pie-7DU5sE-f8MYL6-4MXBqX-GyoC4-3Dt3G-4YatPT-4YatQM-gwhNa-diXkuY-9WJWcF-4MUFEi-kSDYzx-8mUzbb-bpRRrn-7j6SHS-6pXr3r-ej2SAM-DD6FZ-YxYWM-JtjDo-dDYG1g-d3vRF-dc1ms3-9zMa1K-52NDEA-5cJxNM-HVWVW">Shoes</a> (2006, Creative Commons)</li>
+          <li>Arthur H. Robinson Map Library, University of Wisconsin-Madison: <a href="http://www.geography.wisc.edu/maplib/index.html">Madison historic aerial photo WU-7-504</a> (United States Department of Agriculture 1937, public domain)</li>
+          <li>United States Geological Survey: <a href="http://earthexplorer.usgs.gov/">East Isthmus high-resolution orthophoto 16tcn060715</a> (2012, public domain)</li>
+          <li>Katie Kowalski: CO2 Trade Map. Adapted from Proceedings of the National Academy of Sciences: <a href="http://www.pnas.org/content/early/2011/10/13/1107409108">Millions of tons of CO2 in trade in 2004: Production and Consumption emissions</a> (from Steven J. Davis, Glen P. Peters, and Ken Caldeira, 2011, <em>The Supply Chain of CO2 Emissions</em>)</li>
+          <li>Dual Freq (Wikimedia Commons): <a href="http://en.wikipedia.org/wiki/Mendota_Hills_Wind_Farm#mediaviewer/File:Illinois_wind_farm_near_I-39_exit_82.jpg">Illinois wind farm near I-39 exit 82</a> (2006, Creative Commons)</li>
+          <li>Caroline Rose: Madison Zoning 1945 map (based on 1945 City of Madison zoning map)</li>
+          <li>Havens Center, University of Wisconsin-Madison: <a href="http://willystreetblog.com/wp/2012/05/26/a-terrorist-gave-me-lemonade/">Dow Day Protest</a> (1967, Creative Commons)</li>
+          <li>Fei Ma: Biederstaedt-Breitenbach Grocery Plaque (2014, Creative Commons)</li>
+          <li>Old Market Gourmet Coffee: <a href="http://oldmarketgourmetcoffee.com/growing-regions/">Coffee Growing Regions of the World</a> map</li>
+        </ul>
+      </p>
+
+      <p>These images will be replaced:
+        <ul>
+          <li>Carl Sack: Photo of factory in Candy Company building</li>
+        </ul>
+      </p>
+
+      <hr/>
+
+      <p class="lead">Icon Credits</p>
+      <p>Map icons (Labor, Transportation, Power, Housing): Julia Janicki</p>
+      <p>The below icons were acquired from <a href="http://thenounproject.com/">The Noun Project</a> and licensed under Creative Commons Attribution.</p>
+      <ul>
+        <li><em>Headphones</em>: Mourad Mokrane</li>
+        <li><em>Help</em>: Tommy Kuntze</li>
+        <li><em>Alert</em>: Juergen Bauer</li>
+        <li><em>Locations</em>: Q. Li</li>
+        <li><em>Help</em>: Tommy Kuntze</li>
+        <li><em>Findme</em>: Ricardo Moreira</li>
+        <li><em>Text</em>: Alex Fuller</li>
+        <li><em>Coffee</em>: Jacob Halton</li>
+        <li><em>Information</em>: P.J. Onori</li>
+        <li><em>Findme</em>: Ricardo Moreira</li>
+        <li><em>Globe</em>: Edward Boatman</li>
+        <li><em>Document</em>: Thomas Le Bas</li>
+      </ul>
+
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+
+    <div id="helpModal" class="reveal-modal" data-reveal>
+      <p class="lead">Help</p>
+      <p>For instructions on how to use this application, <a href="GlobalMadison_Help.pdf" target="_blank">click here</a></p>
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
+
+    <div id="textModal" class="reveal-modal" data-reveal>
+      <div class="">
+        <p class="script">Text for audio</p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    </div>
+
+    <div id="assignmentModal" class="reveal-modal" data-reveal>
+      <div class="">
+        <p class="modalTitle">Assignment</p>
+        <p><b>All IS101 students:</b> Once you’ve completed the walking tour, you need to arrange the notes and images you collected into a photo essay that explains how and why Madison’s East Isthmus has been transformed through its interconnections with other places. Please see the course site for further details.</p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    </div>
+
+    <!--SCRIPTS-->
+
+    <!--foundation-->
+    <script src="libraries/foundation/js/vendor/jquery.js"></script>
+    <script src="libraries/foundation/js/foundation.min.js"></script>
+    <script src="libraries/foundation/js/foundation/foundation.joyride.js"></script>
+    <script src="libraries/foundation/js/vendor/jquery.cookie.js"></script>
+    <script src="libraries/foundation/js/vendor/fastclick.js"></script>
+    <script src="libraries/foundation/js/foundation/foundation.reveal.js"></script> 
+    <script src="libraries/foundation/js/foundation/foundation.orbit.js"></script> 
+    <script src="libraries/foundation/js/foundation/foundation.interchange.js"></script>
+    <script src="libraries/foundation/js/vendor/modernizr.js"></script>
+      
+    <!--jQuery stuff-->
+    <script src="libraries/jquery.event.move.js"></script>
+    <script src="libraries/jquery.twentytwenty.js"></script>
+
+    <!--sweet sweet magic sauce-->
+    <script src="libraries/leaflet.0.7.3.js" type="text/javascript"></script>
+
+    <!--for data loading-->
+    <script src="libraries/queue.js"></script>
+    <script src="libraries/d3.v3.js"></script>
+    <script src="libraries/base64-binary.js"></script>
+
+    <!--project scripts-->
+    <script type="text/javascript" src="js/findMeButton.js"></script>
+    <script type="text/javascript" src="js/main.js"></script> 
+  </body>
+</html>

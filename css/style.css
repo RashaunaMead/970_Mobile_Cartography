@@ -180,7 +180,7 @@ p{
   z-index: 999;
 }
 
-#infoModal, #helpModal {
+#infoModal, #helpModal, #assignmentModal {
   overflow: auto;
 }
 

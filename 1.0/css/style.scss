@@ -1,0 +1,86 @@
+$font-stack: Helvetica, sans-serif;
+$light-gray: #6d6d6d;
+
+// Here we define the lower and upper bounds for each media size
+
+/* Small-range 0, 640px */
+$small-min:0em;
+$small-max:40em;
+/* Medium-range 641px, 1024px */
+$medium-min:40.063em;
+$medium-max:64em;
+/* Large-range 1025px, 1440px */
+$large-min:64.063em;
+$large-max: 90em;
+
+
+$xlarge-range: 90.063em, 120em;
+
+/* 1441px, 1920px */
+$xxlarge-range: 120.063em;
+
+/* 1921px */
+
+// Media Queries
+$screen: "only screen" !default;
+
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+
+$small-range: "(min-width:#{$small-min}) and (max-width:#{$small-max})";  //max-width 640px, mobile-only styles
+$small-range3: "(min-width:  #{lower-bound($small-range)}) and (max-width:  #{upper-bound-bound($small-range)}) ";
+$medium-range: (40.063em, 64em);   // min-width 641px and max-width 1024px
+$large-range: (64.063em, 90em);    // min-width 1024px and max-width 1440px
+$xlarge-range: (90.063em, 120em);  //min-width 1441px and max-width 1920px
+$xxlarge-range: (120.063em);       //min-width 1921px
+
+
+html, body, #map {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font: 100% $font-stack;
+}
+
+map {
+    z-index: 2;
+}
+
+audio{
+    width: 100%;
+}
+
+.ontop{
+    z-index: 5;
+    position:fixed;
+    width: 100%;
+}
+
+.top-bar {
+    z-index: 1;
+    position: fixed;
+    background: none repeat scroll 0 0 $light-gray;
+    /*	this will change with screen size*/
+    width: 100%;
+ 
+}
+
+.top-bar-section li:not(.has-form) a:not(.button) {
+    background: none repeat scroll 0 0 $light-gray;
+}
+
+.top-bar-section li:not(.has-form) a:hover:not(.button) {
+    background: #BEBEBE;
+}
+
+@media #{$screen} and #{$small-range} {
+		.top-bar {
+	    	bottom: 0px;
+		    margin-bottom: 0px;
+		}
+}
+
