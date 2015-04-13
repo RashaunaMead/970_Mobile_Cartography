@@ -101,12 +101,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
     $("body").css("position", "relative");
     setLayout();
 
-    /*//user direction to click on play for mobile
-    $('#playBubble').offset({top: 0, left: 10});
-    $("#playBubble").animate({opacity: 1, top: winDims[0]-90, left: 10}, 1000);
-    if(setting == "desktop"){ triggerTextModal() };*/
 	triggerIconBubble();
-	//triggerTextModal(); //triggers introductory narration text
   };
 
   $(window).on("resize", setLayout); //respond to changes in window size
@@ -125,20 +120,6 @@ function callback(error, routes, PointsofInterest, alerts, help){
 	updateText('#textModal', 0, PointsofInterest.features[currentFeature].properties.Scripts);
 	$('#textModal #previous').addClass("inactive");
   });
-
-/*  $("#container").click(function(){
-    if (setting == "mobile"){ removePlayBubble() };
-  });
-
-  $(".leaflet-clickable").click(removePlayBubble);
-
-  function removePlayBubble(){
-    //mobile play direction bubble closed on next click after it is in place and next step direction bubble opened
-    if (Math.round($('#playBubble').offset().top) === Math.round(winDims[0]-90)){
-      $('#playBubble').fadeOut();
-      $('#iconClickBubble').fadeOut();
-    };
-  };*/
 
   function triggerIconBubble(){
     if ($('#iconClickBubble span').html().length < 1){
@@ -355,16 +336,9 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   function updateText(modal, scr, texts, images, titles){
     $(modal + ' .script').html(texts[scr]);
-/*    if ($(modal + ' #next').length === 0 && texts.length > 1){
-      addTextButtons(modal, texts); 
-	} else if (texts.length == 1){
-	  $('.scriptButtonContainer').remove();
-	};*/
   };
 
   function addScript(){
-//    $('#textModal #next').remove();
-//    $('#textModal #previous').remove();
     $('#textModal .script').html(PointsofInterest.features[siteID].properties.Scripts[0])
   };
 
@@ -582,9 +556,6 @@ function callback(error, routes, PointsofInterest, alerts, help){
         
         //close the slideshow
         $("#slideshowModal").foundation('reveal', 'close');
-        //open next textModal or play next audio
-        /*setting == "desktop" ? setTimeout(triggerTextModal, 1000) : setTimeout(function(){
-          playAudio(false, siteID) }, 1000);*/
       });
     } else {
       //final note for the last landmark
@@ -718,16 +689,11 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   function switchElements(width,height,screen,pos){
     $("#splashContainer").height($("body").height());
-/*	if ($('#readAloud').length === 0){
-	  $("#textModal").append('<div id="readAloud" class="redButton"><a href="#"><div><img src="images/headphones.png" alt="Read Aloud"/><span></span></div></a></div>');
-	  readAloud();
-	};*/
     if(setting == "desktop"){ 
       //@large screen
       map.attributionControl.setPosition('bottomright');
       $(".reveal-modal").removeClass("full");
       $(".reveal-modal").addClass("large");
-      //$("#audioText").show();
       hideAudio();
       $('.leaflet-control-zoom').show();
 
@@ -753,12 +719,8 @@ function callback(error, routes, PointsofInterest, alerts, help){
       $(".reveal-modal").addClass("full");
 	  $("#audioText").show();
 	  hideAudio();
-      //$("#audioText").hide();
-      //showAudio();
       $('.leaflet-control-zoom').hide();
-      //$('#playBubble span').html("Play Audio Here");
       var oheight = height-90;
-      //$('#playBubble').offset({top: oheight, left: 10});
       $("audio").css("width","");
 
       //show find me button only if no modal is open
@@ -827,10 +789,9 @@ function loadmap(){
   });
   L.control.zoom({position: "topleft"}).addTo(map); //in case we want to switch its position
 
-  // tiles can change once we know our basemap 
-  mapTileLayer = L.tileLayer('http://a.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-    attribution: 'Map data &copy; <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> <a href="http://http://leafletjs.com"> Leaflet </a> Tiles <a href="http://mapbox.com">Mapbox</a>',
-    maxZoom: 18
+  //tiles from Mapbox; can alter in Mapbox Studio if desired  
+  mapTileLayer = L.mapbox.tileLayer("northlandiguana.lni7i40a", {
+	  accessToken: "pk.eyJ1Ijoibm9ydGhsYW5kaWd1YW5hIiwiYSI6IldJU1N4Y0UifQ.wpNgLPfnWQOBDWCgynJRiw",
   }).addTo(map);
 
   var findMeOptions = {
