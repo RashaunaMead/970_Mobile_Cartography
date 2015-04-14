@@ -14,6 +14,7 @@ var firstLocate = true;
 var iOS = false;
 var mobileOS = false;
 var openSlideshow = false;
+var leafletTimeout;
 
 window.onload = initialize();
 
@@ -81,7 +82,8 @@ function callback(error, routes, PointsofInterest, alerts, help){
   var audioIndex = 0;
 
   /***INITIALIZE LAYOUT & FIRST SITE***/
-
+  updateText('#textModal', 0, PointsofInterest.features[currentFeature]);
+  hideAudio();
   setHelp(help); //populate the help window
   setLayout(); //adjust UI to screen size
   updateRoute(); //add initial route
@@ -101,7 +103,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
     $("body").css("position", "relative");
     setLayout();
 
-	triggerIconBubble();
+    triggerIconBubble();
   };
 
   $(window).on("resize", setLayout); //respond to changes in window size
@@ -109,16 +111,16 @@ function callback(error, routes, PointsofInterest, alerts, help){
   /***USER PROMPTS***/
 
   $("#textModal").on('closed.fndtn.reveal', function (){
-	//if first viewing of site text, open slideshow on text modal close
-	if (openSlideshow){
-	  var feature = PointsofInterest.features[currentFeature];
-	  openInfoScreen(feature, feature.properties.imageSet);
-	};
-	openSlideshow = false;
-	//reset texts
-	s = 0;
-	updateText('#textModal', 0, PointsofInterest.features[currentFeature].properties.Scripts);
-	$('#textModal #previous').addClass("inactive");
+  	//if first viewing of site text, open slideshow on text modal close
+  	if (openSlideshow){
+  	  var feature = PointsofInterest.features[currentFeature];
+  	  openInfoScreen(feature, feature.properties.imageSet);
+  	};
+  	openSlideshow = false;
+  	//reset texts
+  	s = 0;
+  	updateText('#textModal', 0, PointsofInterest.features[currentFeature]);
+  	$('#textModal #previous').addClass("inactive");
   });
 
   function triggerIconBubble(){
@@ -240,7 +242,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
     $("#readAloud div").click(function(){
       if (firstClick){
         var scripts = PointsofInterest.features[currentFeature].properties.Scripts;
-        updateText('#textModal', 0, scripts);
+        updateText('#textModal', 0, PointsofInterest.features[currentFeature]);
 
         var delay = 0;
         for (var t in timeouts){
@@ -249,7 +251,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
         for (var i=0; i<scripts.length-1; i++){                      
           delay = delay + (scripts[i].length*68.2);
           timeouts[i] = window.setTimeout(function(){
-            forwardText('#textModal', scripts);
+            forwardText('#textModal', PointsofInterest.features[currentFeature]);
           }, delay);
         }
         audioIndex = 0;
@@ -298,20 +300,20 @@ function callback(error, routes, PointsofInterest, alerts, help){
     };
   };
 
-  function addTextButtons(modal, texts, images, titles){
+  function addTextButtons(modal, texts){
     s = 0;
-    $(modal + ' .script').before("<div class='redButtonContainer scriptButtonContainer'><div class='redButton scriptButtons inactive' id='previous'><a href='#'><div>< previous</div></a></div><div class='redButton scriptButtons' id='next'><a href='#'><div>next ></div></a></div><div id='readAloud' class='redButton'><a href='#'><div><img src='images/headphones.png' alt='Read Aloud'/><span></span></div></a></div></div>");
-	readAloud();
+    $(modal + ' .title').before("<div class='redButtonContainer scriptButtonContainer'><div class='redButton scriptButtons inactive' id='previous'><a href='#'><div>< previous</div></a></div><div class='redButton scriptButtons' id='next'><a href='#'><div>next ></div></a></div><div id='readAloud' class='redButton'><a href='#'><div><img src='images/headphones.png' alt='Read Aloud'/><span></span></div></a></div></div>");
+    readAloud();
 
     $(modal + ' #next').click(function(){
       if (modal == '#textModal'){ clearTimeouts() };
-      forwardText(modal, PointsofInterest.features[currentFeature].properties.Scripts, images, titles);
+      forwardText(modal, PointsofInterest.features[currentFeature]);
     });
 
     $(modal + ' #previous').click(function(){
         s--;
         s = s == -1 ? 0 : s;
-        updateText(modal, s, PointsofInterest.features[currentFeature].properties.Scripts, images, titles);
+        updateText(modal, s, PointsofInterest.features[currentFeature]);
 		if (s == 0){
 			$(modal + ' #previous').addClass("inactive");
 		};
@@ -322,24 +324,23 @@ function callback(error, routes, PointsofInterest, alerts, help){
     });
   };
 
-  function forwardText(modal, texts, images, titles){
-    s++;
+  function forwardText(modal, feature){
+  s++;
+  var texts = feature.properties.Scripts;
 	if (s == 1){
 		$(modal + ' #previous').removeClass("inactive");
 	};
 	if (s == texts.length){
 	  $(modal).foundation('reveal', 'close');
 	} else {
-	  updateText(modal, s, texts, images, titles);
+	  updateText(modal, s, feature);
 	};
   };
 
-  function updateText(modal, scr, texts, images, titles){
-    $(modal + ' .script').html(texts[scr]);
-  };
-
-  function addScript(){
-    $('#textModal .script').html(PointsofInterest.features[siteID].properties.Scripts[0])
+  function updateText(modal, scr, feature){
+    $(modal + ' .title').text(feature.properties.title+" - Landmark "+(feature.properties.id+1)+" of 5");
+    $(modal + ' .textImage').attr("src", feature.properties.textImage);
+    $(modal + ' .script').html(feature.properties.Scripts[scr]);
   };
 
   /***ROUTES***/
@@ -478,9 +479,13 @@ function callback(error, routes, PointsofInterest, alerts, help){
   };
 
   function highlightMarkers(feature) {
-    currentFeature = feature.properties.id;
-    updateText('#textModal', 0, PointsofInterest.features[currentFeature].properties.Scripts);
-    addMarkers(map, currentFeature, "red"); //add red highlighted marker
+    if (currentFeature != feature.properties.id){
+      currentFeature = feature.properties.id;
+      updateText('#textModal', 0, PointsofInterest.features[currentFeature]);
+      hideAudio();
+      readAloud();
+      addMarkers(map, currentFeature, "red"); //add red highlighted marker
+    }
   };
 
   /***SLIDESHOW***/
@@ -546,12 +551,12 @@ function callback(error, routes, PointsofInterest, alerts, help){
       div.addEventListener("click", function (){
         siteID++;
         currentFeature = siteID;
-		hideAudio();
+		    hideAudio();
         updateLocationMenu();
         updateMarkers();
         updateRoute();
         highlightRoute();
-        addScript();
+        updateText("#textModal", 0, PointsofInterest.features[siteID]);
         readAloud();
         
         //close the slideshow
@@ -564,7 +569,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
       var div = document.createElement('div');
       div.setAttribute('class', 'lastSlide');
-      div.innerHTML = "<span>This is a final note about the assignment. It is a very informative note. You will be quite edified after reading it, I promise.</span>"
+      div.innerHTML = '<span>Congratulations&amp;You made it! The tour is now over. Click the "Assignment" button in the site menu to review your homework assignment. You may revisit any of the previous landmarks, or see all of their locations, using the "Landmarks" menu. Click on any of the site icons to reactivate that site and view its slideshow. Click on the "Text" button in the site menu to view the narrative text that goes with the active site.</span>'
       li.appendChild(div);
       showImagesList.appendChild(li);
     };
@@ -616,6 +621,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   $('#slideshowModal').on('open.fndtn.reveal', function (){
     $(".leaflet-buttons-control-img").hide(); //hide findme button
+    clearTimeout(leafletTimeout);
     var imageSet = imageSets[currentFeature];
     $("#slideshow_texts").html(imageSet[0].image_texts);
   });
@@ -662,13 +668,12 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   $(".reveal-modal").on('open.fndtn.reveal', function(){
     $(".leaflet-buttons-control-img").hide(); //hide findme button
+    clearTimeout(leafletTimeout);
   });
 
-  $(".reveal-modal").on('close.fndtn.reveal', function(){
+  $(".reveal-modal").on('closed.fndtn.reveal', function(){
     if (setting == "mobile" || mobileOS == true){
-      setTimeout(function(){
-        $(".leaflet-buttons-control-img").show(); //show findme button
-      }, 500);
+      leafletTimeout = setTimeout($(".leaflet-buttons-control-img").show(), 1000);
     };
   });
 
@@ -691,10 +696,8 @@ function callback(error, routes, PointsofInterest, alerts, help){
     $("#splashContainer").height($("body").height());
     if(setting == "desktop"){ 
       //@large screen
-      map.attributionControl.setPosition('bottomright');
       $(".reveal-modal").removeClass("full");
       $(".reveal-modal").addClass("large");
-      hideAudio();
       $('.leaflet-control-zoom').show();
 
       //prevent audio element overflow
@@ -704,7 +707,6 @@ function callback(error, routes, PointsofInterest, alerts, help){
         $("audio").css("width",0);
       };
 
-      //$('#playBubble').css({display: "none"});
       if (!mobileOS){
         $(".leaflet-buttons-control-img").hide();
       } else {
@@ -714,11 +716,9 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
     } else { 
       // @small screen
-      map.attributionControl.setPosition('topright');
       $(".reveal-modal").removeClass("large");
       $(".reveal-modal").addClass("full");
-	  $("#audioText").show();
-	  hideAudio();
+      $("#audioText").show();
       $('.leaflet-control-zoom').hide();
       var oheight = height-90;
       $("audio").css("width","");
@@ -778,6 +778,7 @@ function cacheerror(){
 function loadmap(){
   map = L.map('map', { 
     zoomControl: false,
+    attributionControl: false,
     maxZoom: 18,
     minZoom: 14,
     maxBounds: [

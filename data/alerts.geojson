@@ -49,6 +49,21 @@
     {
       "type": "Feature",
       "properties": {
+        "id": "blair_at_bike_trail",
+        "routeid": 2,
+        "alert": "From the railroad station, cross Blair Street and enter the Capital City Bike Trail through the driveway alongside the railroad tracks. Do not cross Williamson Street."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -89.37530815601347,
+          43.07635671469533
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "id": "livingston_at_williamson",
         "routeid": 3,
         "alert": "Use caution crossing Williamson Street. There is busy cross traffic and no signal here."
