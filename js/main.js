@@ -673,7 +673,7 @@ function callback(error, routes, PointsofInterest, alerts, help){
 
   $(".reveal-modal").on('closed.fndtn.reveal', function(){
     if (setting == "mobile" || mobileOS == true){
-      leafletTimeout = setTimeout($(".leaflet-buttons-control-img").show(), 1000);
+      leafletTimeout = setTimeout(function(){ $(".leaflet-buttons-control-img").show() }, 1000);
     };
   });
 
